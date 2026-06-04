@@ -7,9 +7,6 @@ var speed = 600
 @export var bullet_spawn_2: Marker2D
 @export var bullet_timer: Timer
 var can_shoot: bool = false
-var mouse_position = null
-var player_position = get_global_position
-var direction: Vector2 = Vector2(0.0, 0.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,11 +15,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	velocity = Vector2(0, 0)
-	mouse_position = get_global_mouse_position()
-	var direction = (mouse_position - position)
-	velocity = speed * direction.normalized()
-	move_and_slide()
 	# Makes player shoot but only when the timer is done
 	if can_shoot:
 		_shoot()
@@ -44,5 +36,6 @@ func _shoot_2() -> void:
 	can_shoot = false
 	bullet_timer.start()
 
-func _on_bullet_timer_timeout() -> void:
+
+func _on_timer_timeout() -> void:
 	can_shoot = true

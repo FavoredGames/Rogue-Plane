@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cbvliuoqa21fi"]
+
+[ext_resource type="Texture2D" uid="uid://lexlxdaicpqa" path="res://assets/plane.png" id="1_3i4hm"]
+[ext_resource type="Script" uid="uid://dau4uoimjwx1c" path="res://scripts/basic_enemy.gd" id="1_md22f"]
+[ext_resource type="PackedScene" uid="uid://cme4bg1pqnd47" path="res://scenes/enemy_bullet.tscn" id="2_fn5nn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_md22f"]
+radius = 59.008472
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=561242436 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_timer")]
+script = ExtResource("1_md22f")
+bullet_scene = ExtResource("2_fn5nn")
+bullet_scene_2 = ExtResource("2_fn5nn")
+bullet_spawn = NodePath("Marker2D")
+bullet_spawn_2 = NodePath("Marker2D2")
+bullet_timer = NodePath("Timer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=101918283]
+position = Vector2(-2, -1)
+shape = SubResource("CircleShape2D_md22f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1249152357]
+position = Vector2(-0.99999994, -3.9999998)
+rotation = -3.1415925
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_3i4hm")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=2018614535]
+position = Vector2(-27, 33)
+
+[node name="Marker2D2" type="Marker2D" parent="." unique_id=1013162378]
+position = Vector2(23, 33)
+
+[node name="Timer" type="Timer" parent="." unique_id=288291034]
+wait_time = 0.25
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
