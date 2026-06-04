@@ -19,6 +19,8 @@ func _process(delta: float) -> void:
 	if can_shoot:
 		_shoot()
 		_shoot_2()
+	move_local_y(-speed * delta)
+
 
 
 # Spawns bullet and 
