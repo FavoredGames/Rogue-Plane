@@ -1,7 +1,12 @@
 extends CharacterBody2D
 
 @export var speed = 200
-#var velocity = Vector2()
+@export var bullet_scene: PackedScene
+@export var bullet_scene_2: PackedScene
+@export var bullet_spawn: Marker2D
+@export var bullet_spawn_2: Marker2D
+@export var bullet_timer: Timer
+var can_shoot: bool = false
 var mouse_position = null
 var player_position = get_global_position
 var direction: Vector2 = Vector2(0.0, 0.0)
@@ -18,5 +23,23 @@ func _process(delta: float) -> void:
 	var direction = (mouse_position - position)
 	velocity = speed * direction.normalized()
 	move_and_slide()
+	if can_shoot:
+		_shoot()
+		_shoot_2()
 
-	
+func _shoot() -> void:
+	var bullet = bullet_scene.instantiate()
+	bullet.global_position = bullet_spawn.global_position
+	add_sibling(bullet)
+	can_shoot = false
+	bullet_timer.start()
+
+func _shoot_2() -> void:
+	var bullet_2 = bullet_scene_2.instantiate()
+	bullet_2.global_position = bullet_spawn_2.global_position
+	add_sibling(bullet_2)
+	can_shoot = false
+	bullet_timer.start()
+
+func _on_bullet_timer_timeout() -> void:
+	can_shoot = true
