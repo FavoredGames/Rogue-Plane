@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 600
+var speed = 100
 @export var bullet_scene: PackedScene
 @export var bullet_scene_2: PackedScene
 @export var bullet_spawn: Marker2D
@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	if can_shoot:
 		_shoot()
 		_shoot_2()
-	move_local_y(-speed * delta)
+	move_local_y(speed * delta)
 
 
 

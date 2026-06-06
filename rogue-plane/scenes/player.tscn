@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bk387q22rrnmp" path="res://scenes/bullet.tscn" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://b18ilba8weg4" path="res://assets/nathan's plane.png" id="2_qhqgy"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
+radius = 46.043457
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
 radius = 50.039986
 
@@ -15,9 +18,12 @@ bullet_spawn = NodePath("Marker2D")
 bullet_spawn_2 = NodePath("Marker2D2")
 bullet_timer = NodePath("BulletTimer")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=70607542]
+[node name="Area2D" type="Area2D" parent="." unique_id=206492472]
+
+[node name="HitBox" type="CollisionShape2D" parent="Area2D" unique_id=1748100018]
 position = Vector2(0, 8)
-shape = SubResource("CircleShape2D_dqkch")
+shape = SubResource("CircleShape2D_qhqgy")
+debug_color = Color(0.72256655, 0.4231575, 0.59590304, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=275668054]
 scale = Vector2(2.5, 2.5)
@@ -33,4 +39,9 @@ autostart = true
 [node name="Marker2D2" type="Marker2D" parent="." unique_id=1170533759]
 position = Vector2(-30, -23)
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=70607542]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_dqkch")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]

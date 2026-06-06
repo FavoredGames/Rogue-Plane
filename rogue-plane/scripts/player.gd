@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
-var speed = 600
+
 @export var bullet_scene: PackedScene
 @export var bullet_scene_2: PackedScene
 @export var bullet_spawn: Marker2D
 @export var bullet_spawn_2: Marker2D
 @export var bullet_timer: Timer
+var speed: float = 600
+var health: int = 10
 var can_shoot: bool = false
 var mouse_position = null
 var player_position = get_global_position
@@ -23,6 +25,8 @@ func _process(delta: float) -> void:
 	var direction = (mouse_position - position)
 	velocity = speed * direction.normalized()
 	move_and_slide()
+	if health <= 0:
+		get_tree().call_deferred("reload_current_scene")
 	# Makes player shoot but only when the timer is done
 	if can_shoot:
 		_shoot()
@@ -46,3 +50,10 @@ func _shoot_2() -> void:
 
 func _on_bullet_timer_timeout() -> void:
 	can_shoot = true
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("damager"):
+		health -= 1
+		print(health)
+	
