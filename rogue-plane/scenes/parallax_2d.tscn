@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://daqpe8wo5giqm"]
+
+[ext_resource type="Script" uid="uid://b12i8jhght8ks" path="res://scripts/parallax_2d.gd" id="1_ut440"]
+
+[node name="Parallax2D" type="Parallax2D" unique_id=862418919]
+script = ExtResource("1_ut440")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=199796932]
