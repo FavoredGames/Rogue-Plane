@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ca41rjv28tgty"]
+
+[ext_resource type="Script" uid="uid://duonb6m2iskaj" path="res://autoloads/signal_manager.gd" id="1_rvtsc"]
+
+[node name="SignalManager" type="Node2D" unique_id=359800639]
+script = ExtResource("1_rvtsc")

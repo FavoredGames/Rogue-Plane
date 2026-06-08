@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var bullet_spawn: Marker2D
 @export var bullet_spawn_2: Marker2D
 @export var bullet_timer: Timer
+var xp: int = 0
 var speed: float = 600
 var health: int = 10
 var can_shoot: bool = false
@@ -15,7 +16,12 @@ var direction: Vector2 = Vector2(0.0, 0.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	SignalManager.enemy_plane_died.connect(enemy_plane_died)
+
+
+func enemy_plane_died():
+	xp += 1
+	print(xp)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,7 +37,12 @@ func _process(delta: float) -> void:
 	if can_shoot:
 		_shoot()
 		_shoot_2()
+	if xp == 1:
+		level_up()
 
+
+func level_up():
+	SignalManager.card_upgrades.emit()
 
 # Spawns bullet and 
 func _shoot() -> void:
@@ -55,5 +66,5 @@ func _on_bullet_timer_timeout() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("damager"):
 		health -= 1
-		print(health)
+		#print(health)
 	

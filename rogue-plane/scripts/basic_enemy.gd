@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var speed = 100
+var health: int = 10
 @export var bullet_scene: PackedScene
 @export var bullet_scene_2: PackedScene
 @export var bullet_spawn: Marker2D
@@ -10,7 +11,7 @@ var can_shoot: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,6 +21,9 @@ func _process(delta: float) -> void:
 		_shoot()
 		_shoot_2()
 	move_local_y(speed * delta)
+	if health <= 0:
+		SignalManager.enemy_plane_died.emit()
+		queue_free()
 
 
 
@@ -41,3 +45,9 @@ func _shoot_2() -> void:
 
 func _on_timer_timeout() -> void:
 	can_shoot = true
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy_damagers"):
+		health -= 1
+		#print(health)

@@ -3,18 +3,18 @@
 [ext_resource type="Script" uid="uid://d0o5ho3dr3idd" path="res://scripts/enemy_bullet.gd" id="1_d2qol"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6qi02"]
-size = Vector2(1, 4)
+size = Vector2(2, 5.5)
 
 [node name="Area2D" type="Area2D" unique_id=675341443 groups=["damager"]]
 script = ExtResource("1_d2qol")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2111072396]
-position = Vector2(1, 3)
+position = Vector2(2, 1.5)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_6qi02")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1431241059]
-offset_top = -1.0
-offset_right = 2.0
+offset_top = -4.0
+offset_right = 4.0
 offset_bottom = 7.0
 color = Color(1, 1, 0, 1)
