@@ -6,12 +6,21 @@ extends ProgressBar
 func _ready() -> void:
 	SignalManager.take_damage.connect(take_damage)
 	take_damage()
+	SignalManager.increase_max_health.connect(increase_max_health)
+
+
+func increase_max_health():
+	update_health_bar()
+
 
 func take_damage():
-	value = player.health * 100 / player.max_health
+	update_health_bar()
 
+
+func update_health_bar():
+	value = player.health * 100 / player.max_health
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	update_health_bar()

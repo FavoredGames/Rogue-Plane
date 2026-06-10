@@ -10,13 +10,14 @@ radius = 46.043457
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
 radius = 50.039986
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1303541893 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_timer")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1303541893 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_timer", "healing_timer")]
 script = ExtResource("1_g2els")
 bullet_scene = ExtResource("2_dqkch")
 bullet_scene_2 = ExtResource("2_dqkch")
 bullet_spawn = NodePath("Marker2D")
 bullet_spawn_2 = NodePath("Marker2D2")
 bullet_timer = NodePath("BulletTimer")
+healing_timer = NodePath("HealingTimer")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=206492472]
 
@@ -43,5 +44,10 @@ position = Vector2(-30, -23)
 position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_dqkch")
 
+[node name="HealingTimer" type="Timer" parent="." unique_id=1968686387]
+wait_time = 0.56
+autostart = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]
+[connection signal="timeout" from="HealingTimer" to="." method="_on_healing_timer_timeout"]

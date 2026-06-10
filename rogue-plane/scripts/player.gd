@@ -6,22 +6,34 @@ extends CharacterBody2D
 @export var bullet_spawn: Marker2D
 @export var bullet_spawn_2: Marker2D
 @export var bullet_timer: Timer
+@export var healing_timer: Timer
+var xp_increase_value: int = 25
+var max_xp: int = 100
 var xp: int = 0
 var speed: float = 600
 var max_health: int = 10
 var health: int = 10
+var healing: int = 1
 var can_shoot: bool = false
 var mouse_position = null
 var player_position = get_global_position
 var direction: Vector2 = Vector2(0.0, 0.0)
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalManager.enemy_plane_died.connect(enemy_plane_died)
+	SignalManager.increase_max_health.connect(increase_max_health)
+
+
+func increase_max_health():
+	max_health *= 1.25
+	print(max_health)
 
 
 func enemy_plane_died():
-	xp += 1
+	xp += xp_increase_value
+	xp_increase()
 	print(xp)
 
 
@@ -38,7 +50,7 @@ func _process(delta: float) -> void:
 	if can_shoot:
 		_shoot()
 		_shoot_2()
-	if xp == 1:
+	if xp == max_xp:
 		level_up()
 
 
@@ -71,5 +83,18 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		#print(health)
 
 
+
+
+
+func xp_increase():
+	SignalManager.increase_xp.emit()
+
+
 func take_damage():
 	SignalManager.take_damage.emit()
+
+
+func _on_healing_timer_timeout() -> void:
+	if health < max_health:
+		health += healing
+		healing_timer.start()
