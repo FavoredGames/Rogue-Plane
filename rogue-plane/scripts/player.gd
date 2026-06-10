@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var bullet_timer: Timer
 var xp: int = 0
 var speed: float = 600
+var max_health: int = 10
 var health: int = 10
 var can_shoot: bool = false
 var mouse_position = null
@@ -66,5 +67,9 @@ func _on_bullet_timer_timeout() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("damager"):
 		health -= 1
+		take_damage()
 		#print(health)
-	
+
+
+func take_damage():
+	SignalManager.take_damage.emit()

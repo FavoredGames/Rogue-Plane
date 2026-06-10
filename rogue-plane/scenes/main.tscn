@@ -6,6 +6,26 @@
 [ext_resource type="PackedScene" uid="uid://daqpe8wo5giqm" path="res://scenes/parallax_2d.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://dt8qwrcridqln" path="res://scenes/card_upgrades.tscn" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://cjwq1yyexevb8" path="res://scripts/card_upgrades.gd" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://d0hsi5uu4se45" path="res://assets/Untitled_Artwork 42.png" id="7_tipki"]
+[ext_resource type="Texture2D" uid="uid://vcbkgbjdky6e" path="res://assets/Untitled_Artwork 42 copy.png" id="8_85g3d"]
+[ext_resource type="Texture2D" uid="uid://cekrdnhhahqyr" path="res://assets/ui.png" id="9_85g3d"]
+[ext_resource type="Script" uid="uid://dwvpkcecl4rkl" path="res://scripts/health_bar.gd" id="9_trceg"]
+[ext_resource type="Texture2D" uid="uid://c7cr61biufn0w" path="res://assets/xp_Border.png" id="10_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://cfea2mqbm07ol" path="res://assets/XP_filling.png" id="11_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://cm6x7gmuluhvc" path="res://assets/EXP.png" id="12_eb6dy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
+bg_color = Color(0.3647059, 0.9490196, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
+bg_color = Color(0.96862745, 0.27058825, 0.09019608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb6dy"]
+bg_color = Color(0.5411765, 0.85490197, 0.4862745, 1)
+corner_detail = 1
 
 [node name="Node2D" type="Node2D" unique_id=777912441]
 
@@ -34,3 +54,96 @@ offset_right = 4.0
 offset_bottom = 4.0
 script = ExtResource("6_tefeu")
 metadata/_edit_use_anchors_ = true
+
+[node name="Control2" type="Control" parent="CanvasLayer" unique_id=400586916]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control2" unique_id=235214514]
+light_mask = 2
+layout_mode = 0
+offset_left = -11.0
+offset_top = 1151.0
+offset_right = 395.0
+offset_bottom = 1557.0
+texture = ExtResource("7_tipki")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control2/TextureRect" unique_id=1827921930]
+clip_children = 1
+visibility_layer = 2
+layout_mode = 0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = 407.0
+offset_bottom = 407.0
+texture = ExtResource("8_85g3d")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control2/TextureRect/TextureRect" unique_id=1481981402 node_paths=PackedStringArray("player")]
+visibility_layer = 2
+layout_mode = 0
+offset_left = 40.0
+offset_top = 123.0
+offset_right = 398.0
+offset_bottom = 225.0
+theme_override_styles/background = SubResource("StyleBoxFlat_tipki")
+theme_override_styles/fill = SubResource("StyleBoxFlat_85g3d")
+value = 50.0
+show_percentage = false
+script = ExtResource("9_trceg")
+player = NodePath("../../../../../CharacterBody2D")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control2" unique_id=445798903]
+show_behind_parent = true
+light_mask = 0
+layout_mode = 0
+offset_left = -4.0
+offset_top = 664.0
+offset_right = 808.5
+offset_bottom = 1441.174
+texture = ExtResource("9_85g3d")
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control2" unique_id=1662477064]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 1148.0
+offset_right = 847.0
+offset_bottom = 1643.0
+texture = ExtResource("10_ya4ey")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control2/TextureRect3" unique_id=1534458073]
+clip_children = 1
+layout_mode = 0
+offset_left = -13.0
+offset_top = -17.0
+offset_right = 525.0
+offset_bottom = 521.0
+scale = Vector2(0.9527082, 1.0069162)
+texture = ExtResource("11_eb6dy")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control2/TextureRect3/TextureRect" unique_id=294709690]
+layout_mode = 0
+offset_left = 81.87189
+offset_top = 169.82547
+offset_right = 106.547615
+offset_bottom = 243.31729
+scale = Vector2(15.653735, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_ya4ey")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eb6dy")
+value = 100.0
+show_percentage = false
+
+[node name="Exp" type="Sprite2D" parent="CanvasLayer/Control2" unique_id=1796990698]
+position = Vector2(592, 1396)
+scale = Vector2(3.53125, 3.53125)
+texture = ExtResource("12_eb6dy")
+
+[node name="CharacterBody2D3" parent="." unique_id=348925055 instance=ExtResource("2_0wfyh")]
+position = Vector2(236, 14)
+
+[node name="CharacterBody2D4" parent="." unique_id=551541160 instance=ExtResource("2_0wfyh")]
+position = Vector2(229, -502)
+
+[node name="CharacterBody2D5" parent="." unique_id=25793343 instance=ExtResource("2_0wfyh")]
+position = Vector2(211, -164)
