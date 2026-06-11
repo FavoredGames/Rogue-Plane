@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://dt8qwrcridqln"]
 
-[ext_resource type="Texture2D" uid="uid://xcu4nlu0vicl" path="res://icon.svg" id="1_swp6m"]
 [ext_resource type="Script" uid="uid://cjwq1yyexevb8" path="res://scripts/card_upgrades.gd" id="1_xoywr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xoywr"]
 bg_color = Color(0.40784314, 0, 0.6, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_24cid"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swp6m"]
+bg_color = Color(0.6, 0.6, 1, 1)
 
 [node name="Control" type="Control" unique_id=1793776732]
 layout_mode = 3
@@ -26,33 +30,35 @@ offset_bottom = 95.0
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_xoywr")
 
-[node name="Button2" type="Button" parent="." unique_id=1555374270]
+[node name="damage_increase_card" type="Button" parent="." unique_id=1555374270]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+offset_left = -120.0
+offset_top = -78.0
+offset_right = 121.0
+offset_bottom = 81.0
 grow_horizontal = 2
 grow_vertical = 2
-icon = ExtResource("1_swp6m")
+theme_override_styles/normal = SubResource("StyleBoxFlat_24cid")
 
-[node name="Button3" type="Button" parent="." unique_id=808991800]
+[node name="increase_attack_speed" type="Button" parent="." unique_id=808991800]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -4.0
-offset_bottom = 4.0
+offset_left = -177.0
+offset_top = -154.0
+offset_bottom = 173.0
 grow_horizontal = 0
 grow_vertical = 2
-icon = ExtResource("1_swp6m")
+theme_override_styles/normal = SubResource("StyleBoxFlat_swp6m")
 
 [connection signal="pressed" from="health_increase_card" to="." method="_on_health_increase_card_pressed"]
+[connection signal="pressed" from="damage_increase_card" to="." method="_on_damage_increase_card_pressed"]
+[connection signal="pressed" from="increase_attack_speed" to="." method="_on_increase_attack_speed_pressed"]

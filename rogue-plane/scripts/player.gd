@@ -24,10 +24,15 @@ var direction: Vector2 = Vector2(0.0, 0.0)
 func _ready() -> void:
 	SignalManager.enemy_plane_died.connect(enemy_plane_died)
 	SignalManager.increase_max_health.connect(increase_max_health)
+	
+
+
+
+	
 
 
 func increase_max_health():
-	max_health *= 1.25
+	max_health += 2
 	print(max_health)
 
 

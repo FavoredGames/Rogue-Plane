@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://di6lpqph30o8a" path="res://assets/IMG_2278.PNG" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://daqpe8wo5giqm" path="res://scenes/parallax_2d.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://dt8qwrcridqln" path="res://scenes/card_upgrades.tscn" id="5_tbgi4"]
-[ext_resource type="Script" uid="uid://cjwq1yyexevb8" path="res://scripts/card_upgrades.gd" id="6_tefeu"]
 [ext_resource type="Texture2D" uid="uid://d0hsi5uu4se45" path="res://assets/Untitled_Artwork 42.png" id="7_tipki"]
 [ext_resource type="Texture2D" uid="uid://vcbkgbjdky6e" path="res://assets/Untitled_Artwork 42 copy.png" id="8_85g3d"]
 [ext_resource type="Texture2D" uid="uid://cekrdnhhahqyr" path="res://assets/ui.png" id="9_85g3d"]
@@ -53,7 +52,6 @@ offset_left = 4.0
 offset_top = 4.0
 offset_right = 4.0
 offset_bottom = 4.0
-script = ExtResource("6_tefeu")
 metadata/_edit_use_anchors_ = true
 
 [node name="Control2" type="Control" parent="CanvasLayer" unique_id=400586916]

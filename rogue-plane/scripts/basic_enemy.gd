@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var speed = 100
 var health: int = 10
+var take_damage: int = 1
 @export var bullet_scene: PackedScene
 @export var bullet_scene_2: PackedScene
 @export var bullet_spawn: Marker2D
@@ -11,8 +12,11 @@ var can_shoot: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	SignalManager.increase_damage.connect(increase_damage)
 
+
+func increase_damage():
+	take_damage += 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -49,5 +53,5 @@ func _on_timer_timeout() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy_damagers"):
-		health -= 1
-		#print(health)
+		health -= take_damage
+		print(take_damage)

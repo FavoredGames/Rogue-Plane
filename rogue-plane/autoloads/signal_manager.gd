@@ -5,3 +5,5 @@ signal card_upgrades
 signal take_damage
 signal increase_xp
 signal increase_max_health
+signal increase_damage
+signal increase_attack_speed
