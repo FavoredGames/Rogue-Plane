@@ -1,6 +1,5 @@
 extends Control
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalManager.card_upgrades.connect(show_upgrade_cards)
@@ -15,12 +14,20 @@ func show_upgrade_cards():
 func _on_health_increase_card_pressed() -> void:
 	print("buttonpressed")
 	SignalManager.increase_max_health.emit()
-	
+	unpause()
 
 
 func _on_damage_increase_card_pressed() -> void:
 	SignalManager.increase_damage.emit()
+	unpause()
 
 
 func _on_increase_attack_speed_pressed() -> void:
 	SignalManager.increase_attack_speed.emit()
+	unpause()
+
+
+func unpause():
+	visible = false
+	SignalManager.reset_xp.emit()
+	get_tree().paused = false

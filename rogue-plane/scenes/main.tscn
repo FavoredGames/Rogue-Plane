@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bii441uvo0wnf"]
 
+[ext_resource type="Script" uid="uid://c28bp410vglsj" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://2ws6gfmhjhy1" path="res://scenes/player.tscn" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://cbvliuoqa21fi" path="res://scenes/basic_enemy.tscn" id="2_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://di6lpqph30o8a" path="res://assets/IMG_2278.PNG" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://daqpe8wo5giqm" path="res://scenes/parallax_2d.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://dt8qwrcridqln" path="res://scenes/card_upgrades.tscn" id="5_tbgi4"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cfea2mqbm07ol" path="res://assets/XP_filling.png" id="11_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://cm6x7gmuluhvc" path="res://assets/EXP.png" id="12_eb6dy"]
 [ext_resource type="Script" uid="uid://daqlu2y2xnv1b" path="res://scripts/xp_bar.gd" id="13_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://cbvliuoqa21fi" path="res://scenes/basic_enemy.tscn" id="14_jkv2x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
 bg_color = Color(0.96862745, 0.27058825, 0.09019608, 1)
@@ -27,7 +28,17 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 bg_color = Color(0.5411765, 0.85490197, 0.4862745, 1)
 corner_detail = 1
 
-[node name="Node2D" type="Node2D" unique_id=777912441]
+[sub_resource type="Curve2D" id="Curve2D_eb6dy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 6, -254, 0, 0, 0, 0, 783, -253)
+}
+point_count = 2
+
+[node name="Node2D" type="Node2D" unique_id=777912441 node_paths=PackedStringArray("spawn_point", "spawn_timer")]
+script = ExtResource("1_a8y0u")
+spawn_point = NodePath("Path2D/PathFollow2D")
+enemy_scene = ExtResource("14_jkv2x")
+spawn_timer = NodePath("SpawnTimer")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1551041042]
 position = Vector2(405, 0)
@@ -40,9 +51,6 @@ texture = ExtResource("3_sugp2")
 
 [node name="Player" parent="." unique_id=1303541893 instance=ExtResource("1_o5qli")]
 position = Vector2(212, 512)
-
-[node name="CharacterBody2D2" parent="." unique_id=561242436 instance=ExtResource("2_0wfyh")]
-position = Vector2(232, 215)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2136626577]
 
@@ -140,11 +148,19 @@ position = Vector2(592, 1396)
 scale = Vector2(3.53125, 3.53125)
 texture = ExtResource("12_eb6dy")
 
-[node name="CharacterBody2D3" parent="." unique_id=348925055 instance=ExtResource("2_0wfyh")]
-position = Vector2(633, 10)
+[node name="Path2D" type="Path2D" parent="." unique_id=437463526]
+position = Vector2(10, 341)
+curve = SubResource("Curve2D_eb6dy")
 
-[node name="CharacterBody2D4" parent="." unique_id=551541160 instance=ExtResource("2_0wfyh")]
-position = Vector2(403, 80)
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=2004712141]
+position = Vector2(6, -254)
+rotation = 0.0012870005
 
-[node name="CharacterBody2D5" parent="." unique_id=25793343 instance=ExtResource("2_0wfyh")]
-position = Vector2(95, -353)
+[node name="CharacterBody2D" parent="." unique_id=561242436 instance=ExtResource("14_jkv2x")]
+position = Vector2(590, 220)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1495612577]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

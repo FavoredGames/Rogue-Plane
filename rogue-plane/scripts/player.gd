@@ -25,6 +25,7 @@ func _ready() -> void:
 	SignalManager.enemy_plane_died.connect(enemy_plane_died)
 	SignalManager.increase_max_health.connect(increase_max_health)
 	
+	
 
 
 
@@ -38,7 +39,7 @@ func increase_max_health():
 
 func enemy_plane_died():
 	xp += xp_increase_value
-	xp_increase()
+	update_xp()
 	print(xp)
 
 
@@ -91,8 +92,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 
-func xp_increase():
-	SignalManager.increase_xp.emit()
+func update_xp():
+	SignalManager.update_xp.emit()
 
 
 func take_damage():

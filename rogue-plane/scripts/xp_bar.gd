@@ -4,10 +4,17 @@ extends ProgressBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalManager.increase_xp.connect(increase_xp)
-	increase_xp()
+	SignalManager.update_xp.connect(update_xp)
+	SignalManager.reset_xp.connect(reset_xp)
+	update_xp()
 
-func increase_xp():
+
+func reset_xp():
+	player.xp = 0
+	update_xp()
+
+
+func update_xp():
 	value = player.xp * 100 / player.max_xp
 	#if player.xp == player.max_xp:
 		#player.xp = 0
