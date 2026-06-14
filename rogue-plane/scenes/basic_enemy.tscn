@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://lexlxdaicpqa" path="res://assets/plane.png" id="1_3i4hm"]
 [ext_resource type="Script" uid="uid://dau4uoimjwx1c" path="res://scripts/basic_enemy.gd" id="1_md22f"]
 [ext_resource type="PackedScene" uid="uid://cme4bg1pqnd47" path="res://scenes/enemy_bullet.tscn" id="2_fn5nn"]
+[ext_resource type="PackedScene" uid="uid://t131tvut32yf" path="res://scenes/coin.tscn" id="3_cuegt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_md22f"]
 radius = 47.010635
@@ -10,13 +11,15 @@ radius = 47.010635
 [sub_resource type="CircleShape2D" id="CircleShape2D_fn5nn"]
 radius = 60.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=561242436 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_timer")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=561242436 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_timer", "coin_spawn")]
 script = ExtResource("1_md22f")
 bullet_scene = ExtResource("2_fn5nn")
 bullet_scene_2 = ExtResource("2_fn5nn")
 bullet_spawn = NodePath("Marker2D")
 bullet_spawn_2 = NodePath("Marker2D2")
 bullet_timer = NodePath("Timer")
+coin_scene = ExtResource("3_cuegt")
+coin_spawn = NodePath("Marker2D3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=101918283]
 position = Vector2(-2, -1)
@@ -43,6 +46,8 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=597777620]
 position = Vector2(-2, -2)
 shape = SubResource("CircleShape2D_fn5nn")
+
+[node name="Marker2D3" type="Marker2D" parent="." unique_id=857053747]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

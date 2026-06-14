@@ -20,7 +20,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xoywr")
 
-[node name="health_increase_card" type="Button" parent="." unique_id=934988365]
+[node name="HealthIncreaseCard" type="Button" parent="." unique_id=934988365]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -30,8 +31,10 @@ offset_right = 186.0
 offset_bottom = 95.0
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_xoywr")
+text = "increase health
+"
 
-[node name="damage_increase_card" type="Button" parent="." unique_id=1555374270]
+[node name="DamageIncreaseCard" type="Button" parent="." unique_id=1555374270]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -45,8 +48,10 @@ offset_bottom = 81.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_24cid")
+text = "increase damage
+"
 
-[node name="increase_attack_speed" type="Button" parent="." unique_id=808991800]
+[node name="IncreaseAttackSpeed" type="Button" parent="." unique_id=808991800]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -54,12 +59,15 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -177.0
-offset_top = -154.0
-offset_bottom = 173.0
+offset_top = -75.0
+offset_right = 2.0
+offset_bottom = 81.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_swp6m")
+text = "increase fire rate
+"
 
-[connection signal="pressed" from="health_increase_card" to="." method="_on_health_increase_card_pressed"]
-[connection signal="pressed" from="damage_increase_card" to="." method="_on_damage_increase_card_pressed"]
-[connection signal="pressed" from="increase_attack_speed" to="." method="_on_increase_attack_speed_pressed"]
+[connection signal="pressed" from="HealthIncreaseCard" to="." method="_on_health_increase_card_pressed"]
+[connection signal="pressed" from="DamageIncreaseCard" to="." method="_on_damage_increase_card_pressed"]
+[connection signal="pressed" from="IncreaseAttackSpeed" to="." method="_on_increase_attack_speed_pressed"]

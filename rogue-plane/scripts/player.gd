@@ -34,7 +34,7 @@ func _ready() -> void:
 
 func increase_max_health():
 	max_health += 2
-	print(max_health)
+	
 
 
 func enemy_plane_died():
@@ -58,7 +58,6 @@ func _process(delta: float) -> void:
 		_shoot_2()
 	if xp == max_xp:
 		level_up()
-
 
 func level_up():
 	SignalManager.card_upgrades.emit()

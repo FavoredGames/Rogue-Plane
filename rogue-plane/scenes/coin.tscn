@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://t131tvut32yf"]
+
+[ext_resource type="Script" uid="uid://dnjsmvjel5pc3" path="res://scripts/coin.gd" id="1_rwqht"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kahox"]
+
+[node name="Area2D" type="Area2D" unique_id=197188016]
+script = ExtResource("1_rwqht")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=195289098]
+shape = SubResource("CircleShape2D_kahox")
+debug_color = Color(1.1748409, 1.2108967, 0, 1)
