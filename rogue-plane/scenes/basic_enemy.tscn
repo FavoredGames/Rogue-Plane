@@ -50,3 +50,4 @@ shape = SubResource("CircleShape2D_fn5nn")
 [node name="Marker2D3" type="Marker2D" parent="." unique_id=857053747]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
