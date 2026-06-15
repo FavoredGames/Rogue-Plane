@@ -20,8 +20,7 @@ bullet_spawn_2 = NodePath("Marker2D2")
 bullet_timer = NodePath("BulletTimer")
 healing_timer = NodePath("HealingTimer")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=206492472 groups=["player"]]
-position = Vector2(2, 8)
+[node name="Area2D" type="Area2D" parent="." unique_id=206492472]
 
 [node name="HitBox" type="CollisionShape2D" parent="Area2D" unique_id=1748100018]
 position = Vector2(0, 8)
@@ -33,7 +32,7 @@ scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_qhqgy")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=2072698876]
-position = Vector2(30, -28)
+position = Vector2(30, -23)
 
 [node name="BulletTimer" type="Timer" parent="." unique_id=1558537864]
 wait_time = 0.25
@@ -41,10 +40,10 @@ autostart = true
 script = ExtResource("4_dqkch")
 
 [node name="Marker2D2" type="Marker2D" parent="." unique_id=1170533759]
-position = Vector2(-30, -28)
+position = Vector2(-30, -23)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=70607542]
-position = Vector2(1, 12)
+position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_dqkch")
 
 [node name="HealingTimer" type="Timer" parent="." unique_id=1968686387]
