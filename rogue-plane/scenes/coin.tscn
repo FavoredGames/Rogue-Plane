@@ -1,12 +1,19 @@
 [gd_scene format=3 uid="uid://t131tvut32yf"]
 
+[ext_resource type="Texture2D" uid="uid://dmgmnbv0sf5om" path="res://assets/Untitled_Artwork 37.png" id="1_i64fm"]
 [ext_resource type="Script" uid="uid://dnjsmvjel5pc3" path="res://scripts/coin.gd" id="1_rwqht"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kahox"]
+radius = 57.00877
 
-[node name="Area2D" type="Area2D" unique_id=197188016]
+[node name="Sprite2D" type="Sprite2D" unique_id=68157715]
+position = Vector2(9.536743e-07, -9.536743e-07)
+scale = Vector2(0.421875, 0.421875)
+texture = ExtResource("1_i64fm")
 script = ExtResource("1_rwqht")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=195289098]
+[node name="Area2D" type="Area2D" parent="." unique_id=197188016]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=195289098]
 shape = SubResource("CircleShape2D_kahox")
 debug_color = Color(1.1748409, 1.2108967, 0, 1)

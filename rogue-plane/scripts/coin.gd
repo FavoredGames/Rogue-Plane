@@ -1,4 +1,4 @@
-extends Area2D
+extends Sprite2D
 
 
 @export var speed: float = 300.0
