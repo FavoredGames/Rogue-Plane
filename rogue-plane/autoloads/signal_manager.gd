@@ -8,3 +8,6 @@ signal increase_max_health
 signal increase_damage
 signal increase_attack_speed
 signal reset_xp
+signal coin_collected
+signal load_game
+signal load_skill_tree

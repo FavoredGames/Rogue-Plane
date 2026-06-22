@@ -19,8 +19,10 @@ bullet_spawn = NodePath("Marker2D")
 bullet_spawn_2 = NodePath("Marker2D2")
 bullet_timer = NodePath("BulletTimer")
 healing_timer = NodePath("HealingTimer")
+health = 6
+healing = 0
 
-[node name="Area2D" type="Area2D" parent="." unique_id=206492472]
+[node name="Area2D" type="Area2D" parent="." unique_id=206492472 groups=["player_hitbox"]]
 
 [node name="HitBox" type="CollisionShape2D" parent="Area2D" unique_id=1748100018]
 position = Vector2(0, 8)

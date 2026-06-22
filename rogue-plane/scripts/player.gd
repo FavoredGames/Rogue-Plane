@@ -7,13 +7,14 @@ extends CharacterBody2D
 @export var bullet_spawn_2: Marker2D
 @export var bullet_timer: Timer
 @export var healing_timer: Timer
+const GAME_OVER: PackedScene = preload("res://scenes/game_over_screen.tscn")
 var xp_increase_value: int = 25
 var max_xp: int = 100
 var xp: int = 0
 var speed: float = 600
-var max_health: int = 10
-var health: int = 10
-var healing: int = 1
+var max_health: int = 2
+@export var health: int = 2
+@export var healing: int = 1
 var can_shoot: bool = false
 var mouse_position = null
 var player_position = get_global_position
@@ -24,6 +25,7 @@ var direction: Vector2 = Vector2(0.0, 0.0)
 func _ready() -> void:
 	SignalManager.enemy_plane_died.connect(enemy_plane_died)
 	SignalManager.increase_max_health.connect(increase_max_health)
+	print(max_health)
 	
 	
 
@@ -51,7 +53,7 @@ func _process(delta: float) -> void:
 	velocity = speed * direction.normalized()
 	move_and_slide()
 	if health <= 0:
-		get_tree().call_deferred("reload_current_scene")
+		get_tree().change_scene_to_packed(GAME_OVER)
 	# Makes player shoot but only when the timer is done
 	if can_shoot:
 		_shoot()

@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cm6x7gmuluhvc" path="res://assets/EXP.png" id="12_eb6dy"]
 [ext_resource type="Script" uid="uid://daqlu2y2xnv1b" path="res://scripts/xp_bar.gd" id="13_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://cbvliuoqa21fi" path="res://scenes/basic_enemy.tscn" id="14_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://cpnqr5gpixtlp" path="res://scenes/coin_counter.tscn" id="15_jkv2x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
 bg_color = Color(0.96862745, 0.27058825, 0.09019608, 1)
@@ -27,13 +28,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb6dy"]
 bg_color = Color(0.5411765, 0.85490197, 0.4862745, 1)
 corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8y0u"]
-bg_color = Color(0, 0, 0, 0.63000005)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [sub_resource type="Curve2D" id="Curve2D_eb6dy"]
 _data = {
@@ -58,6 +52,8 @@ texture = ExtResource("3_sugp2")
 
 [node name="Player" parent="." unique_id=1303541893 instance=ExtResource("1_o5qli")]
 position = Vector2(212, 512)
+health = 2
+healing = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2136626577]
 
@@ -156,14 +152,10 @@ position = Vector2(592, 1396)
 scale = Vector2(3.53125, 3.53125)
 texture = ExtResource("12_eb6dy")
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Control2" unique_id=1895241242]
-layout_mode = 0
-offset_left = 265.00003
-offset_top = -4.0
-offset_right = 397.00003
-offset_bottom = 52.0
-scale = Vector2(2.204781, 2.3279815)
-theme_override_styles/panel = SubResource("StyleBoxFlat_a8y0u")
+[node name="Control3" parent="CanvasLayer" unique_id=1938221809 instance=ExtResource("15_jkv2x")]
+offset_left = -1.0
+offset_right = -1.0
+offset_bottom = -1330.0
 
 [node name="Path2D" type="Path2D" parent="." unique_id=437463526]
 position = Vector2(-12, 181)
