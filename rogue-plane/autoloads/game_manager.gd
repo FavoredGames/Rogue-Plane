@@ -3,7 +3,8 @@ extends Node
 
 const GAME: PackedScene = preload("res://scenes/main.tscn")
 const SKILL_TREE: PackedScene = preload("res://scenes/skill_tree.tscn")
-var max_hp_cost: int = 0
+var max_hp_cost: int = 1
+var total_coins: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,17 +12,20 @@ func _ready() -> void:
 	SignalManager.coin_collected.connect(increase_coin_amount)
 	SignalManager.load_skill_tree.connect(load_skill_tree)
 	SignalManager.update_max_hp_cost.connect(update_max_hp_cost)
+	SignalManager.update_total_coins.connect(update_total_coins)
 
+
+func update_total_coins():
+	total_coins -= max_hp_cost
 
 
 func update_max_hp_cost():
 	max_hp_cost *= 2
-	print(max_hp_cost)
+	print("maxhpcost", max_hp_cost)
 
 
 func load_skill_tree():
 	get_tree().change_scene_to_packed(SKILL_TREE)
-	print("FJKFDOBJP")
 
 
 
@@ -38,4 +42,4 @@ var coins_from_run = 0
 
 func increase_coin_amount():
 	coins_from_run += 1
-	print("coins", coins_from_run)
+	total_coins += coins_from_run

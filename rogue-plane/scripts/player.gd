@@ -25,7 +25,7 @@ var direction: Vector2 = Vector2(0.0, 0.0)
 func _ready() -> void:
 	SignalManager.enemy_plane_died.connect(enemy_plane_died)
 	SignalManager.increase_max_health.connect(increase_max_health)
-	print(max_health)
+	
 	
 	
 
@@ -42,7 +42,7 @@ func increase_max_health():
 func enemy_plane_died():
 	xp += xp_increase_value
 	update_xp()
-	print(xp)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -87,8 +87,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("damager"):
 		health -= 1
 		take_damage()
-		#print(health)
-
+		
 
 
 

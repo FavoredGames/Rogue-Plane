@@ -12,7 +12,6 @@ func show_upgrade_cards():
 
 
 func _on_health_increase_card_pressed() -> void:
-	print("buttonpressed")
 	SignalManager.increase_max_health.emit()
 	unpause()
 

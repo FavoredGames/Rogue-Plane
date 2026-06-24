@@ -12,3 +12,4 @@ signal coin_collected
 signal load_game
 signal load_skill_tree
 signal update_max_hp_cost
+signal update_total_coins
