@@ -4,21 +4,17 @@ extends ProgressBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalManager.take_damage.connect(take_damage)
-	take_damage()
-	SignalManager.increase_max_health.connect(increase_max_health)
+	pass
 
 
-func increase_max_health():
-	update_health_bar()
 
 
-func take_damage():
-	update_health_bar()
+
+
 
 
 func update_health_bar():
-	value = player.health * 100 / player.max_health
+	value = player.health * 100 / GameManager.max_hp
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

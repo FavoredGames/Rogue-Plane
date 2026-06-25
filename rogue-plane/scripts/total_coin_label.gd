@@ -4,13 +4,11 @@ extends Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GameManager.total_coins
-	print(GameManager.total_coins)
 	update_coins()
 	
 
 func update_coins():
-	text = str('%03d' % GameManager.total_coins)
+	text = str('%03d' % GameManager.coins_from_run)
 	
 	
 

@@ -12,9 +12,8 @@ var xp_increase_value: int = 25
 var max_xp: int = 100
 var xp: int = 0
 var speed: float = 600
-var max_health: int = 2
 @export var health: int = 2
-@export var healing: int = 1
+@export var healing: int = 0
 var can_shoot: bool = false
 var mouse_position = null
 var player_position = get_global_position
@@ -23,6 +22,7 @@ var direction: Vector2 = Vector2(0.0, 0.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	health = GameManager.max_hp
 	SignalManager.enemy_plane_died.connect(enemy_plane_died)
 	SignalManager.increase_max_health.connect(increase_max_health)
 	
@@ -35,7 +35,7 @@ func _ready() -> void:
 
 
 func increase_max_health():
-	max_health += 2
+	GameManager.max_hp += 2
 	
 
 
@@ -100,7 +100,7 @@ func take_damage():
 	SignalManager.take_damage.emit()
 
 
-func _on_healing_timer_timeout() -> void:
-	if health < max_health:
-		health += healing
-		healing_timer.start()
+#func _on_healing_timer_timeout() -> void:
+	#if health < GameManager.max_hp:
+		#health += healing
+		#healing_timer.start()
