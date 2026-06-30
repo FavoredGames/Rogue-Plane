@@ -10,6 +10,8 @@ var take_damage: int = 1
 @export var bullet_timer: Timer
 @export var coin_scene: PackedScene
 @export var coin_spawn: Marker2D
+@export var coin_spawn_2: Marker2D
+var pecentage = randf()
 var can_shoot: bool = false
 
 # Called when the node enters the scene tree for the first time.
@@ -31,6 +33,8 @@ func _process(delta: float) -> void:
 	if health <= 0:
 		SignalManager.enemy_plane_died.emit()
 		spawn_coin()
+		if pecentage <= GameManager.second_coin_chance:
+			spawn_coin_2()
 		queue_free()
 
 func spawn_coin() -> void:
@@ -38,6 +42,12 @@ func spawn_coin() -> void:
 	coin.global_position = coin_spawn.global_position
 	add_sibling(coin)
 	
+
+
+func spawn_coin_2() -> void:
+	var coin = coin_scene.instantiate()
+	coin.global_position = coin_spawn_2.global_position
+	add_sibling(coin)
 
 
 # Spawns bullet and 

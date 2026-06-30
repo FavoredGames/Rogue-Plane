@@ -18,25 +18,33 @@ var can_shoot: bool = false
 var mouse_position = null
 var player_position = get_global_position
 var direction: Vector2 = Vector2(0.0, 0.0)
+var player_max_hp: int = 0 
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	health = GameManager.max_hp
 	SignalManager.enemy_plane_died.connect(enemy_plane_died)
-	SignalManager.increase_max_health.connect(increase_max_health)
-	
-	
-	
-
-
-
+	SignalManager.increase_max_health_temporary.connect(increase_max_health_temporary)
+	player_max_hp = GameManager.max_hp
+	SignalManager.increase_max_health_permanent.connect(increase_max_health_permanent)
+	print(health)
+	print(player_max_hp)
 	
 
 
-func increase_max_health():
+
+func increase_max_health_permanent():
 	GameManager.max_hp += 2
 	
+
+
+func increase_max_health_temporary():
+	player_max_hp += 2
+	health += 2
+	print(health)
+	print(player_max_hp)
 
 
 func enemy_plane_died():

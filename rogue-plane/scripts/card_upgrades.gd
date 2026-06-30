@@ -12,7 +12,7 @@ func show_upgrade_cards():
 
 
 func _on_health_increase_card_pressed() -> void:
-	SignalManager.increase_max_health.emit()
+	SignalManager.increase_max_health_temporary.emit()
 	unpause()
 
 

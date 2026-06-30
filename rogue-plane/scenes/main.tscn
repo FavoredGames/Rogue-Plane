@@ -35,6 +35,8 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jkv2x"]
+
 [node name="Node2D" type="Node2D" unique_id=777912441 node_paths=PackedStringArray("spawn_point", "spawn_timer")]
 script = ExtResource("1_a8y0u")
 spawn_point = NodePath("Path2D/PathFollow2D")
@@ -168,5 +170,11 @@ rotation = 0.005706072
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1495612577]
 wait_time = 2.0
 autostart = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=191694715]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1879921527]
+position = Vector2(374, 1204)
+shape = SubResource("WorldBoundaryShape2D_jkv2x")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

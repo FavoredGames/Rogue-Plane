@@ -11,7 +11,7 @@ radius = 47.010635
 [sub_resource type="CircleShape2D" id="CircleShape2D_fn5nn"]
 radius = 60.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=561242436 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_timer", "coin_spawn")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=561242436 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_timer", "coin_spawn", "coin_spawn_2")]
 script = ExtResource("1_md22f")
 bullet_scene = ExtResource("2_fn5nn")
 bullet_scene_2 = ExtResource("2_fn5nn")
@@ -20,6 +20,7 @@ bullet_spawn_2 = NodePath("Marker2D2")
 bullet_timer = NodePath("Timer")
 coin_scene = ExtResource("3_cuegt")
 coin_spawn = NodePath("Marker2D3")
+coin_spawn_2 = NodePath("Marker2D4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=101918283]
 position = Vector2(-2, -1)
@@ -48,6 +49,10 @@ position = Vector2(-2, -2)
 shape = SubResource("CircleShape2D_fn5nn")
 
 [node name="Marker2D3" type="Marker2D" parent="." unique_id=857053747]
+position = Vector2(-36, -9)
+
+[node name="Marker2D4" type="Marker2D" parent="." unique_id=838577124]
+position = Vector2(25, -25)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

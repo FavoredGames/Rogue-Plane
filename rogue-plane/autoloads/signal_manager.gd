@@ -4,7 +4,8 @@ signal enemy_plane_died
 signal card_upgrades
 signal take_damage
 signal update_xp
-signal increase_max_health
+signal increase_max_health_temporary
+signal increase_max_health_permanent
 signal increase_damage
 signal increase_attack_speed
 signal reset_xp
@@ -13,3 +14,4 @@ signal load_game
 signal load_skill_tree
 signal update_max_hp_upgrade
 signal update_total_coins
+signal increase_extra_coin_chance

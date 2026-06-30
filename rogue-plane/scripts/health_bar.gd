@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func update_health_bar():
-	value = player.health * 100 / GameManager.max_hp
+	value = player.health * 100 / player.player_max_hp
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
