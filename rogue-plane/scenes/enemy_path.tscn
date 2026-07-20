@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bhvdcc3j5snu7"]
+
+[ext_resource type="Texture2D" uid="uid://b18ilba8weg4" path="res://assets/nathan's plane.png" id="1_fw00r"]
+[ext_resource type="Script" uid="uid://ctyk1xpwbhh36" path="res://scripts/path_follow_2d.gd" id="1_ov72x"]
+
+[sub_resource type="Curve2D" id="Curve2D_ov72x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -3, 379, 0, 0, 0, 0, -18, 5)
+}
+point_count = 2
+
+[node name="Path2D" type="Path2D" unique_id=622927679]
+position = Vector2(360, 69)
+curve = SubResource("Curve2D_ov72x")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=60867896]
+position = Vector2(-3, 379)
+rotation = -1.6108818
+cubic_interp = false
+loop = false
+script = ExtResource("1_ov72x")
+
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D" unique_id=1958348030]
+texture = ExtResource("1_fw00r")

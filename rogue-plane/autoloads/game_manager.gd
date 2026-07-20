@@ -8,7 +8,7 @@ var total_coins: int = 1
 var coins_from_run = 0
 var max_hp: int = 4
 var extra_coin_upgrade_cost: int = 5
-var second_coin_chance = 0.7
+var second_coin_chance = 0.1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,9 +25,9 @@ func update_total_coins():
 
 
 func increase_extra_coin_chance():
-	extra_coin_upgrade_cost *= 2
 	print("extra_coin_upgrade_cost", extra_coin_upgrade_cost)
-	extra_coin_upgrade_cost += 3
+	extra_coin_upgrade_cost *= 5
+	second_coin_chance += 0.1
 
 
 func increase_max_health_permanent():
