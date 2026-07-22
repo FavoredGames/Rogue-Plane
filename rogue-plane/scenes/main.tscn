@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://daqlu2y2xnv1b" path="res://scripts/xp_bar.gd" id="13_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://cbvliuoqa21fi" path="res://scenes/basic_enemy.tscn" id="14_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://cpnqr5gpixtlp" path="res://scenes/coin_counter.tscn" id="15_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://bgs4dgsgb7woe" path="res://scenes/mini_plane.tscn" id="16_jbj1t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
 bg_color = Color(0.96862745, 0.27058825, 0.09019608, 1)
@@ -176,5 +177,7 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1879921527]
 position = Vector2(374, 1204)
 shape = SubResource("WorldBoundaryShape2D_jkv2x")
+
+[node name="CharacterBody2D" parent="." unique_id=563906200 instance=ExtResource("16_jbj1t")]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

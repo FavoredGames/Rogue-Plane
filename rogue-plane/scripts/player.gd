@@ -55,10 +55,10 @@ func enemy_plane_died():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	velocity = Vector2(0, 0)
+	velocity = Vector2(0, 0,)
 	mouse_position = get_global_mouse_position()
 	var direction = (mouse_position - position)
-	velocity = speed * direction.normalized()
+	velocity =  speed * direction.normalized()
 	move_and_slide()
 	if health <= 0:
 		get_tree().change_scene_to_packed(GAME_OVER)

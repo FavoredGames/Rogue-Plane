@@ -1,24 +1,22 @@
 [gd_scene format=3 uid="uid://bhvdcc3j5snu7"]
 
-[ext_resource type="Texture2D" uid="uid://b18ilba8weg4" path="res://assets/nathan's plane.png" id="1_fw00r"]
 [ext_resource type="Script" uid="uid://ctyk1xpwbhh36" path="res://scripts/path_follow_2d.gd" id="1_ov72x"]
+[ext_resource type="PackedScene" uid="uid://cbvliuoqa21fi" path="res://scenes/basic_enemy.tscn" id="2_ov72x"]
 
-[sub_resource type="Curve2D" id="Curve2D_ov72x"]
+[sub_resource type="Curve2D" id="Curve2D_fw00r"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -3, 379, 0, 0, 0, 0, -18, 5)
+"points": PackedVector2Array(0, 0, 0, 0, 104, 86, -21.609154, -86.436615, 21.609154, 86.436615, 98, 297, 0, 0, 0, 0, 231, 404, -40.131287, 13.891599, 40.131287, -13.891599, 447, 424, -13.1198435, 74.08853, 13.1198435, -74.08853, 519, 347, 14.663355, 10.032822, -14.663355, -10.032822, 432, 210, 30.098465, -14.663355, -30.098465, 14.663355, 323, 193, 37.044266, -40.90304, -37.044266, 40.90304, 265, 231, 0, 0, 0, 0, 265, 601, 50.085297, -152.34277, -50.085297, 152.34277, 263, 971, -2.0868871, -121.03945, 2.0868871, 121.03945, 174, 1314, 0, 0, 0, 0, 177, 1749)
 }
-point_count = 2
+point_count = 12
 
-[node name="Path2D" type="Path2D" unique_id=622927679]
-position = Vector2(360, 69)
-curve = SubResource("Curve2D_ov72x")
+[node name="Node2D" type="Node2D" unique_id=1932508804]
 
-[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=60867896]
-position = Vector2(-3, 379)
-rotation = -1.6108818
-cubic_interp = false
-loop = false
+[node name="Path2D" type="Path2D" parent="." unique_id=72891412]
+position = Vector2(13, -54)
+curve = SubResource("Curve2D_fw00r")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1912718650]
+position = Vector2(104, 86)
 script = ExtResource("1_ov72x")
 
-[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D" unique_id=1958348030]
-texture = ExtResource("1_fw00r")
+[node name="CharacterBody2D" parent="Path2D/PathFollow2D" unique_id=561242436 instance=ExtResource("2_ov72x")]

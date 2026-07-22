@@ -20,7 +20,6 @@ bullet_spawn_2 = NodePath("Marker2D2")
 bullet_timer = NodePath("BulletTimer")
 healing_timer = NodePath("HealingTimer")
 health = 6
-healing = 0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=206492472 groups=["player_hitbox"]]
 
@@ -37,7 +36,7 @@ texture = ExtResource("2_qhqgy")
 position = Vector2(30, -23)
 
 [node name="BulletTimer" type="Timer" parent="." unique_id=1558537864]
-wait_time = 0.25
+wait_time = 0.5
 autostart = true
 script = ExtResource("4_dqkch")
 
