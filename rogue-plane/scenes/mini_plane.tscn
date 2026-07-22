@@ -17,10 +17,10 @@ bullet_timer = NodePath("BulletTimer")
 texture = ExtResource("3_iho6b")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1668478667]
-position = Vector2(17, -4)
+position = Vector2(0, -20)
 
 [node name="BulletTimer" type="Timer" parent="." unique_id=1141923478]
-wait_time = 0.25
+wait_time = 0.5
 autostart = true
 script = ExtResource("4_5h78v")
 

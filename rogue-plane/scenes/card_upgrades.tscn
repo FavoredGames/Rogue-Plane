@@ -10,6 +10,9 @@ bg_color = Color(0.40784314, 0, 0.6, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swp6m"]
 bg_color = Color(0.6, 0.6, 1, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wkeb"]
+bg_color = Color(0.60038817, 0.85915905, 0.60038817, 1)
+
 [node name="Control" type="Control" unique_id=1793776732]
 process_mode = 2
 layout_mode = 3
@@ -68,6 +71,16 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_swp6m")
 text = "increase fire rate
 "
 
+[node name="AddMiniPlane" type="Button" parent="." unique_id=1193701430]
+layout_mode = 0
+offset_left = 294.0
+offset_top = 415.0
+offset_right = 533.0
+offset_bottom = 545.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_6wkeb")
+text = "add mini plane"
+
 [connection signal="pressed" from="HealthIncreaseCard" to="." method="_on_health_increase_card_pressed"]
 [connection signal="pressed" from="DamageIncreaseCard" to="." method="_on_damage_increase_card_pressed"]
 [connection signal="pressed" from="IncreaseAttackSpeed" to="." method="_on_increase_attack_speed_pressed"]
+[connection signal="pressed" from="AddMiniPlane" to="." method="_on_add_mini_plane_pressed"]

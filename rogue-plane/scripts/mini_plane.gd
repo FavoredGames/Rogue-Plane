@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 	# Makes player shoot but only when the timer is done
 	if can_shoot:
 		_shoot()
-		_shoot_2()
+		#_shoot_2()
 
 
 

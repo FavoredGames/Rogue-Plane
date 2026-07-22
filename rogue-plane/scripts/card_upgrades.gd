@@ -30,3 +30,8 @@ func unpause():
 	visible = false
 	SignalManager.reset_xp.emit()
 	get_tree().paused = false
+
+
+func _on_add_mini_plane_pressed() -> void:
+	SignalManager.add_mini_plane.emit()
+	unpause()

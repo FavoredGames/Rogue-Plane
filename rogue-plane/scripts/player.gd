@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+@export var mini_plane_scene: PackedScene
 @export var bullet_scene: PackedScene
 @export var bullet_scene_2: PackedScene
 @export var bullet_spawn: Marker2D
@@ -31,8 +31,13 @@ func _ready() -> void:
 	SignalManager.increase_max_health_permanent.connect(increase_max_health_permanent)
 	print(health)
 	print(player_max_hp)
+	SignalManager.add_mini_plane.connect(add_mini_plane)
 	
 
+func add_mini_plane():
+	var mini_plane = mini_plane_scene.instantiate()
+	mini_plane.global_position = bullet_spawn.global_position
+	add_sibling(mini_plane)
 
 
 func increase_max_health_permanent():
