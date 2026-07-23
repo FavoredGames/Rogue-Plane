@@ -35,3 +35,8 @@ func unpause():
 func _on_add_mini_plane_pressed() -> void:
 	SignalManager.add_mini_plane.emit()
 	unpause()
+
+
+func _on_add_gun_pressed() -> void:
+	SignalManager.add_gun.emit()
+	unpause()

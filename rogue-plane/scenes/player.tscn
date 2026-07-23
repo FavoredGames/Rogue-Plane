@@ -5,21 +5,33 @@
 [ext_resource type="Texture2D" uid="uid://b18ilba8weg4" path="res://assets/nathan's plane.png" id="2_qhqgy"]
 [ext_resource type="Script" uid="uid://d28icklyhvx8t" path="res://scripts/bullet_timer.gd" id="4_dqkch"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
-radius = 46.043457
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
 radius = 50.039986
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1303541893 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_timer", "healing_timer")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
+radius = 46.043457
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1303541893 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_spawn_3", "bullet_spawn_4", "bullet_spawn_5", "bullet_spawn_6", "bullet_timer", "healing_timer")]
 script = ExtResource("1_g2els")
 bullet_scene = ExtResource("2_dqkch")
 bullet_scene_2 = ExtResource("2_dqkch")
+bullet_scene_3 = ExtResource("2_dqkch")
+bullet_scene_4 = ExtResource("2_dqkch")
+bullet_scene_5 = ExtResource("2_dqkch")
+bullet_scene_6 = ExtResource("2_dqkch")
 bullet_spawn = NodePath("Marker2D")
 bullet_spawn_2 = NodePath("Marker2D2")
+bullet_spawn_3 = NodePath("Marker2D3")
+bullet_spawn_4 = NodePath("Marker2D4")
+bullet_spawn_5 = NodePath("Marker2D5")
+bullet_spawn_6 = NodePath("Marker2D6")
 bullet_timer = NodePath("BulletTimer")
 healing_timer = NodePath("HealingTimer")
 health = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=70607542]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_dqkch")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=206492472 groups=["player_hitbox"]]
 
@@ -54,10 +66,6 @@ position = Vector2(-52, -5)
 wait_time = 0.25
 autostart = true
 script = ExtResource("4_dqkch")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=70607542]
-position = Vector2(0, 8)
-shape = SubResource("CircleShape2D_dqkch")
 
 [node name="HealingTimer" type="Timer" parent="." unique_id=1968686387]
 autostart = true

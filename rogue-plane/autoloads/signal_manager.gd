@@ -9,6 +9,7 @@ signal increase_max_health_permanent
 signal increase_damage
 signal increase_attack_speed
 signal add_mini_plane
+signal add_gun
 signal reset_xp
 signal coin_collected
 signal load_game

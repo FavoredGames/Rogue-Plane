@@ -3,8 +3,16 @@ extends CharacterBody2D
 @export var mini_plane_scene: PackedScene
 @export var bullet_scene: PackedScene
 @export var bullet_scene_2: PackedScene
+@export var bullet_scene_3: PackedScene
+@export var bullet_scene_4: PackedScene
+@export var bullet_scene_5: PackedScene
+@export var bullet_scene_6: PackedScene
 @export var bullet_spawn: Marker2D
 @export var bullet_spawn_2: Marker2D
+@export var bullet_spawn_3: Marker2D
+@export var bullet_spawn_4: Marker2D
+@export var bullet_spawn_5: Marker2D
+@export var bullet_spawn_6: Marker2D
 @export var bullet_timer: Timer
 @export var healing_timer: Timer
 @export var health: int = 2
@@ -21,7 +29,7 @@ var mouse_position = null
 var player_position = get_global_position
 var direction: Vector2 = Vector2(0.0, 0.0)
 var player_max_hp: int = 0 
-
+var guns: int = 2
 
 
 # Called when the node enters the scene tree for the first time.
@@ -34,7 +42,11 @@ func _ready() -> void:
 	print(health)
 	print(player_max_hp)
 	SignalManager.add_mini_plane.connect(add_mini_plane)
+	SignalManager.add_gun.connect(add_gun)
 	
+
+func add_gun():
+	guns += 1
 
 func add_mini_plane():
 	var mini_plane = mini_plane_scene.instantiate()
@@ -73,6 +85,14 @@ func _process(delta: float) -> void:
 	if can_shoot:
 		_shoot()
 		_shoot_2()
+		if guns >= 3:
+			_shoot_3()
+		if guns >= 4:
+			_shoot_4()
+		if guns >= 5:
+			_shoot_5()
+		if guns >= 6:
+			_shoot_6()
 	if xp == max_xp:
 		level_up()
 
@@ -96,33 +116,33 @@ func _shoot_2() -> void:
 
 
 func _shoot_3() -> void:
-	var bullet_2 = bullet_scene_2.instantiate()
-	bullet_2.global_position = bullet_spawn_2.global_position
-	add_sibling(bullet_2)
+	var bullet_3 = bullet_scene_3.instantiate()
+	bullet_3.global_position = bullet_spawn_3.global_position
+	add_sibling(bullet_3)
 	can_shoot = false
 	bullet_timer.start()
 
 
 func _shoot_4() -> void:
-	var bullet_2 = bullet_scene_2.instantiate()
-	bullet_2.global_position = bullet_spawn_2.global_position
-	add_sibling(bullet_2)
+	var bullet_4 = bullet_scene_4.instantiate()
+	bullet_4.global_position = bullet_spawn_4.global_position
+	add_sibling(bullet_4)
 	can_shoot = false
 	bullet_timer.start()
 
 
 func _shoot_5() -> void:
-	var bullet_2 = bullet_scene_2.instantiate()
-	bullet_2.global_position = bullet_spawn_2.global_position
-	add_sibling(bullet_2)
+	var bullet_5 = bullet_scene_5.instantiate()
+	bullet_5.global_position = bullet_spawn_5.global_position
+	add_sibling(bullet_5)
 	can_shoot = false
 	bullet_timer.start()
 
 
 func _shoot_6() -> void:
-	var bullet_2 = bullet_scene_2.instantiate()
-	bullet_2.global_position = bullet_spawn_2.global_position
-	add_sibling(bullet_2)
+	var bullet_6 = bullet_scene_6.instantiate()
+	bullet_6.global_position = bullet_spawn_6.global_position
+	add_sibling(bullet_6)
 	can_shoot = false
 	bullet_timer.start()
 
