@@ -7,13 +7,15 @@ extends CharacterBody2D
 @export var bullet_spawn_2: Marker2D
 @export var bullet_timer: Timer
 @export var healing_timer: Timer
+@export var health: int = 2
+@export var healing: int = 0
+
 const GAME_OVER: PackedScene = preload("res://scenes/game_over_screen.tscn")
+
 var xp_increase_value: int = 25
 var max_xp: int = 100
 var xp: int = 0
 var speed: float = 600
-@export var health: int = 2
-@export var healing: int = 0
 var can_shoot: bool = false
 var mouse_position = null
 var player_position = get_global_position
@@ -91,6 +93,39 @@ func _shoot_2() -> void:
 	add_sibling(bullet_2)
 	can_shoot = false
 	bullet_timer.start()
+
+
+func _shoot_3() -> void:
+	var bullet_2 = bullet_scene_2.instantiate()
+	bullet_2.global_position = bullet_spawn_2.global_position
+	add_sibling(bullet_2)
+	can_shoot = false
+	bullet_timer.start()
+
+
+func _shoot_4() -> void:
+	var bullet_2 = bullet_scene_2.instantiate()
+	bullet_2.global_position = bullet_spawn_2.global_position
+	add_sibling(bullet_2)
+	can_shoot = false
+	bullet_timer.start()
+
+
+func _shoot_5() -> void:
+	var bullet_2 = bullet_scene_2.instantiate()
+	bullet_2.global_position = bullet_spawn_2.global_position
+	add_sibling(bullet_2)
+	can_shoot = false
+	bullet_timer.start()
+
+
+func _shoot_6() -> void:
+	var bullet_2 = bullet_scene_2.instantiate()
+	bullet_2.global_position = bullet_spawn_2.global_position
+	add_sibling(bullet_2)
+	can_shoot = false
+	bullet_timer.start()
+
 
 func _on_bullet_timer_timeout() -> void:
 	can_shoot = true

@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://du6osd0wbkmxc" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://bk387q22rrnmp" path="res://scenes/bullet.tscn" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://b18ilba8weg4" path="res://assets/nathan's plane.png" id="2_qhqgy"]
-[ext_resource type="PackedScene" uid="uid://bgs4dgsgb7woe" path="res://scenes/mini_plane.tscn" id="2_qlg0r"]
 [ext_resource type="Script" uid="uid://d28icklyhvx8t" path="res://scripts/bullet_timer.gd" id="4_dqkch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
@@ -14,7 +13,6 @@ radius = 50.039986
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1303541893 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_timer", "healing_timer")]
 script = ExtResource("1_g2els")
-mini_plane = ExtResource("2_qlg0r")
 bullet_scene = ExtResource("2_dqkch")
 bullet_scene_2 = ExtResource("2_dqkch")
 bullet_spawn = NodePath("Marker2D")
@@ -37,13 +35,25 @@ texture = ExtResource("2_qhqgy")
 [node name="Marker2D" type="Marker2D" parent="." unique_id=2072698876]
 position = Vector2(30, -23)
 
+[node name="Marker2D2" type="Marker2D" parent="." unique_id=1170533759]
+position = Vector2(-30, -23)
+
+[node name="Marker2D3" type="Marker2D" parent="." unique_id=1405210957]
+position = Vector2(42, -15)
+
+[node name="Marker2D4" type="Marker2D" parent="." unique_id=2117910389]
+position = Vector2(-42, -15)
+
+[node name="Marker2D5" type="Marker2D" parent="." unique_id=601800255]
+position = Vector2(52, -5)
+
+[node name="Marker2D6" type="Marker2D" parent="." unique_id=1732021451]
+position = Vector2(-52, -5)
+
 [node name="BulletTimer" type="Timer" parent="." unique_id=1558537864]
 wait_time = 0.25
 autostart = true
 script = ExtResource("4_dqkch")
-
-[node name="Marker2D2" type="Marker2D" parent="." unique_id=1170533759]
-position = Vector2(-30, -23)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=70607542]
 position = Vector2(0, 8)
