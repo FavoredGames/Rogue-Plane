@@ -13,7 +13,7 @@ bg_color = Color(0.6, 0.6, 1, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wkeb"]
 bg_color = Color(0.60038817, 0.85915905, 0.60038817, 1)
 
-[node name="Control" type="Control" unique_id=1793776732]
+[node name="Control" type="Control" unique_id=1793776732 node_paths=PackedStringArray("card_spawn_1", "card_spawn_2", "card_spawn_3", "health_increase_card", "damage_increase_card", "attack_speed_increase_card", "add_mini_plane_card", "add_gun_card")]
 process_mode = 2
 layout_mode = 3
 anchors_preset = 15
@@ -22,32 +22,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xoywr")
+card_spawn_1 = NodePath("Marker2D")
+card_spawn_2 = NodePath("Marker2D2")
+card_spawn_3 = NodePath("Marker2D3")
+health_increase_card = NodePath("HealthIncreaseCard")
+damage_increase_card = NodePath("DamageIncreaseCard")
+attack_speed_increase_card = NodePath("IncreaseAttackSpeed")
+add_mini_plane_card = NodePath("AddMiniPlane")
+add_gun_card = NodePath("AddGun")
 
 [node name="HealthIncreaseCard" type="Button" parent="." unique_id=934988365]
+visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -91.0
-offset_right = 186.0
-offset_bottom = 95.0
+offset_left = -82.0
+offset_top = -800.0
+offset_right = 104.0
+offset_bottom = -614.0
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_xoywr")
 text = "increase health
 "
 
 [node name="DamageIncreaseCard" type="Button" parent="." unique_id=1555374270]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = -78.0
-offset_right = 121.0
-offset_bottom = 81.0
+offset_left = -501.0
+offset_top = -790.0
+offset_right = -260.0
+offset_bottom = -631.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_24cid")
@@ -55,6 +66,7 @@ text = "increase damage
 "
 
 [node name="IncreaseAttackSpeed" type="Button" parent="." unique_id=808991800]
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -72,6 +84,7 @@ text = "increase fire rate
 "
 
 [node name="AddMiniPlane" type="Button" parent="." unique_id=1193701430]
+visible = false
 layout_mode = 0
 offset_left = 294.0
 offset_top = 415.0
@@ -81,6 +94,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_6wkeb")
 text = "add mini plane"
 
 [node name="AddGun" type="Button" parent="." unique_id=83143910]
+visible = false
 layout_mode = 0
 offset_left = 304.0
 offset_top = 893.0
@@ -88,6 +102,15 @@ offset_right = 515.0
 offset_bottom = 1007.0
 text = "+1 gun
 "
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=774324846]
+position = Vector2(23, 467)
+
+[node name="Marker2D2" type="Marker2D" parent="." unique_id=1845311749]
+position = Vector2(271, 468)
+
+[node name="Marker2D3" type="Marker2D" parent="." unique_id=1900302339]
+position = Vector2(614, 470)
 
 [connection signal="pressed" from="HealthIncreaseCard" to="." method="_on_health_increase_card_pressed"]
 [connection signal="pressed" from="DamageIncreaseCard" to="." method="_on_damage_increase_card_pressed"]

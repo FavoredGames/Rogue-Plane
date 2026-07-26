@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cardus30m8pa6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xoywr"]
+bg_color = Color(0.40784314, 0, 0.6, 1)
+
+[node name="HealthIncreaseCard" type="Button" unique_id=1029487374]
+clip_contents = true
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -807.0
+offset_right = 98.0
+offset_bottom = -621.0
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xoywr")
+text = "increase health
+"

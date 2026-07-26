@@ -1,13 +1,41 @@
 extends Control
 
+@export var card_spawn_1: Marker2D
+@export var card_spawn_2: Marker2D
+@export var card_spawn_3: Marker2D
+@export var health_increase_card: Button
+@export var damage_increase_card: Button
+@export var attack_speed_increase_card: Button
+@export var add_mini_plane_card: Button
+@export var add_gun_card: Button
+var rng = RandomNumberGenerator.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalManager.card_upgrades.connect(show_upgrade_cards)
 	
-
+	
 
 func show_upgrade_cards():
 	visible = true
+	var health_increase_num = rng.randf_range(0.0, 100.0)
+	print(health_increase_num)
+	var damage_increase_num = rng.randf_range(0.0, 100.0)
+	print(damage_increase_num)
+	var attack_speed_increase_num = rng.randf_range(0.0, 100.0)
+	print(attack_speed_increase_num)
+	var add_mini_plane_num = rng.randf_range(0.0, 100.0)
+	print(add_mini_plane_num)
+	var add_gun_num = rng.randf_range(0.0, 100.0)
+	print(add_gun_num)
+	var highest = max(health_increase_num, damage_increase_num)
+	print(highest)
+	#health_increase_card.visible = true
+	#health_increase_card.global_position = card_spawn_1.global_position
+	#damage_increase_card.visible = true
+	#damage_increase_card.global_position = card_spawn_2.global_position
+	#attack_speed_increase_card.visible = true
+	#attack_speed_increase_card.global_position = card_spawn_3.global_position
 	get_tree().paused = true
 
 

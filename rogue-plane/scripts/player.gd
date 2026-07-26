@@ -20,7 +20,7 @@ extends CharacterBody2D
 
 const GAME_OVER: PackedScene = preload("res://scenes/game_over_screen.tscn")
 
-var xp_increase_value: int = 25
+var xp_increase_value: int = 100
 var max_xp: int = 100
 var xp: int = 0
 var speed: float = 600
