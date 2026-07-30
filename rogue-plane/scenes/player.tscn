@@ -11,7 +11,7 @@ radius = 50.039986
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
 radius = 46.043457
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1303541893 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_spawn_3", "bullet_spawn_4", "bullet_spawn_5", "bullet_spawn_6", "bullet_timer", "healing_timer")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1303541893 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_spawn_3", "bullet_spawn_4", "bullet_spawn_5", "bullet_spawn_6", "bullet_timer", "healing_timer") groups=["player"]]
 script = ExtResource("1_g2els")
 bullet_scene = ExtResource("2_dqkch")
 bullet_scene_2 = ExtResource("2_dqkch")

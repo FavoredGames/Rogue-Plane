@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://cbvliuoqa21fi" path="res://scenes/basic_enemy.tscn" id="14_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://cpnqr5gpixtlp" path="res://scenes/coin_counter.tscn" id="15_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://bgs4dgsgb7woe" path="res://scenes/mini_plane.tscn" id="16_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://cp7b3xdt3oe23" path="res://scenes/homing_missile.tscn" id="17_muem4"]
+[ext_resource type="PackedScene" uid="uid://c2jjguqkak8gr" path="res://scenes/advanced_enemy.tscn" id="18_dp3eg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
 bg_color = Color(0.96862745, 0.27058825, 0.09019608, 1)
@@ -57,7 +59,6 @@ texture = ExtResource("3_sugp2")
 position = Vector2(212, 512)
 mini_plane_scene = ExtResource("16_jbj1t")
 health = 2
-healing = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2136626577]
 
@@ -178,5 +179,11 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1879921527]
 position = Vector2(374, 1204)
 shape = SubResource("WorldBoundaryShape2D_jkv2x")
+
+[node name="CharacterBody2D" parent="." unique_id=319299560 instance=ExtResource("17_muem4")]
+position = Vector2(617, 98)
+
+[node name="CharacterBody2D2" parent="." unique_id=377786136 instance=ExtResource("18_dp3eg")]
+position = Vector2(177, 22)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

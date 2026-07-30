@@ -17,3 +17,4 @@ signal load_skill_tree
 signal update_max_hp_upgrade
 signal update_total_coins
 signal increase_extra_coin_chance
+signal increase_damage_permanent

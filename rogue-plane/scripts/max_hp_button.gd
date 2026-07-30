@@ -22,3 +22,7 @@ func _on_pressed() -> void:
 		text = "increase max hp. cost:" + str(GameManager.max_hp_cost)
 	else:
 		print("insufficient funds :(")
+
+
+func _on_increase_damage_pressed() -> void:
+	pass # Replace with function body.

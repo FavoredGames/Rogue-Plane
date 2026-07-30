@@ -16,7 +16,7 @@ extends CharacterBody2D
 @export var bullet_timer: Timer
 @export var healing_timer: Timer
 @export var health: int = 2
-@export var healing: int = 0
+@export var healing: int = 1
 
 const GAME_OVER: PackedScene = preload("res://scenes/game_over_screen.tscn")
 

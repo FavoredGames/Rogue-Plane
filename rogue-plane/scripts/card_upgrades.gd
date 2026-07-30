@@ -19,7 +19,7 @@ func _ready() -> void:
 func show_upgrade_cards():
 	visible = true
 	var health_increase_num = rng.randf_range(0.0, 100.0)
-	print(health_increase_num)
+	print("health increase", health_increase_num)
 	var damage_increase_num = rng.randf_range(0.0, 100.0)
 	print(damage_increase_num)
 	var attack_speed_increase_num = rng.randf_range(0.0, 100.0)
@@ -27,11 +27,23 @@ func show_upgrade_cards():
 	var add_mini_plane_num = rng.randf_range(0.0, 100.0)
 	print(add_mini_plane_num)
 	var add_gun_num = rng.randf_range(0.0, 100.0)
-	print(add_gun_num)
-	var highest = max(health_increase_num, damage_increase_num)
-	print(highest)
-	#health_increase_card.visible = true
-	#health_increase_card.global_position = card_spawn_1.global_position
+	print("gun num", add_gun_num)
+	var numbers =[health_increase_num, damage_increase_num, 
+	attack_speed_increase_num, add_mini_plane_num, add_gun_num]
+	numbers.sort()
+	numbers.reverse()
+	var top_one = numbers.slice(0,1)
+	print(top_one)
+	if health_increase_num in top_one:
+		print("works")
+		health_increase_card.visible = true
+		health_increase_card.global_position = card_spawn_1.global_position
+	#var top_three = numbers.slice(0,3)
+	#print(top_three)
+	#if health_increase_num in top_three:
+		#print("works")
+		#health_increase_card.visible = true
+		#health_increase_card.global_position = card_spawn_1.global_position
 	#damage_increase_card.visible = true
 	#damage_increase_card.global_position = card_spawn_2.global_position
 	#attack_speed_increase_card.visible = true
@@ -67,4 +79,8 @@ func _on_add_mini_plane_pressed() -> void:
 
 func _on_add_gun_pressed() -> void:
 	SignalManager.add_gun.emit()
+	unpause()
+
+
+func _on_unpause_button_pressed() -> void:
 	unpause()

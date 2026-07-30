@@ -112,8 +112,17 @@ position = Vector2(271, 468)
 [node name="Marker2D3" type="Marker2D" parent="." unique_id=1900302339]
 position = Vector2(614, 470)
 
+[node name="UnpauseButton" type="Button" parent="." unique_id=1230840202]
+layout_mode = 0
+offset_left = 548.0
+offset_top = 1005.0
+offset_right = 799.0
+offset_bottom = 1222.0
+text = "skip"
+
 [connection signal="pressed" from="HealthIncreaseCard" to="." method="_on_health_increase_card_pressed"]
 [connection signal="pressed" from="DamageIncreaseCard" to="." method="_on_damage_increase_card_pressed"]
 [connection signal="pressed" from="IncreaseAttackSpeed" to="." method="_on_increase_attack_speed_pressed"]
 [connection signal="pressed" from="AddMiniPlane" to="." method="_on_add_mini_plane_pressed"]
 [connection signal="pressed" from="AddGun" to="." method="_on_add_gun_pressed"]
+[connection signal="pressed" from="UnpauseButton" to="." method="_on_unpause_button_pressed"]

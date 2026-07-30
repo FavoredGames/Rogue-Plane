@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c2jjguqkak8gr"]
+
+[ext_resource type="Texture2D" uid="uid://xcu4nlu0vicl" path="res://icon.svg" id="1_4tpee"]
+[ext_resource type="Script" uid="uid://cwkvkb0skp24o" path="res://scripts/advanced_enemy.gd" id="1_owl4k"]
+[ext_resource type="PackedScene" uid="uid://cp7b3xdt3oe23" path="res://scenes/homing_missile.tscn" id="2_77y4j"]
+[ext_resource type="PackedScene" uid="uid://t131tvut32yf" path="res://scenes/coin.tscn" id="2_cmfxn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4tpee"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=377786136 node_paths=PackedStringArray("bullet_spawn", "bullet_timer", "coin_spawn", "coin_spawn_2")]
+script = ExtResource("1_owl4k")
+bullet_scene = ExtResource("2_77y4j")
+bullet_spawn = NodePath("Marker2D")
+bullet_timer = NodePath("Timer")
+coin_scene = ExtResource("2_cmfxn")
+coin_spawn = NodePath("Marker2D")
+coin_spawn_2 = NodePath("Marker2D2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1385141131]
+texture = ExtResource("1_4tpee")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=603712858]
+scale = Vector2(5.8684187, 6.4574165)
+shape = SubResource("CircleShape2D_4tpee")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=2028517095]
+position = Vector2(0, 2)
+
+[node name="Marker2D2" type="Marker2D" parent="." unique_id=1151098140]
+
+[node name="Timer" type="Timer" parent="." unique_id=63766017]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

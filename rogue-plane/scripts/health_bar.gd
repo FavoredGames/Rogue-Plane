@@ -7,12 +7,6 @@ func _ready() -> void:
 	pass
 
 
-
-
-
-
-
-
 func update_health_bar():
 	value = player.health * 100 / player.player_max_hp
 

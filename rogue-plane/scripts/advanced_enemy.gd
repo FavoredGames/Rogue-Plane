@@ -4,9 +4,7 @@ var speed = 100
 var health: int = 10
 var take_damage: int = 0
 @export var bullet_scene: PackedScene
-@export var bullet_scene_2: PackedScene
 @export var bullet_spawn: Marker2D
-@export var bullet_spawn_2: Marker2D
 @export var bullet_timer: Timer
 @export var coin_scene: PackedScene
 @export var coin_spawn: Marker2D
@@ -28,7 +26,6 @@ func _process(delta: float) -> void:
 	# Makes player shoot but only when the timer is done
 	if can_shoot:
 		_shoot()
-		_shoot_2()
 	move_local_y(speed * delta)
 	if health <= 0:
 		SignalManager.enemy_plane_died.emit()
@@ -55,13 +52,6 @@ func _shoot() -> void:
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = bullet_spawn.global_position
 	add_sibling(bullet)
-	can_shoot = false
-	bullet_timer.start()
-
-func _shoot_2() -> void:
-	var bullet_2 = bullet_scene_2.instantiate()
-	bullet_2.global_position = bullet_spawn_2.global_position
-	add_sibling(bullet_2)
 	can_shoot = false
 	bullet_timer.start()
 

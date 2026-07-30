@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://e3e461aoqkrj" path="res://scripts/new_run_button.gd" id="2_tnam6"]
 [ext_resource type="Script" uid="uid://d0bei1t2apwdq" path="res://scripts/total_coin_label.gd" id="3_tyjg3"]
 [ext_resource type="Texture2D" uid="uid://dmgmnbv0sf5om" path="res://assets/Untitled_Artwork 37.png" id="4_51bdh"]
+[ext_resource type="Script" uid="uid://bg6cl3txlvmm3" path="res://scripts/increase_damage_button.gd" id="6_6awrb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6awrb"]
 bg_color = Color(0, 0, 0, 0.63000005)
@@ -456,6 +457,18 @@ position = Vector2(320.5, 53)
 scale = Vector2(0.8359375, 0.8359375)
 texture = ExtResource("4_51bdh")
 
+[node name="IncreaseDamage" type="Button" parent="." unique_id=1866572767 node_paths=PackedStringArray("coin_label")]
+layout_mode = 0
+offset_left = 521.0
+offset_top = 585.0
+offset_right = 661.0
+offset_bottom = 616.0
+text = "increase damage
+"
+script = ExtResource("6_6awrb")
+coin_label = NodePath("../CoinLabel2")
+
 [connection signal="pressed" from="MaxHpButton" to="MaxHpButton" method="_on_pressed"]
 [connection signal="pressed" from="IncreaseCoinEarnings" to="IncreaseCoinEarnings" method="_on_pressed"]
 [connection signal="pressed" from="Button5" to="Button5" method="_on_pressed"]
+[connection signal="pressed" from="IncreaseDamage" to="IncreaseDamage" method="_on_pressed"]

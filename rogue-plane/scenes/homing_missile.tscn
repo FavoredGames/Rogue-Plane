@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cp7b3xdt3oe23"]
+
+[ext_resource type="Script" uid="uid://dekanj87dqwgs" path="res://scripts/homing_missile.gd" id="1_w5y2q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j864u"]
+radius = 25.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=319299560]
+script = ExtResource("1_w5y2q")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=553003542]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1375756890 groups=["damager"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=923432236]
+position = Vector2(20, 21)
+shape = SubResource("CircleShape2D_j864u")
