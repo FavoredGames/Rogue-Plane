@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var speed = 100
+var horinzontal_speed: int = 50
 var health: int = 10
 var take_damage: int = 0
 @export var bullet_scene: PackedScene
@@ -11,6 +12,7 @@ var take_damage: int = 0
 @export var coin_spawn_2: Marker2D
 var pecentage = randf()
 var can_shoot: bool = false
+var zigzag_num: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,6 +29,10 @@ func _process(delta: float) -> void:
 	if can_shoot:
 		_shoot()
 	move_local_y(speed * delta)
+	if zigzag_num % 2 == 0:
+		move_local_x(horinzontal_speed * delta)
+	else:
+		move_local_x(-horinzontal_speed * delta)
 	if health <= 0:
 		SignalManager.enemy_plane_died.emit()
 		spawn_coin()
@@ -66,3 +72,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		health -= total_damage_take
 		print(health)
 		
+
+
+func _on_zigzag_timer_timeout() -> void:
+	zigzag_num += 1

@@ -9,6 +9,8 @@ extends Control
 @export var add_mini_plane_card: Button
 @export var add_gun_card: Button
 var rng = RandomNumberGenerator.new()
+var card_list: Array = [health_increase_card, damage_increase_card, 
+attack_speed_increase_card, add_mini_plane_card, add_gun_card]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,28 +18,11 @@ func _ready() -> void:
 	
 	
 
+
 func show_upgrade_cards():
 	visible = true
-	var health_increase_num = rng.randf_range(0.0, 100.0)
-	print("health increase", health_increase_num)
-	var damage_increase_num = rng.randf_range(0.0, 100.0)
-	print(damage_increase_num)
-	var attack_speed_increase_num = rng.randf_range(0.0, 100.0)
-	print(attack_speed_increase_num)
-	var add_mini_plane_num = rng.randf_range(0.0, 100.0)
-	print(add_mini_plane_num)
-	var add_gun_num = rng.randf_range(0.0, 100.0)
-	print("gun num", add_gun_num)
-	var numbers =[health_increase_num, damage_increase_num, 
-	attack_speed_increase_num, add_mini_plane_num, add_gun_num]
-	numbers.sort()
-	numbers.reverse()
-	var top_one = numbers.slice(0,1)
-	print(top_one)
-	if health_increase_num in top_one:
-		print("works")
-		health_increase_card.visible = true
-		health_increase_card.global_position = card_spawn_1.global_position
+	var first_card = card_list.pick_random()
+	print(first_card)
 	#var top_three = numbers.slice(0,3)
 	#print(top_three)
 	#if health_increase_num in top_three:

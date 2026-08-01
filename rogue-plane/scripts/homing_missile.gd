@@ -1,7 +1,12 @@
 extends CharacterBody2D
 
 var player: CharacterBody2D
+<<<<<<< Updated upstream
 var speed: float = 250.0
+=======
+var speed: float = 300.0
+var missile_health: int = 2
+>>>>>>> Stashed changes
 
 func _ready() -> void:
 	for node in get_tree().get_nodes_in_group("player"):

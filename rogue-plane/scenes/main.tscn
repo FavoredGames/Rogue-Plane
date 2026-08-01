@@ -15,9 +15,11 @@
 [ext_resource type="Script" uid="uid://daqlu2y2xnv1b" path="res://scripts/xp_bar.gd" id="13_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://cbvliuoqa21fi" path="res://scenes/basic_enemy.tscn" id="14_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://cpnqr5gpixtlp" path="res://scenes/coin_counter.tscn" id="15_jkv2x"]
+[ext_resource type="Script" uid="uid://ckl134xvgj4y6" path="res://scripts/spawn_timer.gd" id="16_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://bgs4dgsgb7woe" path="res://scenes/mini_plane.tscn" id="16_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://cp7b3xdt3oe23" path="res://scenes/homing_missile.tscn" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://c2jjguqkak8gr" path="res://scenes/advanced_enemy.tscn" id="18_dp3eg"]
+[ext_resource type="Script" uid="uid://dxf54p64slvbm" path="res://scripts/advanced_emeny_spawn_timer.gd" id="19_0ld40"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
 bg_color = Color(0.96862745, 0.27058825, 0.09019608, 1)
@@ -40,11 +42,20 @@ point_count = 2
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jkv2x"]
 
-[node name="Node2D" type="Node2D" unique_id=777912441 node_paths=PackedStringArray("spawn_point", "spawn_timer")]
+[sub_resource type="Curve2D" id="Curve2D_muem4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 140, -76, 0, 0, 0, 0, 596, -72)
+}
+point_count = 2
+
+[node name="Node2D" type="Node2D" unique_id=777912441 node_paths=PackedStringArray("spawn_point", "spawn_timer", "advanced_spawn_point", "advanced_enemy_spawn_timer")]
 script = ExtResource("1_a8y0u")
 spawn_point = NodePath("Path2D/PathFollow2D")
-enemy_scene = ExtResource("14_jkv2x")
+basic_enemy_scene = ExtResource("14_jkv2x")
 spawn_timer = NodePath("SpawnTimer")
+advanced_spawn_point = NodePath("Path2D2/PathFollow2D")
+advanced_enemy_scene = ExtResource("18_dp3eg")
+advanced_enemy_spawn_timer = NodePath("AdvancedEmenySpawnTimer")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1551041042]
 position = Vector2(405, 0)
@@ -173,6 +184,7 @@ rotation = 0.005706072
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1495612577]
 wait_time = 2.0
 autostart = true
+script = ExtResource("16_dp3eg")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=191694715]
 
@@ -186,4 +198,27 @@ position = Vector2(617, 98)
 [node name="CharacterBody2D2" parent="." unique_id=377786136 instance=ExtResource("18_dp3eg")]
 position = Vector2(177, 22)
 
+<<<<<<< Updated upstream
+=======
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1121957594]
+layer = -1
+
+[node name="Parallax2D" parent="CanvasLayer2" unique_id=257293097 instance=ExtResource("4_jyhfs")]
+
+[node name="Path2D2" type="Path2D" parent="." unique_id=253774137]
+curve = SubResource("Curve2D_muem4")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D2" unique_id=1655494189]
+position = Vector2(140, -76)
+rotation = 0.008771705
+
+[node name="AdvancedEmenySpawnTimer" type="Timer" parent="." unique_id=47166501]
+wait_time = 5.0
+autostart = true
+script = ExtResource("19_0ld40")
+
+>>>>>>> Stashed changes
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="SpawnTimer" method="_on_timeout"]
+[connection signal="timeout" from="AdvancedEmenySpawnTimer" to="." method="_on_advanced_emeny_spawn_timer_timeout"]
+[connection signal="timeout" from="AdvancedEmenySpawnTimer" to="AdvancedEmenySpawnTimer" method="_on_timeout"]

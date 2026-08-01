@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://c2jjguqkak8gr"]
 
-[ext_resource type="Texture2D" uid="uid://xcu4nlu0vicl" path="res://icon.svg" id="1_4tpee"]
 [ext_resource type="Script" uid="uid://cwkvkb0skp24o" path="res://scripts/advanced_enemy.gd" id="1_owl4k"]
 [ext_resource type="PackedScene" uid="uid://cp7b3xdt3oe23" path="res://scenes/homing_missile.tscn" id="2_77y4j"]
 [ext_resource type="PackedScene" uid="uid://t131tvut32yf" path="res://scenes/coin.tscn" id="2_cmfxn"]
+[ext_resource type="Texture2D" uid="uid://nvv0vssdi3hq" path="res://assets/missile_enemy.png" id="4_77y4j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4tpee"]
 
@@ -17,12 +17,15 @@ coin_spawn = NodePath("Marker2D")
 coin_spawn_2 = NodePath("Marker2D2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1385141131]
-texture = ExtResource("1_4tpee")
+position = Vector2(-2, 14)
+rotation = 3.1415927
+texture = ExtResource("4_77y4j")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=2028517095]
 position = Vector2(0, 2)
 
 [node name="Marker2D2" type="Marker2D" parent="." unique_id=1151098140]
+position = Vector2(19, -24)
 
 [node name="Timer" type="Timer" parent="." unique_id=63766017]
 wait_time = 1.5
@@ -34,5 +37,10 @@ autostart = true
 scale = Vector2(5.8684187, 6.4574165)
 shape = SubResource("CircleShape2D_4tpee")
 
+[node name="ZigzagTimer" type="Timer" parent="." unique_id=1113142327]
+wait_time = 5.0
+autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="ZigzagTimer" to="." method="_on_zigzag_timer_timeout"]
