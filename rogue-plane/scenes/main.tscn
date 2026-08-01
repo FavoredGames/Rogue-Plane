@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://c28bp410vglsj" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://2ws6gfmhjhy1" path="res://scenes/player.tscn" id="1_o5qli"]
-[ext_resource type="Texture2D" uid="uid://di6lpqph30o8a" path="res://assets/IMG_2278.PNG" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://daqpe8wo5giqm" path="res://scenes/parallax_2d.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://dt8qwrcridqln" path="res://scenes/card_upgrades.tscn" id="5_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://d0hsi5uu4se45" path="res://assets/Untitled_Artwork 42.png" id="7_tipki"]
@@ -49,18 +48,14 @@ spawn_timer = NodePath("SpawnTimer")
 [node name="Node2D" type="Node2D" parent="." unique_id=1551041042]
 position = Vector2(405, 0)
 
-[node name="Parallax2D" parent="Node2D" unique_id=862418919 instance=ExtResource("4_jyhfs")]
-repeat_size = Vector2(0, 1280)
-autoscroll = Vector2(0, 300)
-repeat_times = 10
-texture = ExtResource("3_sugp2")
-
 [node name="Player" parent="." unique_id=1303541893 instance=ExtResource("1_o5qli")]
+visibility_layer = 3
 position = Vector2(212, 512)
 mini_plane_scene = ExtResource("16_jbj1t")
 health = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2136626577]
+layer = 2
 
 [node name="Control" parent="CanvasLayer" unique_id=1793776732 instance=ExtResource("5_tbgi4")]
 visible = false
@@ -185,5 +180,10 @@ position = Vector2(617, 98)
 
 [node name="CharacterBody2D2" parent="." unique_id=377786136 instance=ExtResource("18_dp3eg")]
 position = Vector2(177, 22)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1121957594]
+layer = -1
+
+[node name="Parallax2D" parent="CanvasLayer2" unique_id=257293097 instance=ExtResource("4_jyhfs")]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

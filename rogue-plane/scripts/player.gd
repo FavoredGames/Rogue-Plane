@@ -40,7 +40,7 @@ func _ready() -> void:
 	player_max_hp = GameManager.max_hp
 	SignalManager.increase_max_health_permanent.connect(increase_max_health_permanent)
 	print(health)
-	print(player_max_hp)
+	print("max hp", player_max_hp)
 	SignalManager.add_mini_plane.connect(add_mini_plane)
 	SignalManager.add_gun.connect(add_gun)
 	

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var player: CharacterBody2D
 var speed: float = 250.0
+var missile_health: int = 3
 
 func _ready() -> void:
 	for node in get_tree().get_nodes_in_group("player"):
@@ -16,4 +17,9 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	queue_free()
+	if area.is_in_group("player_hitbox"):
+		queue_free()
+	if area.is_in_group("enemy_damagers"):
+		missile_health -= 1
+		if missile_health <= 0:
+			queue_free()
