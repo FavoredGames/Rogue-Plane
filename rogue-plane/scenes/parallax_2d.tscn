@@ -1,8 +1,18 @@
 [gd_scene format=3 uid="uid://daqpe8wo5giqm"]
 
-[ext_resource type="Script" uid="uid://b12i8jhght8ks" path="res://scripts/parallax_2d.gd" id="1_ut440"]
+[ext_resource type="Texture2D" uid="uid://di6lpqph30o8a" path="res://assets/IMG_2278.PNG" id="2_ut440"]
 
 [node name="Parallax2D" type="Parallax2D" unique_id=862418919]
-script = ExtResource("1_ut440")
+repeat_size = Vector2(0, 300000)
+autoscroll = Vector2(0, 500)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=199796932]
+scale = Vector2(11.4530525, 11.4530525)
+texture = ExtResource("2_ut440")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1373163425]
+offset_left = -412.0
+offset_top = 20183.0
+offset_right = 297.6032
+offset_bottom = 20223.0
+scale = Vector2(-1.6177123, 1.1677353)

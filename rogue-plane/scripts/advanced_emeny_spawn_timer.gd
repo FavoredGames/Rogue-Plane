@@ -17,4 +17,4 @@ func _on_timeout() -> void:
 	decrease_timer += 1
 	if decrease_timer == when_to_decrease_timer:
 		wait_time *= 0.95
-		print("timert9ime", wait_time)
+		print("Atimertime", wait_time)

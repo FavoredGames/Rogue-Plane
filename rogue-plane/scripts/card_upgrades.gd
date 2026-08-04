@@ -22,7 +22,8 @@ func _ready() -> void:
 func show_upgrade_cards():
 	visible = true
 	var first_card = card_list.pick_random()
-	print(first_card)
+	#first_card.visible = true
+	#first_card.global_position = card_spawn_1.global_position
 	#var top_three = numbers.slice(0,3)
 	#print(top_three)
 	#if health_increase_num in top_three:
