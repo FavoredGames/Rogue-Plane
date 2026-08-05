@@ -104,7 +104,7 @@ text = "+1 gun
 "
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=774324846]
-position = Vector2(32, -103)
+position = Vector2(70, 600)
 
 [node name="Marker2D2" type="Marker2D" parent="." unique_id=1845311749]
 position = Vector2(271, 468)
