@@ -19,9 +19,44 @@ func _ready() -> void:
 	
 
 
+func _process(delta: float) -> void:
+	pass
+
+
+func show_card(id):
+	if id == 1:
+		health_increase_card.visible = true
+	
+	if id == 2:
+		damage_increase_card.visible = true
+		
+	if id == 3:
+		attack_speed_increase_card.visible = true
+		
+	if id == 4:
+		add_mini_plane_card.visible = true
+		
+	if id == 5:
+		add_gun_card.visible = true
+	
+
+
 func show_upgrade_cards():
 	visible = true
-	var first_card = card_list.pick_random()
+	var random_int = randi_range(0,5)
+	print("randint", random_int)
+		
+	if random_int == 1:
+		show_card(1)
+	elif random_int == 2: 
+		show_card(2)
+	elif random_int == 3: 
+		show_card(3)
+	elif random_int == 4: 
+		show_card(4)
+	else: 
+		show_card(5)
+	#var first_card = card_list.pick_random()
 	#first_card.visible = true
 	#first_card.global_position = card_spawn_1.global_position
 	#var top_three = numbers.slice(0,3)
@@ -39,16 +74,19 @@ func show_upgrade_cards():
 
 func _on_health_increase_card_pressed() -> void:
 	SignalManager.increase_max_health_temporary.emit()
+	health_increase_card.visible = false
 	unpause()
 
 
 func _on_damage_increase_card_pressed() -> void:
 	SignalManager.increase_damage.emit()
+	damage_increase_card.visible = false
 	unpause()
 
 
 func _on_increase_attack_speed_pressed() -> void:
 	SignalManager.increase_attack_speed.emit()
+	attack_speed_increase_card.visible = false
 	unpause()
 
 
@@ -60,11 +98,13 @@ func unpause():
 
 func _on_add_mini_plane_pressed() -> void:
 	SignalManager.add_mini_plane.emit()
+	add_mini_plane_card.visible = false
 	unpause()
 
 
 func _on_add_gun_pressed() -> void:
 	SignalManager.add_gun.emit()
+	add_gun_card.visible = false
 	unpause()
 
 

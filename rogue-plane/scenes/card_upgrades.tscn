@@ -38,10 +38,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -82.0
-offset_top = -800.0
-offset_right = 104.0
-offset_bottom = -614.0
+offset_left = 57.0
+offset_top = -94.0
+offset_right = 243.0
+offset_bottom = 92.0
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_xoywr")
 text = "increase health
@@ -55,10 +55,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -501.0
-offset_top = -790.0
-offset_right = -260.0
-offset_bottom = -631.0
+offset_left = -387.0
+offset_top = -308.0
+offset_right = -146.0
+offset_bottom = -149.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_24cid")
@@ -96,15 +96,15 @@ text = "add mini plane"
 [node name="AddGun" type="Button" parent="." unique_id=83143910]
 visible = false
 layout_mode = 0
-offset_left = 304.0
-offset_top = 893.0
-offset_right = 515.0
-offset_bottom = 1007.0
+offset_left = 323.0
+offset_top = 669.0
+offset_right = 534.0
+offset_bottom = 783.0
 text = "+1 gun
 "
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=774324846]
-position = Vector2(23, 467)
+position = Vector2(32, -103)
 
 [node name="Marker2D2" type="Marker2D" parent="." unique_id=1845311749]
 position = Vector2(271, 468)
