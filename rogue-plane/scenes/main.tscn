@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://cbvliuoqa21fi" path="res://scenes/basic_enemy.tscn" id="14_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://cpnqr5gpixtlp" path="res://scenes/coin_counter.tscn" id="15_jkv2x"]
 [ext_resource type="Script" uid="uid://ckl134xvgj4y6" path="res://scripts/spawn_timer.gd" id="16_dp3eg"]
-[ext_resource type="PackedScene" uid="uid://cp7b3xdt3oe23" path="res://scenes/homing_missile.tscn" id="17_muem4"]
 [ext_resource type="PackedScene" uid="uid://c2jjguqkak8gr" path="res://scenes/advanced_enemy.tscn" id="18_dp3eg"]
 [ext_resource type="Script" uid="uid://dxf54p64slvbm" path="res://scripts/advanced_emeny_spawn_timer.gd" id="19_0ld40"]
 
@@ -182,12 +181,6 @@ script = ExtResource("16_dp3eg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1879921527]
 position = Vector2(374, 1204)
 shape = SubResource("WorldBoundaryShape2D_jkv2x")
-
-[node name="CharacterBody2D" parent="." unique_id=319299560 instance=ExtResource("17_muem4")]
-position = Vector2(617, 98)
-
-[node name="CharacterBody2D2" parent="." unique_id=377786136 instance=ExtResource("18_dp3eg")]
-position = Vector2(177, 22)
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1121957594]
 layer = -1

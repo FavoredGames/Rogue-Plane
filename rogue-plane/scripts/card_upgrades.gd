@@ -8,6 +8,12 @@ extends Control
 @export var attack_speed_increase_card: Button
 @export var add_mini_plane_card: Button
 @export var add_gun_card: Button
+var first_card: int = 1
+var second_card: int = 2
+var third_card: int = 3
+var card_num: int = 1
+
+
 #var rng = RandomNumberGenerator.new()
 #var card_list: Array = [health_increase_card, damage_increase_card, 
 #attack_speed_increase_card, add_mini_plane_card, add_gun_card]
@@ -21,27 +27,83 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	pass
+	
+	
+	
+func increase_card_num():
+	card_num += 1
+	
 
+
+func reset_card_num():
+	card_num = 0
 
 func show_card(id):
+	print("caard num", card_num)
 	if id == 1:
 		health_increase_card.visible = true
 		print("show health card")
-		health_increase_card.position = card_spawn_1.global_position
-	
+		#if card_num == first_card:
+			#health_increase_card.position = card_spawn_1.global_position
+			#increase_card_num()
+		#elif card_num == second_card:
+			#health_increase_card.position = card_spawn_2.global_position
+			#increase_card_num()
+		#else:
+			#health_increase_card.position = card_spawn_3.global_position
+			#reset_card_num()
+
 	if id == 2:
 		damage_increase_card.visible = true
 		print("show damage card")
+		#if card_num == first_card:
+			#damage_increase_card.position = card_spawn_1.global_position
+			#increase_card_num()
+		#elif card_num == second_card:
+			#damage_increase_card.position = card_spawn_2.global_position
+			#increase_card_num()
+		#else:
+			#damage_increase_card.position = card_spawn_3.global_position
+			#reset_card_num()
 
 	if id == 3:
 		attack_speed_increase_card.visible = true
 		print("show atks card")
+		#if card_num == first_card:
+			#attack_speed_increase_card.position = card_spawn_1.global_position
+			#increase_card_num()
+		#elif card_num == second_card:
+			#attack_speed_increase_card.position = card_spawn_2.global_position
+			#increase_card_num()
+		#else:
+			#attack_speed_increase_card.position = card_spawn_3.global_position
+			#reset_card_num()
+			
 	if id == 4:
 		add_mini_plane_card.visible = true
 		print("show mini card")
+		#if card_num == first_card:
+			#add_mini_plane_card.position = card_spawn_1.global_position
+			#increase_card_num()
+		#elif card_num == second_card:
+			#add_mini_plane_card.position = card_spawn_2.global_position
+			#increase_card_num()
+		#else:
+			#add_mini_plane_card.position = card_spawn_3.global_position
+			#reset_card_num()
+
 	if id == 5:
 		add_gun_card.visible = true
 		print("show gun card")
+		#if card_num == first_card:
+			#add_gun_card.position = card_spawn_1.global_position
+			#increase_card_num()
+		#elif card_num == second_card:
+			#add_gun_card.position = card_spawn_2.global_position
+			#increase_card_num()
+		#else:
+			#add_gun_card.position = card_spawn_3.global_position
+			#reset_card_num()
 
 
 func show_upgrade_cards():
@@ -101,19 +163,7 @@ func show_upgrade_cards():
 		show_card(4)
 	else: 
 		show_card(5)
-	#var first_card = card_list.pick_random()
-	#first_card.visible = true
-	#first_card.global_position = card_spawn_1.global_position
-	#var top_three = numbers.slice(0,3)
-	#print(top_three)
-	#if health_increase_num in top_three:
-		#print("works")
-		#health_increase_card.visible = true
-		#health_increase_card.global_position = card_spawn_1.global_position
-	#damage_increase_card.visible = true
-	#damage_increase_card.global_position = card_spawn_2.global_position
-	#attack_speed_increase_card.visible = true
-	#attack_speed_increase_card.global_position = card_spawn_3.global_position
+	
 	get_tree().paused = true
 
 
