@@ -35,7 +35,7 @@ health = 6
 position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_dqkch")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=206492472 groups=["player_hitbox"]]
+[node name="Area2D" type="Area2D" parent="." unique_id=206492472 groups=["player_dead_zone", "player_hitbox"]]
 
 [node name="HitBox" type="CollisionShape2D" parent="Area2D" unique_id=1748100018]
 position = Vector2(0, 8)
@@ -72,6 +72,7 @@ script = ExtResource("4_dqkch")
 [node name="HealingTimer" type="Timer" parent="." unique_id=1968686387]
 autostart = true
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_dead_zone_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_dead_zone_exited"]
 [connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]
 [connection signal="timeout" from="HealingTimer" to="." method="_on_healing_timer_timeout"]

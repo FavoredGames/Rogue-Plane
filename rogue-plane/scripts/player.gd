@@ -30,7 +30,7 @@ var player_position = get_global_position
 var direction: Vector2 = Vector2(0.0, 0.0)
 var player_max_hp: int = 0 
 var guns: int = 2
-
+var moving: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,7 +44,9 @@ func _ready() -> void:
 	SignalManager.add_mini_plane.connect(add_mini_plane)
 	SignalManager.add_gun.connect(add_gun)
 	
-	
+
+
+
 
 func add_gun():
 	guns += 1
@@ -79,7 +81,8 @@ func _process(delta: float) -> void:
 	mouse_position = get_global_mouse_position()
 	var direction = (mouse_position - position)
 	velocity =  speed * direction.normalized()
-	move_and_slide()
+	if moving == true:
+		move_and_slide()
 	if health <= 0:
 		get_tree().change_scene_to_packed(GAME_OVER)
 	# Makes player shoot but only when the timer is done
@@ -173,3 +176,12 @@ func take_damage():
 	#if health < GameManager.max_hp:
 		#health += healing
 		#healing_timer.start()
+
+
+
+func _on_dead_zone_entered(area: Area2D) -> void:
+	moving = false
+
+
+func _on_dead_zone_exited(area: Area2D) -> void:
+	moving = true
