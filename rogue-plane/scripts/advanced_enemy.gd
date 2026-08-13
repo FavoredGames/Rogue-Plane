@@ -76,3 +76,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func _on_zigzag_timer_timeout() -> void:
 	zigzag_num += 1
+
+
+func _on_timer_2_timeout() -> void:
+	queue_free()
+	print("Advanced enemy gone")

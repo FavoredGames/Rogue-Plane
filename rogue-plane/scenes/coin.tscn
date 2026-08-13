@@ -18,4 +18,10 @@ script = ExtResource("1_rwqht")
 shape = SubResource("CircleShape2D_kahox")
 debug_color = Color(1.1748409, 1.2108967, 0, 1)
 
+[node name="Timer" type="Timer" parent="." unique_id=571034476]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

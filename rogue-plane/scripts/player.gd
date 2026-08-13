@@ -44,6 +44,7 @@ func _ready() -> void:
 	SignalManager.add_mini_plane.connect(add_mini_plane)
 	SignalManager.add_gun.connect(add_gun)
 	
+	
 
 func add_gun():
 	guns += 1

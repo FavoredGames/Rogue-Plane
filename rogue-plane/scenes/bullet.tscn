@@ -17,3 +17,10 @@ offset_bottom = 11.0
 position = Vector2(3, 4)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_mkf8s")
+
+[node name="Timer" type="Timer" parent="." unique_id=334390516]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
