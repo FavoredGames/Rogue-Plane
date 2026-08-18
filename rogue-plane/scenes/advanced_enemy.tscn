@@ -7,7 +7,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4tpee"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=377786136 node_paths=PackedStringArray("bullet_spawn", "bullet_timer", "coin_spawn", "coin_spawn_2")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=377786136 node_paths=PackedStringArray("bullet_spawn", "bullet_timer", "coin_spawn", "coin_spawn_2", "advanced_enemy_sprite")]
 script = ExtResource("1_owl4k")
 bullet_scene = ExtResource("2_77y4j")
 bullet_spawn = NodePath("Marker2D")
@@ -15,6 +15,7 @@ bullet_timer = NodePath("Timer")
 coin_scene = ExtResource("2_cmfxn")
 coin_spawn = NodePath("Marker2D")
 coin_spawn_2 = NodePath("Marker2D2")
+advanced_enemy_sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1385141131]
 position = Vector2(-2, 14)
@@ -31,7 +32,7 @@ position = Vector2(19, -24)
 wait_time = 1.5
 autostart = true
 
-[node name="Area2D" type="Area2D" parent="." unique_id=824941752]
+[node name="Area2D" type="Area2D" parent="." unique_id=824941752 groups=["damager", "enemy_plane"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=603712858]
 scale = Vector2(5.8684187, 6.4574165)

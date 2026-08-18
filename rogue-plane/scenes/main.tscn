@@ -46,9 +46,6 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_muem4"]
-size = Vector2(483, 184)
-
 [node name="Node2D" type="Node2D" unique_id=777912441 node_paths=PackedStringArray("spawn_point", "spawn_timer", "advanced_spawn_point", "advanced_enemy_spawn_timer")]
 script = ExtResource("1_a8y0u")
 spawn_point = NodePath("Path2D/PathFollow2D")
@@ -205,12 +202,6 @@ rotation = 0.008771705
 wait_time = 5.0
 autostart = true
 script = ExtResource("19_0ld40")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=738822578 groups=["delete_area"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1985115212]
-position = Vector2(304, 306)
-shape = SubResource("RectangleShape2D_muem4")
 
 [node name="CharacterBody2D" parent="." unique_id=1222533578 instance=ExtResource("18_0ld40")]
 

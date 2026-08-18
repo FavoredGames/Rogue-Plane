@@ -15,6 +15,7 @@ script = ExtResource("1_rwqht")
 [node name="Area2D" type="Area2D" parent="." unique_id=197188016]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=195289098]
+z_index = -2
 shape = SubResource("CircleShape2D_kahox")
 debug_color = Color(1.1748409, 1.2108967, 0, 1)
 

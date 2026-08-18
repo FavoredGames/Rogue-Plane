@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var player_sprite: Sprite2D
 @export var mini_plane_scene: PackedScene
 @export var bullet_scene: PackedScene
 @export var bullet_scene_2: PackedScene
@@ -20,10 +21,12 @@ extends CharacterBody2D
 
 const GAME_OVER: PackedScene = preload("res://scenes/game_over_screen.tscn")
 
-var xp_increase_value: int = 20
+
+var gun_limit = 6
+var xp_increase_value: int = 100
 var max_xp: int = 100
 var xp: int = 0
-var speed: float = 600
+var speed: float = 800
 var can_shoot: bool = false
 var mouse_position = null
 var player_position = get_global_position
@@ -31,6 +34,7 @@ var direction: Vector2 = Vector2(0.0, 0.0)
 var player_max_hp: int = 0 
 var guns: int = 2
 var moving: bool = true
+var mini_planes: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -43,13 +47,19 @@ func _ready() -> void:
 	print(player_max_hp)
 	SignalManager.add_mini_plane.connect(add_mini_plane)
 	SignalManager.add_gun.connect(add_gun)
+	SignalManager.dead_zone_entered.connect(dead_zone_entered)
+	SignalManager.dead_zone_exited.connect(dead_zone_exited)
+	
 	
 
 
 
 
 func add_gun():
-	guns += 1
+	if not guns == gun_limit:
+		guns += 1
+	else: 
+		pass
 
 func add_mini_plane():
 	var mini_plane = mini_plane_scene.instantiate()
@@ -158,6 +168,10 @@ func _on_bullet_timer_timeout() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("damager"):
 		health -= 1
+		player_sprite.modulate = Color.RED
+		await get_tree().create_timer(0.05).timeout
+		player_sprite.modulate = Color.WHITE
+		
 		take_damage()
 		
 
@@ -179,9 +193,9 @@ func take_damage():
 
 
 
-func _on_dead_zone_entered(area: Area2D) -> void:
+func dead_zone_entered():
 	moving = false
 
 
-func _on_dead_zone_exited(area: Area2D) -> void:
+func dead_zone_exited():
 	moving = true

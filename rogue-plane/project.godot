@@ -29,6 +29,8 @@ window/size/viewport_height=1440
 
 damager=""
 player_dead_zone=""
+player_hitbox=""
+enemy_plane=""
 
 [physics]
 

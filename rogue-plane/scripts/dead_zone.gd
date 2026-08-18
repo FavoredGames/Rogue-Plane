@@ -15,3 +15,13 @@ func _process(delta: float) -> void:
 	var direction = (mouse_position - position)
 	velocity =  speed * direction.normalized()
 	move_and_slide()
+
+
+func _on_dead_zone_entered(area: Area2D) -> void:
+	if area.is_in_group("player_dead_zone"):
+		SignalManager.dead_zone_entered.emit()
+
+
+func _on_dead_zone_exited(area: Area2D) -> void:
+	if area.is_in_group("player_dead_zone"):
+		SignalManager.dead_zone_exited.emit()

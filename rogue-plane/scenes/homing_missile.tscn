@@ -10,7 +10,7 @@ size = Vector2(10.999022, 32.939507)
 position = Vector2(13, -8)
 script = ExtResource("1_w5y2q")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1375756890 groups=["damager"]]
+[node name="Area2D" type="Area2D" parent="." unique_id=1375756890 groups=["damager", "enemy_plane"]]
 position = Vector2(-2, -6)
 rotation = -1.5841213
 

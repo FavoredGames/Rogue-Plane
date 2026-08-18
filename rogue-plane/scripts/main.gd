@@ -7,7 +7,10 @@ extends Node2D
 @export var advanced_enemy_scene: PackedScene
 @export var advanced_enemy_spawn_timer: Timer
 
-
+func _ready() -> void:
+	get_tree().paused = true
+	await get_tree().create_timer(0.75).timeout
+	get_tree().paused = false
 
 
 func _spawn_basic_enemy() -> void:

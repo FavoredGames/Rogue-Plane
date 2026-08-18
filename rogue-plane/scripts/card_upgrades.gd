@@ -12,6 +12,10 @@ var first_card: int = 1
 var second_card: int = 2
 var third_card: int = 3
 var card_num: int = 1
+var max_guns: int = 6
+var guns: int = 2
+var mini_planes: int = 0
+var max_mini_planes: int = 2
 
 
 #var rng = RandomNumberGenerator.new()
@@ -26,8 +30,14 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	pass
-	
+	if guns == max_guns:
+		add_gun_card.disabled = true
+	else:
+		pass
+	if mini_planes == max_mini_planes:
+		add_mini_plane_card.disabled = true
+	else:
+		pass
 	
 	
 func increase_card_num():
@@ -189,18 +199,21 @@ func _on_increase_attack_speed_pressed() -> void:
 func _on_add_mini_plane_pressed() -> void:
 	SignalManager.add_mini_plane.emit()
 	hide_buttons()
+	mini_planes += 1
 	unpause()
 
 
 func _on_add_gun_pressed() -> void:
 	SignalManager.add_gun.emit()
 	hide_buttons()
+	guns += 1
 	unpause()
 
 
 func unpause():
 	visible = false
 	SignalManager.reset_xp.emit()
+	await get_tree().create_timer(0.4).timeout
 	get_tree().paused = false
 
 
