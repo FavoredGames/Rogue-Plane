@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bk387q22rrnmp" path="res://scenes/bullet.tscn" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://b18ilba8weg4" path="res://assets/nathan's plane.png" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://bgs4dgsgb7woe" path="res://scenes/mini_plane.tscn" id="2_qlg0r"]
+[ext_resource type="PackedScene" uid="uid://l73lamf7rb2w" path="res://scenes/mini_plane_2.tscn" id="3_tuyoq"]
 [ext_resource type="Script" uid="uid://d28icklyhvx8t" path="res://scripts/bullet_timer.gd" id="4_dqkch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
@@ -19,6 +20,7 @@ radius = 16.0
 script = ExtResource("1_g2els")
 player_sprite = NodePath("Sprite2D")
 mini_plane_scene = ExtResource("2_qlg0r")
+mini_plane_scene_2 = ExtResource("3_tuyoq")
 bullet_scene = ExtResource("2_dqkch")
 bullet_scene_2 = ExtResource("2_dqkch")
 bullet_scene_3 = ExtResource("2_dqkch")

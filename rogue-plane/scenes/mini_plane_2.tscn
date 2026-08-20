@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://l73lamf7rb2w"]
+
+[ext_resource type="Script" uid="uid://b6fgijvcg5hbb" path="res://scripts/mini_plane_2.gd" id="1_fxoiy"]
+[ext_resource type="PackedScene" uid="uid://bk387q22rrnmp" path="res://scenes/bullet.tscn" id="2_7o8fy"]
+[ext_resource type="Texture2D" uid="uid://8awnctthv6ph" path="res://assets/nathan's mini plane.png" id="3_m76bb"]
+[ext_resource type="Script" uid="uid://d28icklyhvx8t" path="res://scripts/bullet_timer.gd" id="4_hqkaw"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=563906200 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_timer")]
+script = ExtResource("1_fxoiy")
+bullet_scene = ExtResource("2_7o8fy")
+bullet_scene_2 = ExtResource("2_7o8fy")
+bullet_spawn = NodePath("Marker2D")
+bullet_spawn_2 = NodePath("Marker2D2")
+bullet_timer = NodePath("BulletTimer")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1628911472]
+texture = ExtResource("3_m76bb")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1668478667]
+position = Vector2(0, -20)
+
+[node name="BulletTimer" type="Timer" parent="." unique_id=1141923478]
+wait_time = 0.5
+autostart = true
+script = ExtResource("4_hqkaw")
+
+[node name="Marker2D2" type="Marker2D" parent="." unique_id=773213167]
+position = Vector2(-17, -4)
+
+[connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]

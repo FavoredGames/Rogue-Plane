@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var player_sprite: Sprite2D
 @export var mini_plane_scene: PackedScene
+@export var mini_plane_scene_2: PackedScene
 @export var bullet_scene: PackedScene
 @export var bullet_scene_2: PackedScene
 @export var bullet_scene_3: PackedScene
@@ -62,9 +63,15 @@ func add_gun():
 		pass
 
 func add_mini_plane():
-	var mini_plane = mini_plane_scene.instantiate()
-	mini_plane.global_position = bullet_spawn.global_position
-	add_sibling(mini_plane)
+	if mini_planes == 0:
+		var mini_plane = mini_plane_scene.instantiate()
+		mini_plane.global_position = bullet_spawn.global_position
+		add_sibling(mini_plane)
+		mini_planes += 1
+	else:
+		var mini_plane_2 = mini_plane_scene_2.instantiate()
+		mini_plane_2.global_position = bullet_spawn.global_position
+		add_sibling(mini_plane_2)
 
 
 func increase_max_health_permanent():
