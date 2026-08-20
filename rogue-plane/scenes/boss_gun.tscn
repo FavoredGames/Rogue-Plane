@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://ccboixnwjavq8"]
+
+[ext_resource type="Script" uid="uid://bfy75etcww2r5" path="res://node_2d.gd" id="1_0u8ah"]
+[ext_resource type="Texture2D" uid="uid://cfea2mqbm07ol" path="res://assets/XP_filling.png" id="2_0m48b"]
+[ext_resource type="PackedScene" uid="uid://i1gto6pxyehs" path="res://scenes/boss_bullet.tscn" id="2_rfjec"]
+
+[node name="Node2D" type="Node2D" unique_id=72493650 node_paths=PackedStringArray("bullet_spawn")]
+script = ExtResource("1_0u8ah")
+bullet_spawn = NodePath("Marker2D/Sprite2D/Marker2D")
+bullet_scene = ExtResource("2_rfjec")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1868517037]
+
+[node name="Sprite2D" type="Sprite2D" parent="Marker2D" unique_id=624181302]
+position = Vector2(19.999998, 2)
+scale = Vector2(0.17397583, 0.13372092)
+texture = ExtResource("2_0m48b")
+
+[node name="Marker2D" type="Marker2D" parent="Marker2D/Sprite2D" unique_id=1950936142]
+position = Vector2(74.72303, -14.956523)
+scale = Vector2(5.747925, 7.4782615)
+
+[node name="Timer" type="Timer" parent="." unique_id=1273415490]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

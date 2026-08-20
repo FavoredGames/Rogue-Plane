@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://i1gto6pxyehs"]
+
+[ext_resource type="Script" uid="uid://cgirkypiq5o4w" path="res://boss_bullet.gd" id="1_i5ved"]
+[ext_resource type="Texture2D" uid="uid://xcu4nlu0vicl" path="res://icon.svg" id="2_borja"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejsxv"]
+
+[node name="Area2D" type="Area2D" unique_id=256630738]
+script = ExtResource("1_i5ved")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=126000158]
+shape = SubResource("RectangleShape2D_ejsxv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=972122709]
+scale = Vector2(0.27259922, 1)
+texture = ExtResource("2_borja")
