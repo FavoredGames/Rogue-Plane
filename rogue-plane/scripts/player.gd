@@ -114,7 +114,7 @@ func _process(delta: float) -> void:
 			_shoot_5()
 		if guns >= 6:
 			_shoot_6()
-	if xp == max_xp:
+	if xp >= max_xp:
 		level_up()
 
 func level_up():

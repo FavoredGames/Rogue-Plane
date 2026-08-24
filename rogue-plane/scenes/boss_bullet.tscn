@@ -5,7 +5,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejsxv"]
 
-[node name="Area2D" type="Area2D" unique_id=256630738]
+[node name="Area2D" type="Area2D" unique_id=256630738 groups=["damager"]]
 script = ExtResource("1_i5ved")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=126000158]

@@ -4,9 +4,8 @@ extends Node2D
 @export var player: CharacterBody2D
 @export var bullet_spawn: Marker2D
 @export var bullet_scene: PackedScene
-
-var speed: float = 300.0
-var missile_health: int = 2
+@export var pivot: Marker2D
+	
 
 func _ready() -> void:
 	for node in get_tree().get_nodes_in_group("player"):
@@ -18,6 +17,7 @@ func _physics_process(delta: float) -> void:
 # Creates an instance of the bullet at the shooting point
 func shoot():
 	var bullet = bullet_scene.instantiate()
+	bullet.rotation = pivot.rotation
 	bullet.global_position = bullet_spawn.global_position
 	add_sibling(bullet)
 	#can_shoot = false

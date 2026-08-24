@@ -4,10 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://cfea2mqbm07ol" path="res://assets/XP_filling.png" id="2_0m48b"]
 [ext_resource type="PackedScene" uid="uid://i1gto6pxyehs" path="res://scenes/boss_bullet.tscn" id="2_rfjec"]
 
-[node name="Node2D" type="Node2D" unique_id=72493650 node_paths=PackedStringArray("bullet_spawn")]
+[node name="BossGun" type="Node2D" unique_id=72493650 node_paths=PackedStringArray("bullet_spawn", "pivot")]
 script = ExtResource("1_0u8ah")
 bullet_spawn = NodePath("Marker2D/Sprite2D/Marker2D")
 bullet_scene = ExtResource("2_rfjec")
+pivot = NodePath("Marker2D")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1868517037]
 
