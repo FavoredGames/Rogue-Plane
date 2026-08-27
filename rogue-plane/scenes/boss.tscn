@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://xcu4nlu0vicl" path="res://icon.svg" id="1_dlmty"]
 [ext_resource type="Script" uid="uid://5mvqhed122od" path="res://scripts/boss.gd" id="1_jncid"]
-[ext_resource type="PackedScene" uid="uid://ccboixnwjavq8" path="res://scenes/boss_gun.tscn" id="3_jncid"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_neq0i"]
 
@@ -16,5 +15,3 @@ texture = ExtResource("1_dlmty")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1020331904]
 shape = SubResource("CircleShape2D_neq0i")
-
-[node name="BossGun" parent="." unique_id=72493650 instance=ExtResource("3_jncid")]

@@ -6,18 +6,18 @@
 
 [node name="BossGun" type="Node2D" unique_id=72493650 node_paths=PackedStringArray("bullet_spawn", "pivot")]
 script = ExtResource("1_0u8ah")
-bullet_spawn = NodePath("Marker2D/Sprite2D/Marker2D")
+bullet_spawn = NodePath("Pivot/Sprite2D/Marker2D")
 bullet_scene = ExtResource("2_rfjec")
-pivot = NodePath("Marker2D")
+pivot = NodePath("Pivot")
 
-[node name="Marker2D" type="Marker2D" parent="." unique_id=1868517037]
+[node name="Pivot" type="Marker2D" parent="." unique_id=1868517037]
 
-[node name="Sprite2D" type="Sprite2D" parent="Marker2D" unique_id=624181302]
+[node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=624181302]
 position = Vector2(19.999998, 2)
 scale = Vector2(0.17397583, 0.13372092)
 texture = ExtResource("2_0m48b")
 
-[node name="Marker2D" type="Marker2D" parent="Marker2D/Sprite2D" unique_id=1950936142]
+[node name="Marker2D" type="Marker2D" parent="Pivot/Sprite2D" unique_id=1950936142]
 position = Vector2(74.72303, -14.956523)
 scale = Vector2(5.747925, 7.4782615)
 

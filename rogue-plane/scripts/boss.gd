@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 100
+var speed = 0
 var health: int = 10
 var take_damage: int = 0
 @export var boss_sprite: Sprite2D

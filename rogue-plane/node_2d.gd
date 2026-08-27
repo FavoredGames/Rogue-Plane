@@ -5,6 +5,7 @@ extends Node2D
 @export var bullet_spawn: Marker2D
 @export var bullet_scene: PackedScene
 @export var pivot: Marker2D
+@export var boss: CharacterBody2D
 	
 
 func _ready() -> void:
@@ -17,11 +18,9 @@ func _physics_process(delta: float) -> void:
 # Creates an instance of the bullet at the shooting point
 func shoot():
 	var bullet = bullet_scene.instantiate()
-	bullet.rotation = pivot.rotation
+	bullet.rotation = bullet_spawn.rotation
 	bullet.global_position = bullet_spawn.global_position
 	add_sibling(bullet)
-	#can_shoot = false
-	#bullet_timer.start()
 # Called when the node enters the scene tree for the first time.
 
 
