@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dp7g5otwwwoys"]
 
-[ext_resource type="PackedScene" uid="uid://ccboixnwjavq8" path="res://scenes/boss_gun.tscn" id="1_bgc3o"]
-[ext_resource type="PackedScene" uid="uid://2ws6gfmhjhy1" path="res://scenes/player.tscn" id="2_s1e4d"]
+[ext_resource type="PackedScene" uid="uid://2ws6gfmhjhy1" path="res://scenes/player.tscn" id="1_bgc3o"]
+[ext_resource type="PackedScene" uid="uid://d1dl3jh7j5sw" path="res://scenes/boss_gun.tscn" id="2_s1e4d"]
 
-[node name="Node2D" type="Node2D" unique_id=1342131091]
+[node name="Node2D" type="Node2D" unique_id=1883882136]
 
-[node name="BossGun" parent="." unique_id=72493650 instance=ExtResource("1_bgc3o")]
-position = Vector2(348, 461)
+[node name="CharacterBody2D" parent="." unique_id=1303541893 instance=ExtResource("1_bgc3o")]
+position = Vector2(372, 1045)
 
-[node name="CharacterBody2D" parent="." unique_id=1303541893 instance=ExtResource("2_s1e4d")]
-position = Vector2(300, 909)
+[node name="Area2D" parent="." unique_id=1470243102 instance=ExtResource("2_s1e4d")]
+position = Vector2(384, 401)

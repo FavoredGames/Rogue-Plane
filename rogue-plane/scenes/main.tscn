@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dr4fmrwmq48fm" path="res://scenes/dead_zone.tscn" id="18_0ld40"]
 [ext_resource type="PackedScene" uid="uid://c2jjguqkak8gr" path="res://scenes/advanced_enemy.tscn" id="18_dp3eg"]
 [ext_resource type="Script" uid="uid://dxf54p64slvbm" path="res://scripts/advanced_emeny_spawn_timer.gd" id="19_0ld40"]
-[ext_resource type="PackedScene" uid="uid://ccboixnwjavq8" path="res://scenes/boss_gun.tscn" id="20_gqmmt"]
+[ext_resource type="PackedScene" uid="uid://wlb0curpd5q7" path="res://scenes/boss.tscn" id="19_gqmmt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
 bg_color = Color(0.96862745, 0.27058825, 0.09019608, 1)
@@ -206,8 +206,8 @@ script = ExtResource("19_0ld40")
 
 [node name="CharacterBody2D" parent="." unique_id=1222533578 instance=ExtResource("18_0ld40")]
 
-[node name="BossGun" parent="." unique_id=72493650 instance=ExtResource("20_gqmmt")]
-position = Vector2(396, 272)
+[node name="CharacterBody2D2" parent="." unique_id=1607814145 instance=ExtResource("19_gqmmt")]
+position = Vector2(208, 229)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="SpawnTimer" method="_on_timeout"]

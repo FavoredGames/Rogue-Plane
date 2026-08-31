@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bf2nifg5fkyqs"]
+
+[ext_resource type="Texture2D" uid="uid://d0hsi5uu4se45" path="res://assets/Untitled_Artwork 42.png" id="1_6bohj"]
+[ext_resource type="Texture2D" uid="uid://vcbkgbjdky6e" path="res://assets/Untitled_Artwork 42 copy.png" id="2_ywimu"]
+[ext_resource type="Script" uid="uid://b3cxkiyuilptt" path="res://scripts/boss_health_bar.gd" id="3_x84iv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
+bg_color = Color(0.96862745, 0.27058825, 0.09019608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
+bg_color = Color(0.3647059, 0.9490196, 0, 1)
+
+[node name="Control2" type="Control" unique_id=1752696516]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1554483966]
+light_mask = 2
+layout_mode = 0
+offset_left = -11.0
+offset_top = 1151.0
+offset_right = 395.0
+offset_bottom = 1557.0
+texture = ExtResource("1_6bohj")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect" unique_id=2100346996]
+clip_children = 1
+visibility_layer = 2
+layout_mode = 0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = 407.0
+offset_bottom = 407.0
+texture = ExtResource("2_ywimu")
+
+[node name="ProgressBar" type="ProgressBar" parent="TextureRect/TextureRect" unique_id=1222242429]
+visibility_layer = 2
+layout_mode = 0
+offset_left = 40.0
+offset_top = 123.0
+offset_right = 398.0
+offset_bottom = 225.0
+theme_override_styles/background = SubResource("StyleBoxFlat_tipki")
+theme_override_styles/fill = SubResource("StyleBoxFlat_85g3d")
+value = 50.0
+show_percentage = false
+script = ExtResource("3_x84iv")

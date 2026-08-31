@@ -1,17 +1,39 @@
 [gd_scene format=3 uid="uid://wlb0curpd5q7"]
 
-[ext_resource type="Texture2D" uid="uid://xcu4nlu0vicl" path="res://icon.svg" id="1_dlmty"]
-[ext_resource type="Script" uid="uid://5mvqhed122od" path="res://scripts/boss.gd" id="1_jncid"]
+[ext_resource type="Texture2D" uid="uid://xcu4nlu0vicl" path="res://assets/icon.svg" id="1_dlmty"]
+[ext_resource type="Script" uid="uid://5mvqhed122od" path="res://scripts/boss.gd" id="1_neq0i"]
+[ext_resource type="PackedScene" uid="uid://cme4bg1pqnd47" path="res://scenes/enemy_bullet.tscn" id="2_jncid"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_neq0i"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jncid"]
+radius = 16.143173
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1490429436]
-script = ExtResource("1_jncid")
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1607814145 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_timer", "enemy_sprite")]
+script = ExtResource("1_neq0i")
+bullet_scene = ExtResource("2_jncid")
+bullet_scene_2 = ExtResource("2_jncid")
+bullet_spawn = NodePath("Marker2D")
+bullet_spawn_2 = NodePath("Marker2D2")
+bullet_timer = NodePath("Timer")
+enemy_sprite = NodePath("Sprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=485794173]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=912740552]
 texture = ExtResource("1_dlmty")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=21179582]
+[node name="Marker2D" type="Marker2D" parent="." unique_id=80752550]
+position = Vector2(-34, 54)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1020331904]
-shape = SubResource("CircleShape2D_neq0i")
+[node name="Marker2D2" type="Marker2D" parent="." unique_id=99690796]
+position = Vector2(42, 58)
+
+[node name="Timer" type="Timer" parent="." unique_id=593496880]
+wait_time = 0.27
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=788396814]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=779721633]
+scale = Vector2(4.192701, 4.1077967)
+shape = SubResource("CircleShape2D_jncid")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

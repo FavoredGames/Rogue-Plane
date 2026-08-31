@@ -1,16 +1,18 @@
 [gd_scene format=3 uid="uid://i1gto6pxyehs"]
 
-[ext_resource type="Script" uid="uid://cgirkypiq5o4w" path="res://boss_bullet.gd" id="1_i5ved"]
-[ext_resource type="Texture2D" uid="uid://xcu4nlu0vicl" path="res://icon.svg" id="2_borja"]
+[ext_resource type="Script" uid="uid://bmiiylesvvc64" path="res://scripts/boss_bullet.gd" id="1_f7bs4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejsxv"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5ved"]
+bg_color = Color(0.60038817, 0.98803645, 0.60038817, 1)
 
-[node name="Area2D" type="Area2D" unique_id=256630738 groups=["damager"]]
-script = ExtResource("1_i5ved")
+[node name="Area2D" type="Area2D" unique_id=1211578142]
+script = ExtResource("1_f7bs4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=126000158]
-shape = SubResource("RectangleShape2D_ejsxv")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=115043600]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=972122709]
-scale = Vector2(0.27259922, 1)
-texture = ExtResource("2_borja")
+[node name="Panel" type="Panel" parent="." unique_id=437811331]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i5ved")
+
+[node name="Timer" type="Timer" parent="." unique_id=206932118]
