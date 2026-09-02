@@ -31,6 +31,7 @@ damager=""
 player_dead_zone=""
 player_hitbox=""
 enemy_plane=""
+boss=""
 
 [physics]
 

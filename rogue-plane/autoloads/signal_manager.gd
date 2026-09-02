@@ -20,4 +20,5 @@ signal increase_extra_coin_chance
 signal increase_damage_permanent
 signal dead_zone_entered
 signal dead_zone_exited
+signal player_died
 signal boss_take_damage

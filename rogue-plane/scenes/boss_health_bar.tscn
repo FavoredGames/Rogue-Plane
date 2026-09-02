@@ -19,10 +19,10 @@ offset_bottom = 40.0
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1554483966]
 light_mask = 2
 layout_mode = 0
-offset_left = -11.0
-offset_top = 1151.0
-offset_right = 395.0
-offset_bottom = 1557.0
+offset_left = 24.0
+offset_top = -46.0
+offset_right = 430.0
+offset_bottom = 360.0
 texture = ExtResource("1_6bohj")
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect" unique_id=2100346996]

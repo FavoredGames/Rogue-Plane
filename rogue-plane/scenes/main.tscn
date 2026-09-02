@@ -18,7 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://dr4fmrwmq48fm" path="res://scenes/dead_zone.tscn" id="18_0ld40"]
 [ext_resource type="PackedScene" uid="uid://c2jjguqkak8gr" path="res://scenes/advanced_enemy.tscn" id="18_dp3eg"]
 [ext_resource type="Script" uid="uid://dxf54p64slvbm" path="res://scripts/advanced_emeny_spawn_timer.gd" id="19_0ld40"]
-[ext_resource type="PackedScene" uid="uid://wlb0curpd5q7" path="res://scenes/boss.tscn" id="19_gqmmt"]
+[ext_resource type="Script" uid="uid://cobnxlh3juj23" path="res://scripts/boss_spawn.gd" id="19_gqmmt"]
+[ext_resource type="PackedScene" uid="uid://wlb0curpd5q7" path="res://scenes/boss.tscn" id="20_gqmmt"]
+[ext_resource type="PackedScene" uid="uid://bf2nifg5fkyqs" path="res://scenes/boss_health_bar.tscn" id="21_yc10j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
 bg_color = Color(0.96862745, 0.27058825, 0.09019608, 1)
@@ -47,7 +49,7 @@ _data = {
 }
 point_count = 2
 
-[node name="Node2D" type="Node2D" unique_id=777912441 node_paths=PackedStringArray("spawn_point", "spawn_timer", "advanced_spawn_point", "advanced_enemy_spawn_timer")]
+[node name="Node2D" type="Node2D" unique_id=777912441 node_paths=PackedStringArray("spawn_point", "spawn_timer", "advanced_spawn_point", "advanced_enemy_spawn_timer", "boss_spawn_point", "player")]
 script = ExtResource("1_a8y0u")
 spawn_point = NodePath("Path2D/PathFollow2D")
 basic_enemy_scene = ExtResource("14_jkv2x")
@@ -55,6 +57,10 @@ spawn_timer = NodePath("SpawnTimer")
 advanced_spawn_point = NodePath("Path2D2/PathFollow2D")
 advanced_enemy_scene = ExtResource("18_dp3eg")
 advanced_enemy_spawn_timer = NodePath("AdvancedEmenySpawnTimer")
+boss = ExtResource("20_gqmmt")
+boss_health_bar = ExtResource("21_yc10j")
+boss_spawn_point = NodePath("Marker2D")
+player = NodePath("Player")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1551041042]
 position = Vector2(405, 0)
@@ -62,6 +68,7 @@ position = Vector2(405, 0)
 [node name="Player" parent="." unique_id=1303541893 instance=ExtResource("1_o5qli")]
 position = Vector2(212, 512)
 health = 2
+healing = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2136626577]
 
@@ -206,10 +213,20 @@ script = ExtResource("19_0ld40")
 
 [node name="CharacterBody2D" parent="." unique_id=1222533578 instance=ExtResource("18_0ld40")]
 
-[node name="CharacterBody2D2" parent="." unique_id=1607814145 instance=ExtResource("19_gqmmt")]
-position = Vector2(208, 229)
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1279207784]
+position = Vector2(405, 113)
+script = ExtResource("19_gqmmt")
+boss = ExtResource("20_gqmmt")
+boss_health_bar = ExtResource("21_yc10j")
+
+[node name="BossTimer" type="Timer" parent="Marker2D" unique_id=1600538788]
+wait_time = 5.0
+one_shot = true
+autostart = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="SpawnTimer" method="_on_timeout"]
 [connection signal="timeout" from="AdvancedEmenySpawnTimer" to="." method="_on_advanced_emeny_spawn_timer_timeout"]
 [connection signal="timeout" from="AdvancedEmenySpawnTimer" to="AdvancedEmenySpawnTimer" method="_on_timeout"]
+[connection signal="timeout" from="Marker2D/BossTimer" to="." method="_on_boss_timer_timeout"]
+[connection signal="timeout" from="Marker2D/BossTimer" to="Marker2D" method="_on_boss_timer_timeout"]

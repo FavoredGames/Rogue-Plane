@@ -36,6 +36,7 @@ bullet_spawn_6 = NodePath("Marker2D6")
 bullet_timer = NodePath("BulletTimer")
 healing_timer = NodePath("HealingTimer")
 health = 6
+healing = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=70607542]
 position = Vector2(0, 8)

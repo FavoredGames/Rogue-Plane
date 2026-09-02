@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_jncid"]
 radius = 16.143173
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1607814145 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_timer", "enemy_sprite")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1607814145 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_timer", "enemy_sprite") groups=["boss"]]
 script = ExtResource("1_neq0i")
 bullet_scene = ExtResource("2_jncid")
 bullet_scene_2 = ExtResource("2_jncid")

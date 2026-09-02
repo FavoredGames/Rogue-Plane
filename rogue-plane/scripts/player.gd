@@ -102,6 +102,7 @@ func _process(delta: float) -> void:
 		move_and_slide()
 	if health <= 0:
 		get_tree().change_scene_to_packed(GAME_OVER)
+		SignalManager.player_died.emit()
 	# Makes player shoot but only when the timer is done
 	if can_shoot:
 		_shoot()
