@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://2ws6gfmhjhy1" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://daqpe8wo5giqm" path="res://scenes/parallax_2d.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://dt8qwrcridqln" path="res://scenes/card_upgrades.tscn" id="5_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://d0hsi5uu4se45" path="res://assets/Untitled_Artwork 42.png" id="7_tipki"]
-[ext_resource type="Texture2D" uid="uid://vcbkgbjdky6e" path="res://assets/Untitled_Artwork 42 copy.png" id="8_85g3d"]
+[ext_resource type="Texture2D" uid="uid://d0hsi5uu4se45" path="res://assets/healthbar outline.png" id="7_tipki"]
+[ext_resource type="Texture2D" uid="uid://vcbkgbjdky6e" path="res://assets/healthbar.png" id="8_85g3d"]
 [ext_resource type="Texture2D" uid="uid://cekrdnhhahqyr" path="res://assets/ui.png" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://dwvpkcecl4rkl" path="res://scripts/health_bar.gd" id="9_trceg"]
 [ext_resource type="Texture2D" uid="uid://c7cr61biufn0w" path="res://assets/xp_Border.png" id="10_ya4ey"]
@@ -68,7 +68,6 @@ position = Vector2(405, 0)
 [node name="Player" parent="." unique_id=1303541893 instance=ExtResource("1_o5qli")]
 position = Vector2(212, 512)
 health = 2
-healing = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2136626577]
 
@@ -114,7 +113,7 @@ offset_right = 398.0
 offset_bottom = 225.0
 theme_override_styles/background = SubResource("StyleBoxFlat_tipki")
 theme_override_styles/fill = SubResource("StyleBoxFlat_85g3d")
-value = 50.0
+value = 100.0
 show_percentage = false
 script = ExtResource("9_trceg")
 player = NodePath("../../../../../Player")
@@ -220,9 +219,18 @@ boss = ExtResource("20_gqmmt")
 boss_health_bar = ExtResource("21_yc10j")
 
 [node name="BossTimer" type="Timer" parent="Marker2D" unique_id=1600538788]
-wait_time = 5.0
+wait_time = 120.0
 one_shot = true
 autostart = true
+
+[node name="CharacterBody2D2" parent="." unique_id=1607814145 instance=ExtResource("20_gqmmt")]
+position = Vector2(383, 457)
+
+[node name="Control3" parent="." unique_id=1752696516 instance=ExtResource("21_yc10j")]
+offset_left = 26.0
+offset_top = 19.0
+offset_right = 66.0
+offset_bottom = 59.0
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="SpawnTimer" method="_on_timeout"]

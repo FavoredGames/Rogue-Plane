@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sn0l38tlo7nb"
-path="res://.godot/imported/Screenshot 2026-05-19 at 1.33.15 PM.png-6d53f56486fe9d2a7ed0e5037226d017.ctex"
+uid="uid://bohflxs5e8ota"
+path="res://.godot/imported/boss frame 2.png-a59d873df8f129db6716862e204e71f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Screenshot 2026-05-19 at 1.33.15 PM.png"
-dest_files=["res://.godot/imported/Screenshot 2026-05-19 at 1.33.15 PM.png-6d53f56486fe9d2a7ed0e5037226d017.ctex"]
+source_file="res://assets/boss frame 2.png"
+dest_files=["res://.godot/imported/boss frame 2.png-a59d873df8f129db6716862e204e71f3.ctex"]
 
 [params]
 

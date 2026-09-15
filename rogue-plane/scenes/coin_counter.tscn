@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cpnqr5gpixtlp"]
 
 [ext_resource type="Script" uid="uid://djo5idl7hdnqi" path="res://scripts/coin_label.gd" id="1_bgwb7"]
-[ext_resource type="Texture2D" uid="uid://dmgmnbv0sf5om" path="res://assets/Untitled_Artwork 37.png" id="2_hh2am"]
+[ext_resource type="Texture2D" uid="uid://dmgmnbv0sf5om" path="res://assets/coin.png" id="2_hh2am"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mp0xb"]
 bg_color = Color(0, 0, 0, 0.63000005)

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bvhn2qdjcfl21"]
+
+[ext_resource type="Script" uid="uid://wwn8ow3u74dc" path="res://scripts/boss_noming_missile.gd" id="1_85hsd"]
+[ext_resource type="Texture2D" uid="uid://cs4j2kjlrpi7h" path="res://assets/boss missile.png" id="2_m62sw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_85hsd"]
+radius = 8.017091
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxu7t"]
+atlas = ExtResource("2_m62sw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qc7bi"]
+atlas = ExtResource("2_m62sw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v25dx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxu7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qc7bi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1931429677]
+scale = Vector2(2, 2)
+script = ExtResource("1_85hsd")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=349696437 groups=["damager", "enemy_plane"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=499207150]
+rotation = -1.8010538
+shape = SubResource("CapsuleShape2D_85hsd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=375510521]
+rotation = -1.7239039
+sprite_frames = SubResource("SpriteFrames_v25dx")
+autoplay = "default"
+frame_progress = 0.63179624
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

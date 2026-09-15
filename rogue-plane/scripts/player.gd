@@ -24,7 +24,7 @@ const GAME_OVER: PackedScene = preload("res://scenes/game_over_screen.tscn")
 
 
 var gun_limit = 6
-var xp_increase_value: int = 100
+var xp_increase_value: int = 20
 var max_xp: int = 100
 var xp: int = 0
 var speed: float = 800

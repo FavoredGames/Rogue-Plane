@@ -79,7 +79,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		await get_tree().create_timer(0.05).timeout
 		enemy_sprite.modulate = Color.WHITE
 		
-		
 
 
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmgmnbv0sf5om"
-path="res://.godot/imported/Untitled_Artwork 37.png-64e3bf5cc802d5b34916e16b0f3fd6a6.ctex"
+uid="uid://cs4j2kjlrpi7h"
+path="res://.godot/imported/boss missile.png-93094cdd412c298a5dfb91b9fce4137c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Untitled_Artwork 37.png"
-dest_files=["res://.godot/imported/Untitled_Artwork 37.png-64e3bf5cc802d5b34916e16b0f3fd6a6.ctex"]
+source_file="res://assets/boss missile.png"
+dest_files=["res://.godot/imported/boss missile.png-93094cdd412c298a5dfb91b9fce4137c.ctex"]
 
 [params]
 

@@ -30,21 +30,21 @@ func _spawn_basic_enemy() -> void:
 		add_child(enemy)
 
 
-func _on_spawn_timer_timeout() -> void:
-	_spawn_basic_enemy()
-
-
-func _spawn_advanced_enemy() -> void:
-	if enemy_can_spawn == true:
-		advanced_spawn_point.progress_ratio = randf_range(0.0, 1.0)
-		var advanced_enemy = advanced_enemy_scene.instantiate()
-		advanced_enemy.global_position = advanced_spawn_point.global_position
-		add_child(advanced_enemy)
-
-
-func _on_advanced_emeny_spawn_timer_timeout() -> void:
-	_spawn_advanced_enemy()
-	
+#func _on_spawn_timer_timeout() -> void:
+	#_spawn_basic_enemy()
+#
+#
+#func _spawn_advanced_enemy() -> void:
+	#if enemy_can_spawn == true:
+		#advanced_spawn_point.progress_ratio = randf_range(0.0, 1.0)
+		#var advanced_enemy = advanced_enemy_scene.instantiate()
+		#advanced_enemy.global_position = advanced_spawn_point.global_position
+		#add_child(advanced_enemy)
+#
+#
+#func _on_advanced_emeny_spawn_timer_timeout() -> void:
+	#_spawn_advanced_enemy()
+	#
 
 
 func _on_boss_timer_timeout() -> void:

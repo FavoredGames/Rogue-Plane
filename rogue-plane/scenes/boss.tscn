@@ -1,39 +1,125 @@
 [gd_scene format=3 uid="uid://wlb0curpd5q7"]
 
-[ext_resource type="Texture2D" uid="uid://xcu4nlu0vicl" path="res://assets/icon.svg" id="1_dlmty"]
 [ext_resource type="Script" uid="uid://5mvqhed122od" path="res://scripts/boss.gd" id="1_neq0i"]
 [ext_resource type="PackedScene" uid="uid://cme4bg1pqnd47" path="res://scenes/enemy_bullet.tscn" id="2_jncid"]
+[ext_resource type="Texture2D" uid="uid://ck6yg3pm8lmis" path="res://assets/boss.png" id="3_jncid"]
+[ext_resource type="Texture2D" uid="uid://bohflxs5e8ota" path="res://assets/boss frame 2.png" id="3_qnbj4"]
+[ext_resource type="PackedScene" uid="uid://bvhn2qdjcfl21" path="res://scenes/boss_homing_missile.tscn" id="3_r3bxh"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jncid"]
-radius = 16.143173
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnbj4"]
+radius = 20.273327
+height = 99.810196
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1607814145 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "bullet_timer", "enemy_sprite") groups=["boss"]]
+[sub_resource type="SpriteFrames" id="SpriteFrames_r3bxh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qnbj4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jncid")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_r3bxh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wqpjq"]
+resource_name = "boss_rotation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5333333, 2.0333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.00056517124, -0.6844159, 0.76491463, -0.00056517124]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2cdgk"]
+_data = {
+&"RESET": SubResource("Animation_r3bxh"),
+&"boss_rotation": SubResource("Animation_wqpjq")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1607814145 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "homing_missile_spawn_2", "homing_missile_spawn_1", "bullet_timer", "homing_missile_timer", "between_pahse_timer", "enemy_sprite", "rotation_animation") groups=["boss"]]
+position = Vector2(-67, 21)
 script = ExtResource("1_neq0i")
 bullet_scene = ExtResource("2_jncid")
 bullet_scene_2 = ExtResource("2_jncid")
-bullet_spawn = NodePath("Marker2D")
-bullet_spawn_2 = NodePath("Marker2D2")
-bullet_timer = NodePath("Timer")
-enemy_sprite = NodePath("Sprite2D")
+bullet_spawn = NodePath("BulletSpawn1")
+bullet_spawn_2 = NodePath("BulletSpawn2")
+homing_missile_spawn_2 = NodePath("HomingMissileSpawn1")
+homing_missile_spawn_1 = NodePath("HomingMissileSpawn2")
+homing_missile_1 = ExtResource("3_r3bxh")
+homing_missile_2 = ExtResource("3_r3bxh")
+bullet_timer = NodePath("BulletTimer")
+homing_missile_timer = NodePath("HomingMissileTimer")
+between_pahse_timer = NodePath("BetweenPhaseTimer")
+enemy_sprite = NodePath("AnimatedSprite2D")
+rotation_animation = NodePath("AnimationPlayer")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=912740552]
-texture = ExtResource("1_dlmty")
+[node name="BulletSpawn1" type="Marker2D" parent="." unique_id=80752550]
+position = Vector2(-33, 153)
 
-[node name="Marker2D" type="Marker2D" parent="." unique_id=80752550]
-position = Vector2(-34, 54)
+[node name="BulletSpawn2" type="Marker2D" parent="." unique_id=99690796]
+position = Vector2(34, 153)
 
-[node name="Marker2D2" type="Marker2D" parent="." unique_id=99690796]
-position = Vector2(42, 58)
-
-[node name="Timer" type="Timer" parent="." unique_id=593496880]
-wait_time = 0.27
+[node name="BulletTimer" type="Timer" parent="." unique_id=593496880]
+wait_time = 2.0
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=788396814]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=779721633]
+position = Vector2(-1, -38)
 scale = Vector2(4.192701, 4.1077967)
-shape = SubResource("CircleShape2D_jncid")
+shape = SubResource("CapsuleShape2D_qnbj4")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=585089572]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_r3bxh")
+autoplay = "default"
+frame_progress = 0.47394788
+
+[node name="HomingMissileTimer" type="Timer" parent="." unique_id=2004862156]
+wait_time = 3.0
+autostart = true
+
+[node name="HomingMissileSpawn1" type="Marker2D" parent="." unique_id=1714965562]
+position = Vector2(-67, -5)
+
+[node name="HomingMissileSpawn2" type="Marker2D" parent="." unique_id=1126416804]
+position = Vector2(67, -5)
+
+[node name="BetweenPhaseTimer" type="Timer" parent="." unique_id=728264268]
+wait_time = 5.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=958779711]
+libraries/ = SubResource("AnimationLibrary_2cdgk")
+
+[connection signal="timeout" from="BulletTimer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="HomingMissileTimer" to="." method="_on_homing_missile_timeout"]
+[connection signal="timeout" from="BetweenPhaseTimer" to="." method="_on_between_phase_timer_timeout"]
