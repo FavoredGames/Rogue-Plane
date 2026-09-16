@@ -100,6 +100,7 @@ size = Vector2(6.0005684, 31.980606)
 size = Vector2(6.212139, 32.029552)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1607814145 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "homing_missile_spawn_2", "homing_missile_spawn_1", "bullet_timer", "homing_missile_timer", "between_phase_timer", "between_phase_timer_2", "enemy_sprite", "boss_animation", "laser_hitbox_1", "laser_hitbox_2", "laser_1", "laser_2") groups=["boss"]]
+show_behind_parent = true
 position = Vector2(345, 372)
 script = ExtResource("1_neq0i")
 bullet_scene = ExtResource("2_jncid")
@@ -128,7 +129,6 @@ position = Vector2(-33, 153)
 position = Vector2(34, 153)
 
 [node name="BulletTimer" type="Timer" parent="." unique_id=593496880]
-wait_time = 2.0
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=788396814]
@@ -188,7 +188,7 @@ scale = Vector2(0.99999964, 1)
 shape = SubResource("RectangleShape2D_2cdgk")
 
 [node name="BetweenPhaseTimer2" type="Timer" parent="." unique_id=1324231892]
-wait_time = 5.0
+wait_time = 3.0
 
 [connection signal="timeout" from="BulletTimer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

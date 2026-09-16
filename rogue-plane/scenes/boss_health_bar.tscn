@@ -11,6 +11,7 @@ bg_color = Color(0.96862745, 0.27058825, 0.09019608, 1)
 bg_color = Color(0.3647059, 0.9490196, 0, 1)
 
 [node name="Control2" type="Control" unique_id=1752696516]
+visibility_layer = 513
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

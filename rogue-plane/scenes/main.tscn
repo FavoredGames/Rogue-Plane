@@ -15,12 +15,16 @@
 [ext_resource type="PackedScene" uid="uid://cbvliuoqa21fi" path="res://scenes/basic_enemy.tscn" id="14_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://cpnqr5gpixtlp" path="res://scenes/coin_counter.tscn" id="15_jkv2x"]
 [ext_resource type="Script" uid="uid://ckl134xvgj4y6" path="res://scripts/spawn_timer.gd" id="16_dp3eg"]
+[ext_resource type="Script" uid="uid://ud84oih2if5h" path="res://scripts/coin_counter.gd" id="17_og1vs"]
 [ext_resource type="PackedScene" uid="uid://dr4fmrwmq48fm" path="res://scenes/dead_zone.tscn" id="18_0ld40"]
 [ext_resource type="PackedScene" uid="uid://c2jjguqkak8gr" path="res://scenes/advanced_enemy.tscn" id="18_dp3eg"]
 [ext_resource type="Script" uid="uid://dxf54p64slvbm" path="res://scripts/advanced_emeny_spawn_timer.gd" id="19_0ld40"]
 [ext_resource type="Script" uid="uid://cobnxlh3juj23" path="res://scripts/boss_spawn.gd" id="19_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://wlb0curpd5q7" path="res://scenes/boss.tscn" id="20_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://bf2nifg5fkyqs" path="res://scenes/boss_health_bar.tscn" id="21_yc10j"]
+[ext_resource type="Texture2D" uid="uid://bnxt3t2kc158f" path="res://assets/BLINDNESS-Sheet.png" id="22_jscy8"]
+[ext_resource type="Texture2D" uid="uid://dox6is636uegq" path="res://assets/PHASE 2 CARD.png" id="23_y6deb"]
+[ext_resource type="Texture2D" uid="uid://cjl7n7mdce2eg" path="res://assets/PHASE 3 CARD.png" id="24_og1vs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tipki"]
 bg_color = Color(0.96862745, 0.27058825, 0.09019608, 1)
@@ -49,7 +53,53 @@ _data = {
 }
 point_count = 2
 
-[node name="Node2D" type="Node2D" unique_id=777912441 node_paths=PackedStringArray("spawn_point", "spawn_timer", "advanced_spawn_point", "advanced_enemy_spawn_timer", "boss_spawn_point", "player")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsl3t"]
+atlas = ExtResource("22_jscy8")
+region = Rect2(3240, 0, 810, 1440)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2avx2"]
+atlas = ExtResource("22_jscy8")
+region = Rect2(2430, 0, 810, 1440)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f346"]
+atlas = ExtResource("22_jscy8")
+region = Rect2(1620, 0, 810, 1440)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0onds"]
+atlas = ExtResource("22_jscy8")
+region = Rect2(810, 0, 810, 1440)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfs1x"]
+atlas = ExtResource("22_jscy8")
+region = Rect2(0, 0, 810, 1440)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pm3ni"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsl3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2avx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5f346")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0onds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfs1x")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Node2D" type="Node2D" unique_id=777912441 node_paths=PackedStringArray("spawn_point", "spawn_timer", "advanced_spawn_point", "advanced_enemy_spawn_timer", "boss_spawn_point", "boss_health_bar_spawn_point", "player", "blindness", "phase_2_card", "phase_3_card")]
 script = ExtResource("1_a8y0u")
 spawn_point = NodePath("Path2D/PathFollow2D")
 basic_enemy_scene = ExtResource("14_jkv2x")
@@ -60,7 +110,11 @@ advanced_enemy_spawn_timer = NodePath("AdvancedEmenySpawnTimer")
 boss = ExtResource("20_gqmmt")
 boss_health_bar = ExtResource("21_yc10j")
 boss_spawn_point = NodePath("Marker2D")
+boss_health_bar_spawn_point = NodePath("BossHealthBarSpawn")
 player = NodePath("Player")
+blindness = NodePath("BlindnessAnimationSprite")
+phase_2_card = NodePath("Phase2Card")
+phase_3_card = NodePath("Phase3Card")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1551041042]
 position = Vector2(405, 0)
@@ -167,9 +221,11 @@ scale = Vector2(3.53125, 3.53125)
 texture = ExtResource("12_eb6dy")
 
 [node name="Control3" parent="CanvasLayer" unique_id=1938221809 instance=ExtResource("15_jkv2x")]
+visible = false
 offset_left = -1.0
 offset_right = -1.0
 offset_bottom = -1330.0
+script = ExtResource("17_og1vs")
 
 [node name="Path2D" type="Path2D" parent="." unique_id=437463526]
 position = Vector2(-12, 181)
@@ -213,28 +269,46 @@ script = ExtResource("19_0ld40")
 [node name="CharacterBody2D" parent="." unique_id=1222533578 instance=ExtResource("18_0ld40")]
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1279207784]
-position = Vector2(405, 113)
+position = Vector2(399, 381)
 script = ExtResource("19_gqmmt")
 boss = ExtResource("20_gqmmt")
 boss_health_bar = ExtResource("21_yc10j")
 
 [node name="BossTimer" type="Timer" parent="Marker2D" unique_id=1600538788]
-wait_time = 120.0
+wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="CharacterBody2D2" parent="." unique_id=1607814145 instance=ExtResource("20_gqmmt")]
-position = Vector2(383, 457)
-
 [node name="Control3" parent="." unique_id=1752696516 instance=ExtResource("21_yc10j")]
+visible = false
 offset_left = 26.0
 offset_top = 19.0
 offset_right = 66.0
 offset_bottom = 59.0
+
+[node name="BlindnessAnimationSprite" type="AnimatedSprite2D" parent="." unique_id=1551296655]
+visible = false
+visibility_layer = 1023
+position = Vector2(405, 721)
+sprite_frames = SubResource("SpriteFrames_pm3ni")
+
+[node name="Phase2Card" type="Sprite2D" parent="." unique_id=1927585622]
+visible = false
+position = Vector2(404, 506)
+texture = ExtResource("23_y6deb")
+
+[node name="Phase3Card" type="Sprite2D" parent="." unique_id=1925491431]
+visible = false
+position = Vector2(402, 487)
+texture = ExtResource("24_og1vs")
+
+[node name="BossHealthBarSpawn" type="Marker2D" parent="." unique_id=1029444126]
+position = Vector2(399, 173)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="SpawnTimer" method="_on_timeout"]
 [connection signal="timeout" from="AdvancedEmenySpawnTimer" to="." method="_on_advanced_emeny_spawn_timer_timeout"]
 [connection signal="timeout" from="AdvancedEmenySpawnTimer" to="AdvancedEmenySpawnTimer" method="_on_timeout"]
 [connection signal="timeout" from="Marker2D/BossTimer" to="." method="_on_boss_timer_timeout"]
+[connection signal="timeout" from="Marker2D/BossTimer" to="CanvasLayer/Control3" method="_on_boss_timer_timeout"]
 [connection signal="timeout" from="Marker2D/BossTimer" to="Marker2D" method="_on_boss_timer_timeout"]

@@ -22,3 +22,6 @@ signal dead_zone_entered
 signal dead_zone_exited
 signal player_died
 signal boss_take_damage
+signal boss_died
+signal start_phase_2
+signal start_phase_3

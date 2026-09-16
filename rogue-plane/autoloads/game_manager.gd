@@ -3,11 +3,12 @@ extends Node
 
 const GAME: PackedScene = preload("res://scenes/main.tscn")
 const SKILL_TREE: PackedScene = preload("res://scenes/skill_tree.tscn")
+const WIN_SCREEN: PackedScene = preload("res://scenes/win_screen.tscn")
 var max_hp_cost: int = 1
 var damage_cost: int = 10
 var total_coins: int = 1
 var coins_from_run = 0
-var max_hp: int = 400
+var max_hp: int = 4
 var enemy_damage_take: int = 1
 var extra_coin_upgrade_cost: int = 5
 var second_coin_chance = 0.1
@@ -22,6 +23,7 @@ func _ready() -> void:
 	SignalManager.update_total_coins.connect(update_total_coins)
 	SignalManager.increase_extra_coin_chance.connect(increase_extra_coin_chance)
 	SignalManager.increase_damage_permanent.connect(increase_damage_permanent)
+	SignalManager.boss_died.connect(load_win_screen)
 
 
 func increase_damage_permanent():
@@ -63,6 +65,8 @@ func _process(delta: float) -> void:
 	pass
 
 
+func load_win_screen():
+	get_tree().change_scene_to_packed(WIN_SCREEN)
 
 
 func increase_coin_amount():

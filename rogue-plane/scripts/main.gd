@@ -9,7 +9,11 @@ extends Node2D
 @export var boss: PackedScene
 @export var boss_health_bar: PackedScene
 @export var boss_spawn_point: Marker2D
+@export var boss_health_bar_spawn_point: Marker2D
 @export var player: CharacterBody2D
+@export var blindness: AnimatedSprite2D
+@export var phase_2_card: Sprite2D
+@export var phase_3_card: Sprite2D
 var enemy_can_spawn: bool = true
 
 
@@ -18,6 +22,23 @@ func _ready() -> void:
 	await get_tree().create_timer(0.75).timeout
 	get_tree().paused = false
 	SignalManager.player_died.connect(player_died)
+	SignalManager.start_phase_2.connect(show_phase_2_card)
+	SignalManager.start_phase_3.connect(show_phase_3)
+
+
+func show_phase_2_card():
+	phase_2_card.show()
+	await get_tree().create_timer(1.0).timeout
+	phase_2_card.hide()
+
+
+func show_phase_3():
+	phase_3_card.show()
+	await get_tree().create_timer(1.0).timeout
+	phase_3_card.hide()
+	blindness.show()
+	blindness.play()
+
 
 func player_died():
 	pass
@@ -30,21 +51,21 @@ func _spawn_basic_enemy() -> void:
 		add_child(enemy)
 
 
-#func _on_spawn_timer_timeout() -> void:
-	#_spawn_basic_enemy()
-#
-#
-#func _spawn_advanced_enemy() -> void:
-	#if enemy_can_spawn == true:
-		#advanced_spawn_point.progress_ratio = randf_range(0.0, 1.0)
-		#var advanced_enemy = advanced_enemy_scene.instantiate()
-		#advanced_enemy.global_position = advanced_spawn_point.global_position
-		#add_child(advanced_enemy)
-#
-#
-#func _on_advanced_emeny_spawn_timer_timeout() -> void:
-	#_spawn_advanced_enemy()
-	#
+func _on_spawn_timer_timeout() -> void:
+	_spawn_basic_enemy()
+
+
+func _spawn_advanced_enemy() -> void:
+	if enemy_can_spawn == true:
+		advanced_spawn_point.progress_ratio = randf_range(0.0, 1.0)
+		var advanced_enemy = advanced_enemy_scene.instantiate()
+		advanced_enemy.global_position = advanced_spawn_point.global_position
+		add_child(advanced_enemy)
+
+
+func _on_advanced_emeny_spawn_timer_timeout() -> void:
+	_spawn_advanced_enemy()
+	
 
 
 func _on_boss_timer_timeout() -> void:
@@ -52,6 +73,6 @@ func _on_boss_timer_timeout() -> void:
 	boss.global_position = boss_spawn_point.global_position
 	add_sibling(boss)
 	var boss_health_bar = boss_health_bar.instantiate()
-	boss_health_bar.global_position = boss_spawn_point.global_position
+	boss_health_bar.global_position = boss_health_bar_spawn_point.global_position
 	add_sibling(boss_health_bar)
 	enemy_can_spawn = false

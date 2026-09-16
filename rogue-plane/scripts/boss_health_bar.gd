@@ -9,9 +9,11 @@ func _ready() -> void:
 
 
 func update_health_bar():
-	value = boss.health * 100 / boss.max_health
+	if boss in get_tree().get_nodes_in_group("boss"):
+		value = boss.health * 100 / boss.max_health
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	update_health_bar()
+	

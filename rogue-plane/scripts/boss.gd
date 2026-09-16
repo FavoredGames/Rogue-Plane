@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 var speed = 0
-var health: int = 100
-var max_health: int = 100
+var health: int = 300
+var max_health: int = 300
 var take_damage: int = 0
 @export var bullet_scene: PackedScene
 @export var bullet_scene_2: PackedScene
@@ -35,11 +35,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if health <= 0:
+		SignalManager.boss_died.emit()
 	if between_phase == false:
 		if health <= 0:
 			queue_free()
 		if health <= (max_health * 0.75) and health > (max_health * 0.25):
 			if phase_2_code_has_run == false:
+				SignalManager.start_phase_2.emit()
 				print("phase 2")
 				homing_missile_timer.wait_time = (homing_missile_timer.wait_time * 0.4)
 				between_phase_timer.start()
@@ -48,7 +51,9 @@ func _process(delta: float) -> void:
 				can_shoot = false
 		elif health <= (max_health * 0.25):
 			if phase_3_code_has_run == false:
-				boss_animation.play("RESET")
+				homing_missile_timer.wait_time = (homing_missile_timer.wait_time * 0.4)
+				bullet_timer.wait_time = (bullet_timer.wait_time * 0.5)
+				SignalManager.start_phase_3.emit()
 				position.y += 100
 				print("phase 3")
 				between_phase_timer_2.start()
@@ -58,6 +63,8 @@ func _process(delta: float) -> void:
 				laser_2.hide()
 				phase_3_code_has_run = true
 				between_phase = true
+				boss_animation.play("RESET")
+				
 		else:
 			pass
 	else:
