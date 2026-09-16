@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var speed = 100
 var horinzontal_speed: int = 50
-var health: int = 10
+var health: int = 20
 var take_damage: int = 0
 @export var bullet_scene: PackedScene
 @export var bullet_spawn: Marker2D

@@ -5,8 +5,14 @@ var speed: float = 400.0
 var missile_health: int = 100
 
 func _ready() -> void:
+	SignalManager.player_died.connect(delete_self)
 	for node in get_tree().get_nodes_in_group("player"):
 		player = node
+
+
+func delete_self():
+	queue_free()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -30,6 +30,7 @@ func show_phase_2_card():
 	phase_2_card.show()
 	await get_tree().create_timer(1.0).timeout
 	phase_2_card.hide()
+	
 
 
 func show_phase_3():

@@ -119,6 +119,7 @@ func _process(delta: float) -> void:
 		level_up()
 
 func level_up():
+	max_xp += xp_increase_value
 	SignalManager.card_upgrades.emit()
 
 # Spawns bullet and 
@@ -179,7 +180,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		player_sprite.modulate = Color.RED
 		await get_tree().create_timer(0.05).timeout
 		player_sprite.modulate = Color.WHITE
-		
 		take_damage()
 		
 

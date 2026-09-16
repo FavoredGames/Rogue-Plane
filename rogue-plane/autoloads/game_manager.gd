@@ -5,14 +5,21 @@ const GAME: PackedScene = preload("res://scenes/main.tscn")
 const SKILL_TREE: PackedScene = preload("res://scenes/skill_tree.tscn")
 const WIN_SCREEN: PackedScene = preload("res://scenes/win_screen.tscn")
 var max_hp_cost: int = 1
+var max_hp_base_cost: int = 1
+var max_hp_level: int = 1
 var damage_cost: int = 10
+var damage_base_cost: int = 10
+var damage_level: int = 1
 var total_coins: int = 1
 var coins_from_run = 0
 var max_hp: int = 4
-var enemy_damage_take: int = 1
-var extra_coin_upgrade_cost: int = 5
-var second_coin_chance = 0.1
+var enemy_damage_take: int = 2
+var extra_coin_upgrade_cost: int = 2
+var extra_coin_base_cost: int = 2
+var extra_coin_level: int = 1
+var second_coin_chance = 0.0
 var damage_button_disabled: bool = true
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,26 +34,35 @@ func _ready() -> void:
 
 
 func increase_damage_permanent():
-	damage_cost += 5
+	damage_cost = (damage_base_cost * 1.5) + damage_base_cost * (1 - 0.5 ** (damage_level - 1))
 	print("damage cost", damage_cost)
 	enemy_damage_take += 1
-	
+	damage_level += 1
+
+
+func increase_extra_coin_chance():
+	print("extra_coin_upgrade_cost", extra_coin_upgrade_cost)
+	extra_coin_upgrade_cost = extra_coin_base_cost * (1 + 0.75 * extra_coin_level) * (1.15 ** extra_coin_level)
+	second_coin_chance += 0.1
+	extra_coin_level += 1
+
+
+func increase_max_health_permanent():
+	max_hp_cost = max_hp_base_cost * (1 + 0.75 * max_hp_level) * (1.15 ** max_hp_level)
+	print("maxhpcost", max_hp_cost)
+	max_hp += 3
+	print("maxhp,", max_hp)
+	max_hp_level += 1
 
 
 func update_total_coins():
 	total_coins -= max_hp_cost
 
 
-func increase_extra_coin_chance():
-	print("extra_coin_upgrade_cost", extra_coin_upgrade_cost)
-	extra_coin_upgrade_cost *= 5
-	second_coin_chance += 0.1
 
 
-func increase_max_health_permanent():
-	max_hp_cost *= 2
-	print("maxhpcost", max_hp_cost)
-	max_hp += 3
+
+
 	
 
 

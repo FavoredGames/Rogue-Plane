@@ -221,7 +221,6 @@ scale = Vector2(3.53125, 3.53125)
 texture = ExtResource("12_eb6dy")
 
 [node name="Control3" parent="CanvasLayer" unique_id=1938221809 instance=ExtResource("15_jkv2x")]
-visible = false
 offset_left = -1.0
 offset_right = -1.0
 offset_bottom = -1330.0
@@ -275,7 +274,7 @@ boss = ExtResource("20_gqmmt")
 boss_health_bar = ExtResource("21_yc10j")
 
 [node name="BossTimer" type="Timer" parent="Marker2D" unique_id=1600538788]
-wait_time = 2.0
+wait_time = 45.0
 one_shot = true
 autostart = true
 
@@ -303,7 +302,7 @@ position = Vector2(402, 487)
 texture = ExtResource("24_og1vs")
 
 [node name="BossHealthBarSpawn" type="Marker2D" parent="." unique_id=1029444126]
-position = Vector2(399, 173)
+position = Vector2(18, -24)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="SpawnTimer" method="_on_timeout"]
