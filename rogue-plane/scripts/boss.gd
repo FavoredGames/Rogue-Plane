@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 var speed = 0
-var health: int = 300
-var max_health: int = 300
+var health: int = 100
+var max_health: int = 100
 var take_damage: int = 0
 @export var bullet_scene: PackedScene
 @export var bullet_scene_2: PackedScene
@@ -14,36 +14,56 @@ var take_damage: int = 0
 @export var homing_missile_2: PackedScene
 @export var bullet_timer: Timer
 @export var homing_missile_timer: Timer
-@export var between_pahse_timer: Timer
+@export var between_phase_timer: Timer
+@export var between_phase_timer_2: Timer
 @export var enemy_sprite: AnimatedSprite2D
-@export var rotation_animation: AnimationPlayer
+@export var boss_animation: AnimationPlayer
+@export var laser_hitbox_1: CollisionShape2D
+@export var laser_hitbox_2: CollisionShape2D
+@export var laser_1: Sprite2D
+@export var laser_2: Sprite2D
 var can_take_damage: bool = true
 var can_shoot: bool = true
 var can_fire_missile: bool = true
 var between_phase: bool = false
 var phase_2_code_has_run: bool = false
+var phase_3_code_has_run: bool = false
 
-
+func _ready() -> void:
+	laser_hitbox_1.disabled = true
+	laser_hitbox_2.disabled = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if health <= 0:
-		queue_free()
-	if health <= (max_health * 0.75):
-		rotation_animation.play("boss_rotation")
-		if phase_2_code_has_run == false:
-			print("phase 2")
-			bullet_timer.wait_time = (bullet_timer.wait_time * 0.1)
-			between_phase = true
-			between_pahse_timer.start()
-			phase_2_code_has_run = true
-	elif health <= (max_health * 0.25):
-		print("phase 3")
+	if between_phase == false:
+		if health <= 0:
+			queue_free()
+		if health <= (max_health * 0.75) and health > (max_health * 0.25):
+			if phase_2_code_has_run == false:
+				print("phase 2")
+				homing_missile_timer.wait_time = (homing_missile_timer.wait_time * 0.4)
+				between_phase_timer.start()
+				phase_2_code_has_run = true
+				between_phase = true
+				can_shoot = false
+		elif health <= (max_health * 0.25):
+			if phase_3_code_has_run == false:
+				boss_animation.play("RESET")
+				position.y += 100
+				print("phase 3")
+				between_phase_timer_2.start()
+				laser_hitbox_1.disabled = true
+				laser_hitbox_2.disabled = true
+				laser_1.hide()
+				laser_2.hide()
+				phase_3_code_has_run = true
+				between_phase = true
+		else:
+			pass
 	else:
 		pass
 
-
-# Spawns bullet and 
+# Spawns bullet 
 func _shoot() -> void:
 	var bullet = bullet_scene.instantiate()
 	bullet.rotation = bullet_spawn.rotation
@@ -101,3 +121,16 @@ func _on_homing_missile_timeout() -> void:
 
 func _on_between_phase_timer_timeout() -> void:
 	between_phase = false
+	boss_animation.play("boss_rotation")
+	laser_hitbox_1.disabled = false
+	laser_hitbox_2.disabled = false
+	laser_1.show()
+	laser_2.show()
+				
+
+
+func _on_between_phase_timer_2_timeout() -> void:
+	between_phase = false
+	boss_animation.play("movement")
+	can_shoot = true
+	can_fire_missile = true

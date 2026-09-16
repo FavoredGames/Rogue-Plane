@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ck6yg3pm8lmis" path="res://assets/boss.png" id="3_jncid"]
 [ext_resource type="Texture2D" uid="uid://bohflxs5e8ota" path="res://assets/boss frame 2.png" id="3_qnbj4"]
 [ext_resource type="PackedScene" uid="uid://bvhn2qdjcfl21" path="res://scenes/boss_homing_missile.tscn" id="3_r3bxh"]
+[ext_resource type="Texture2D" uid="uid://d3hu6mi4bad2d" path="res://assets/lazerbeam.png" id="6_wqpjq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnbj4"]
 radius = 20.273327
@@ -38,10 +39,22 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(345, 372)]
+}
 
 [sub_resource type="Animation" id="Animation_wqpjq"]
 resource_name = "boss_rotation"
-length = 2.0
+length = 10.633333
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -50,20 +63,44 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.5333333, 2.0333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1.5333333, 2.0333333, 3.8333333, 5.6666665, 7.7, 9.033334, 9.733334, 10.466666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-0.00056517124, -0.6844159, 0.76491463, -0.00056517124]
+"values": [-0.00056517124, -0.6844159, 0.76491463, -0.00056517124, -3.1064637, -5.5556145, -2.5179157, 0.0039367676, -0.7182733, 0.81020224]
+}
+
+[sub_resource type="Animation" id="Animation_2cdgk"]
+resource_name = "movement"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.0333333, 2.0333333, 3, 4, 4.766667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(236.99998, 485.99988), Vector2(233.99998, 384.99994), Vector2(480, 629), Vector2(489.99997, 384.99997), Vector2(326.99994, 486)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2cdgk"]
 _data = {
 &"RESET": SubResource("Animation_r3bxh"),
-&"boss_rotation": SubResource("Animation_wqpjq")
+&"boss_rotation": SubResource("Animation_wqpjq"),
+&"movement": SubResource("Animation_2cdgk")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1607814145 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "homing_missile_spawn_2", "homing_missile_spawn_1", "bullet_timer", "homing_missile_timer", "between_pahse_timer", "enemy_sprite", "rotation_animation") groups=["boss"]]
-position = Vector2(-67, 21)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqpjq"]
+size = Vector2(6.0005684, 31.980606)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cdgk"]
+size = Vector2(6.212139, 32.029552)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1607814145 node_paths=PackedStringArray("bullet_spawn", "bullet_spawn_2", "homing_missile_spawn_2", "homing_missile_spawn_1", "bullet_timer", "homing_missile_timer", "between_phase_timer", "between_phase_timer_2", "enemy_sprite", "boss_animation", "laser_hitbox_1", "laser_hitbox_2", "laser_1", "laser_2") groups=["boss"]]
+position = Vector2(345, 372)
 script = ExtResource("1_neq0i")
 bullet_scene = ExtResource("2_jncid")
 bullet_scene_2 = ExtResource("2_jncid")
@@ -75,9 +112,14 @@ homing_missile_1 = ExtResource("3_r3bxh")
 homing_missile_2 = ExtResource("3_r3bxh")
 bullet_timer = NodePath("BulletTimer")
 homing_missile_timer = NodePath("HomingMissileTimer")
-between_pahse_timer = NodePath("BetweenPhaseTimer")
+between_phase_timer = NodePath("BetweenPhaseTimer")
+between_phase_timer_2 = NodePath("BetweenPhaseTimer2")
 enemy_sprite = NodePath("AnimatedSprite2D")
-rotation_animation = NodePath("AnimationPlayer")
+boss_animation = NodePath("AnimationPlayer")
+laser_hitbox_1 = NodePath("Sprite2D/LaserHitbox1/CollisionShape2D")
+laser_hitbox_2 = NodePath("Sprite2D2/LaserHitbox2/CollisionShape2D")
+laser_1 = NodePath("Sprite2D")
+laser_2 = NodePath("Sprite2D2")
 
 [node name="BulletSpawn1" type="Marker2D" parent="." unique_id=80752550]
 position = Vector2(-33, 153)
@@ -119,7 +161,37 @@ one_shot = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=958779711]
 libraries/ = SubResource("AnimationLibrary_2cdgk")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=584617984]
+visible = false
+position = Vector2(-34.09438, 845.40027)
+scale = Vector2(1, 43.40122)
+texture = ExtResource("6_wqpjq")
+
+[node name="LaserHitbox1" type="Area2D" parent="Sprite2D" unique_id=300009574 groups=["damager"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/LaserHitbox1" unique_id=518316328]
+position = Vector2(0.22373962, 0.036420822)
+scale = Vector2(0.9999997, 0.9999999)
+shape = SubResource("RectangleShape2D_wqpjq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=563466868]
+visible = false
+position = Vector2(33.905613, 847.3755)
+scale = Vector2(1, 43.52227)
+texture = ExtResource("6_wqpjq")
+
+[node name="LaserHitbox2" type="Area2D" parent="Sprite2D2" unique_id=349479200 groups=["damager"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2/LaserHitbox2" unique_id=1665318973]
+position = Vector2(0.11510849, -0.008199692)
+scale = Vector2(0.99999964, 1)
+shape = SubResource("RectangleShape2D_2cdgk")
+
+[node name="BetweenPhaseTimer2" type="Timer" parent="." unique_id=1324231892]
+wait_time = 5.0
+
 [connection signal="timeout" from="BulletTimer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="HomingMissileTimer" to="." method="_on_homing_missile_timeout"]
 [connection signal="timeout" from="BetweenPhaseTimer" to="." method="_on_between_phase_timer_timeout"]
+[connection signal="timeout" from="BetweenPhaseTimer2" to="." method="_on_between_phase_timer_2_timeout"]
