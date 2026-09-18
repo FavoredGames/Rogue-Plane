@@ -5,7 +5,7 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	text = "Increase coins. Cost:" + str(GameManager.extra_coin_upgrade_cost)
+	update_cost()
 	if GameManager.damage_button_disabled == true:
 		disabled = true
 	else:
@@ -29,6 +29,12 @@ func _on_pressed() -> void:
 		coin_label.update_coins()
 		SignalManager.increase_extra_coin_chance.emit()
 		SignalManager.update_total_coins.emit()
-		text = "Increase coins. Cost:" + str(GameManager.extra_coin_upgrade_cost)
+		update_cost()
 	else:
 		print("insufficient funds :(")
+
+
+func update_cost():
+	text = "+10% CHANCE 
+	x2 
+	COST:" + str(GameManager.extra_coin_upgrade_cost)

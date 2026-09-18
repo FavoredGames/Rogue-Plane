@@ -5,7 +5,11 @@
 [ext_resource type="Script" uid="uid://e3e461aoqkrj" path="res://scripts/new_run_button.gd" id="2_tnam6"]
 [ext_resource type="Script" uid="uid://d0bei1t2apwdq" path="res://scripts/total_coin_label.gd" id="3_tyjg3"]
 [ext_resource type="Texture2D" uid="uid://dmgmnbv0sf5om" path="res://assets/coin.png" id="4_51bdh"]
+[ext_resource type="FontFile" uid="uid://dp21ugx351614" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="4_h52vt"]
 [ext_resource type="Script" uid="uid://bg6cl3txlvmm3" path="res://scripts/increase_damage_button.gd" id="6_6awrb"]
+[ext_resource type="Texture2D" uid="uid://cqmirffpqu2o5" path="res://assets/skill tree-export.png" id="8_003p6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_003p6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6awrb"]
 bg_color = Color(0, 0, 0, 0.63000005)
@@ -14,359 +18,23 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="FontFile" id="FontFile_jbj1t"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/variation_coordinates = {}
-cache/0/face_index = 0
-cache/0/embolden = 0.0
-cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
-cache/0/spacing_top = 0
-cache/0/spacing_bottom = 0
-cache/0/spacing_space = 0
-cache/0/spacing_glyph = 0
-cache/0/baseline_offset = 0.0
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/17/0/ascent = 0.0
-cache/0/17/0/descent = 0.0
-cache/0/17/0/underline_position = 0.0
-cache/0/17/0/underline_thickness = 0.0
-cache/0/17/0/scale = 1.0
-cache/0/18/0/ascent = 0.0
-cache/0/18/0/descent = 0.0
-cache/0/18/0/underline_position = 0.0
-cache/0/18/0/underline_thickness = 0.0
-cache/0/18/0/scale = 1.0
-cache/0/19/0/ascent = 0.0
-cache/0/19/0/descent = 0.0
-cache/0/19/0/underline_position = 0.0
-cache/0/19/0/underline_thickness = 0.0
-cache/0/19/0/scale = 1.0
-cache/0/20/0/ascent = 0.0
-cache/0/20/0/descent = 0.0
-cache/0/20/0/underline_position = 0.0
-cache/0/20/0/underline_thickness = 0.0
-cache/0/20/0/scale = 1.0
-cache/0/21/0/ascent = 0.0
-cache/0/21/0/descent = 0.0
-cache/0/21/0/underline_position = 0.0
-cache/0/21/0/underline_thickness = 0.0
-cache/0/21/0/scale = 1.0
-cache/0/22/0/ascent = 0.0
-cache/0/22/0/descent = 0.0
-cache/0/22/0/underline_position = 0.0
-cache/0/22/0/underline_thickness = 0.0
-cache/0/22/0/scale = 1.0
-cache/0/23/0/ascent = 0.0
-cache/0/23/0/descent = 0.0
-cache/0/23/0/underline_position = 0.0
-cache/0/23/0/underline_thickness = 0.0
-cache/0/23/0/scale = 1.0
-cache/0/24/0/ascent = 0.0
-cache/0/24/0/descent = 0.0
-cache/0/24/0/underline_position = 0.0
-cache/0/24/0/underline_thickness = 0.0
-cache/0/24/0/scale = 1.0
-cache/0/25/0/ascent = 0.0
-cache/0/25/0/descent = 0.0
-cache/0/25/0/underline_position = 0.0
-cache/0/25/0/underline_thickness = 0.0
-cache/0/25/0/scale = 1.0
-cache/0/26/0/ascent = 0.0
-cache/0/26/0/descent = 0.0
-cache/0/26/0/underline_position = 0.0
-cache/0/26/0/underline_thickness = 0.0
-cache/0/26/0/scale = 1.0
-cache/0/27/0/ascent = 0.0
-cache/0/27/0/descent = 0.0
-cache/0/27/0/underline_position = 0.0
-cache/0/27/0/underline_thickness = 0.0
-cache/0/27/0/scale = 1.0
-cache/0/28/0/ascent = 0.0
-cache/0/28/0/descent = 0.0
-cache/0/28/0/underline_position = 0.0
-cache/0/28/0/underline_thickness = 0.0
-cache/0/28/0/scale = 1.0
-cache/0/29/0/ascent = 0.0
-cache/0/29/0/descent = 0.0
-cache/0/29/0/underline_position = 0.0
-cache/0/29/0/underline_thickness = 0.0
-cache/0/29/0/scale = 1.0
-cache/0/30/0/ascent = 0.0
-cache/0/30/0/descent = 0.0
-cache/0/30/0/underline_position = 0.0
-cache/0/30/0/underline_thickness = 0.0
-cache/0/30/0/scale = 1.0
-cache/0/31/0/ascent = 0.0
-cache/0/31/0/descent = 0.0
-cache/0/31/0/underline_position = 0.0
-cache/0/31/0/underline_thickness = 0.0
-cache/0/31/0/scale = 1.0
-cache/0/32/0/ascent = 0.0
-cache/0/32/0/descent = 0.0
-cache/0/32/0/underline_position = 0.0
-cache/0/32/0/underline_thickness = 0.0
-cache/0/32/0/scale = 1.0
-cache/0/33/0/ascent = 0.0
-cache/0/33/0/descent = 0.0
-cache/0/33/0/underline_position = 0.0
-cache/0/33/0/underline_thickness = 0.0
-cache/0/33/0/scale = 1.0
-cache/0/34/0/ascent = 0.0
-cache/0/34/0/descent = 0.0
-cache/0/34/0/underline_position = 0.0
-cache/0/34/0/underline_thickness = 0.0
-cache/0/34/0/scale = 1.0
-cache/0/35/0/ascent = 0.0
-cache/0/35/0/descent = 0.0
-cache/0/35/0/underline_position = 0.0
-cache/0/35/0/underline_thickness = 0.0
-cache/0/35/0/scale = 1.0
-cache/0/36/0/ascent = 0.0
-cache/0/36/0/descent = 0.0
-cache/0/36/0/underline_position = 0.0
-cache/0/36/0/underline_thickness = 0.0
-cache/0/36/0/scale = 1.0
-cache/0/37/0/ascent = 0.0
-cache/0/37/0/descent = 0.0
-cache/0/37/0/underline_position = 0.0
-cache/0/37/0/underline_thickness = 0.0
-cache/0/37/0/scale = 1.0
-cache/0/38/0/ascent = 0.0
-cache/0/38/0/descent = 0.0
-cache/0/38/0/underline_position = 0.0
-cache/0/38/0/underline_thickness = 0.0
-cache/0/38/0/scale = 1.0
-cache/0/39/0/ascent = 0.0
-cache/0/39/0/descent = 0.0
-cache/0/39/0/underline_position = 0.0
-cache/0/39/0/underline_thickness = 0.0
-cache/0/39/0/scale = 1.0
-cache/0/40/0/ascent = 0.0
-cache/0/40/0/descent = 0.0
-cache/0/40/0/underline_position = 0.0
-cache/0/40/0/underline_thickness = 0.0
-cache/0/40/0/scale = 1.0
-cache/0/41/0/ascent = 0.0
-cache/0/41/0/descent = 0.0
-cache/0/41/0/underline_position = 0.0
-cache/0/41/0/underline_thickness = 0.0
-cache/0/41/0/scale = 1.0
-cache/0/42/0/ascent = 0.0
-cache/0/42/0/descent = 0.0
-cache/0/42/0/underline_position = 0.0
-cache/0/42/0/underline_thickness = 0.0
-cache/0/42/0/scale = 1.0
-cache/0/43/0/ascent = 0.0
-cache/0/43/0/descent = 0.0
-cache/0/43/0/underline_position = 0.0
-cache/0/43/0/underline_thickness = 0.0
-cache/0/43/0/scale = 1.0
-cache/0/44/0/ascent = 0.0
-cache/0/44/0/descent = 0.0
-cache/0/44/0/underline_position = 0.0
-cache/0/44/0/underline_thickness = 0.0
-cache/0/44/0/scale = 1.0
-cache/0/45/0/ascent = 0.0
-cache/0/45/0/descent = 0.0
-cache/0/45/0/underline_position = 0.0
-cache/0/45/0/underline_thickness = 0.0
-cache/0/45/0/scale = 1.0
-cache/0/46/0/ascent = 0.0
-cache/0/46/0/descent = 0.0
-cache/0/46/0/underline_position = 0.0
-cache/0/46/0/underline_thickness = 0.0
-cache/0/46/0/scale = 1.0
-cache/0/47/0/ascent = 0.0
-cache/0/47/0/descent = 0.0
-cache/0/47/0/underline_position = 0.0
-cache/0/47/0/underline_thickness = 0.0
-cache/0/47/0/scale = 1.0
-cache/0/48/0/ascent = 0.0
-cache/0/48/0/descent = 0.0
-cache/0/48/0/underline_position = 0.0
-cache/0/48/0/underline_thickness = 0.0
-cache/0/48/0/scale = 1.0
-cache/0/49/0/ascent = 0.0
-cache/0/49/0/descent = 0.0
-cache/0/49/0/underline_position = 0.0
-cache/0/49/0/underline_thickness = 0.0
-cache/0/49/0/scale = 1.0
-cache/0/50/0/ascent = 0.0
-cache/0/50/0/descent = 0.0
-cache/0/50/0/underline_position = 0.0
-cache/0/50/0/underline_thickness = 0.0
-cache/0/50/0/scale = 1.0
-cache/0/51/0/ascent = 0.0
-cache/0/51/0/descent = 0.0
-cache/0/51/0/underline_position = 0.0
-cache/0/51/0/underline_thickness = 0.0
-cache/0/51/0/scale = 1.0
-cache/0/52/0/ascent = 0.0
-cache/0/52/0/descent = 0.0
-cache/0/52/0/underline_position = 0.0
-cache/0/52/0/underline_thickness = 0.0
-cache/0/52/0/scale = 1.0
-cache/0/53/0/ascent = 0.0
-cache/0/53/0/descent = 0.0
-cache/0/53/0/underline_position = 0.0
-cache/0/53/0/underline_thickness = 0.0
-cache/0/53/0/scale = 1.0
-cache/0/54/0/ascent = 0.0
-cache/0/54/0/descent = 0.0
-cache/0/54/0/underline_position = 0.0
-cache/0/54/0/underline_thickness = 0.0
-cache/0/54/0/scale = 1.0
-cache/0/55/0/ascent = 0.0
-cache/0/55/0/descent = 0.0
-cache/0/55/0/underline_position = 0.0
-cache/0/55/0/underline_thickness = 0.0
-cache/0/55/0/scale = 1.0
-cache/0/56/0/ascent = 0.0
-cache/0/56/0/descent = 0.0
-cache/0/56/0/underline_position = 0.0
-cache/0/56/0/underline_thickness = 0.0
-cache/0/56/0/scale = 1.0
-cache/0/57/0/ascent = 0.0
-cache/0/57/0/descent = 0.0
-cache/0/57/0/underline_position = 0.0
-cache/0/57/0/underline_thickness = 0.0
-cache/0/57/0/scale = 1.0
-cache/0/58/0/ascent = 0.0
-cache/0/58/0/descent = 0.0
-cache/0/58/0/underline_position = 0.0
-cache/0/58/0/underline_thickness = 0.0
-cache/0/58/0/scale = 1.0
-cache/0/59/0/ascent = 0.0
-cache/0/59/0/descent = 0.0
-cache/0/59/0/underline_position = 0.0
-cache/0/59/0/underline_thickness = 0.0
-cache/0/59/0/scale = 1.0
-cache/0/60/0/ascent = 0.0
-cache/0/60/0/descent = 0.0
-cache/0/60/0/underline_position = 0.0
-cache/0/60/0/underline_thickness = 0.0
-cache/0/60/0/scale = 1.0
-cache/0/61/0/ascent = 0.0
-cache/0/61/0/descent = 0.0
-cache/0/61/0/underline_position = 0.0
-cache/0/61/0/underline_thickness = 0.0
-cache/0/61/0/scale = 1.0
-cache/0/62/0/ascent = 0.0
-cache/0/62/0/descent = 0.0
-cache/0/62/0/underline_position = 0.0
-cache/0/62/0/underline_thickness = 0.0
-cache/0/62/0/scale = 1.0
-cache/0/63/0/ascent = 0.0
-cache/0/63/0/descent = 0.0
-cache/0/63/0/underline_position = 0.0
-cache/0/63/0/underline_thickness = 0.0
-cache/0/63/0/scale = 1.0
-cache/0/64/0/ascent = 0.0
-cache/0/64/0/descent = 0.0
-cache/0/64/0/underline_position = 0.0
-cache/0/64/0/underline_thickness = 0.0
-cache/0/64/0/scale = 1.0
-cache/0/65/0/ascent = 0.0
-cache/0/65/0/descent = 0.0
-cache/0/65/0/underline_position = 0.0
-cache/0/65/0/underline_thickness = 0.0
-cache/0/65/0/scale = 1.0
-cache/0/66/0/ascent = 0.0
-cache/0/66/0/descent = 0.0
-cache/0/66/0/underline_position = 0.0
-cache/0/66/0/underline_thickness = 0.0
-cache/0/66/0/scale = 1.0
-cache/0/67/0/ascent = 0.0
-cache/0/67/0/descent = 0.0
-cache/0/67/0/underline_position = 0.0
-cache/0/67/0/underline_thickness = 0.0
-cache/0/67/0/scale = 1.0
-cache/0/68/0/ascent = 0.0
-cache/0/68/0/descent = 0.0
-cache/0/68/0/underline_position = 0.0
-cache/0/68/0/underline_thickness = 0.0
-cache/0/68/0/scale = 1.0
-cache/0/69/0/ascent = 0.0
-cache/0/69/0/descent = 0.0
-cache/0/69/0/underline_position = 0.0
-cache/0/69/0/underline_thickness = 0.0
-cache/0/69/0/scale = 1.0
-cache/0/70/0/ascent = 0.0
-cache/0/70/0/descent = 0.0
-cache/0/70/0/underline_position = 0.0
-cache/0/70/0/underline_thickness = 0.0
-cache/0/70/0/scale = 1.0
-cache/0/71/0/ascent = 0.0
-cache/0/71/0/descent = 0.0
-cache/0/71/0/underline_position = 0.0
-cache/0/71/0/underline_thickness = 0.0
-cache/0/71/0/scale = 1.0
-cache/0/72/0/ascent = 0.0
-cache/0/72/0/descent = 0.0
-cache/0/72/0/underline_position = 0.0
-cache/0/72/0/underline_thickness = 0.0
-cache/0/72/0/scale = 1.0
-cache/0/73/0/ascent = 0.0
-cache/0/73/0/descent = 0.0
-cache/0/73/0/underline_position = 0.0
-cache/0/73/0/underline_thickness = 0.0
-cache/0/73/0/scale = 1.0
-cache/0/74/0/ascent = 0.0
-cache/0/74/0/descent = 0.0
-cache/0/74/0/underline_position = 0.0
-cache/0/74/0/underline_thickness = 0.0
-cache/0/74/0/scale = 1.0
-cache/0/75/0/ascent = 0.0
-cache/0/75/0/descent = 0.0
-cache/0/75/0/underline_position = 0.0
-cache/0/75/0/underline_thickness = 0.0
-cache/0/75/0/scale = 1.0
-cache/0/76/0/ascent = 0.0
-cache/0/76/0/descent = 0.0
-cache/0/76/0/underline_position = 0.0
-cache/0/76/0/underline_thickness = 0.0
-cache/0/76/0/scale = 1.0
-cache/0/77/0/ascent = 0.0
-cache/0/77/0/descent = 0.0
-cache/0/77/0/underline_position = 0.0
-cache/0/77/0/underline_thickness = 0.0
-cache/0/77/0/scale = 1.0
-cache/0/78/0/ascent = 0.0
-cache/0/78/0/descent = 0.0
-cache/0/78/0/underline_position = 0.0
-cache/0/78/0/underline_thickness = 0.0
-cache/0/78/0/scale = 1.0
-cache/0/79/0/ascent = 0.0
-cache/0/79/0/descent = 0.0
-cache/0/79/0/underline_position = 0.0
-cache/0/79/0/underline_thickness = 0.0
-cache/0/79/0/scale = 1.0
-cache/0/80/0/ascent = 0.0
-cache/0/80/0/descent = 0.0
-cache/0/80/0/underline_position = 0.0
-cache/0/80/0/underline_thickness = 0.0
-cache/0/80/0/scale = 1.0
-cache/0/81/0/ascent = 0.0
-cache/0/81/0/descent = 0.0
-cache/0/81/0/underline_position = 0.0
-cache/0/81/0/underline_thickness = 0.0
-cache/0/81/0/scale = 1.0
-cache/0/82/0/ascent = 0.0
-cache/0/82/0/descent = 0.0
-cache/0/82/0/underline_position = 0.0
-cache/0/82/0/underline_thickness = 0.0
-cache/0/82/0/scale = 1.0
-
 [sub_resource type="LabelSettings" id="LabelSettings_h52vt"]
-font = SubResource("FontFile_jbj1t")
+font = ExtResource("4_h52vt")
 font_size = 82
 font_color = Color(1, 0.84313726, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_003p6"]
+font = ExtResource("4_h52vt")
+font_size = 100
+font_color = Color(0.1254902, 0.87058824, 0.105882354, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_003p6"]
+bg_color = Color(0.60038817, 0.60038817, 0.60038817, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.12315822, 0.87034494, 0.106126174, 1)
 
 [node name="SkillTree" type="Control" unique_id=983504595]
 layout_mode = 3
@@ -377,60 +45,58 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MaxHpButton" type="Button" parent="." unique_id=543438780 node_paths=PackedStringArray("coin_label")]
+custom_minimum_size = Vector2(10, 10)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+offset_left = -151.0
+offset_top = -67.0
+offset_right = 155.0
+offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "increase max hp"
+theme_override_colors/font_color = Color(0.1254902, 0.87058824, 0.105882354, 1)
+theme_override_fonts/font = ExtResource("4_h52vt")
+theme_override_font_sizes/font_size = 64
+text = "+3 MAX HP
+COST"
 script = ExtResource("1_a302t")
 coin_label = NodePath("../CoinLabel2")
 
-[node name="Button2" type="Button" parent="." unique_id=1555136235]
-visible = false
-layout_mode = 0
-offset_left = 238.0
-offset_top = 538.0
-offset_right = 246.0
-offset_bottom = 546.0
-text = "increase damage"
-
 [node name="IncreaseCoinEarnings" type="Button" parent="." unique_id=2101273351 node_paths=PackedStringArray("coin_label")]
 layout_mode = 0
-offset_left = 170.0
-offset_top = 831.0
-offset_right = 351.0
-offset_bottom = 862.0
-text = "increase coin earnings"
+offset_left = 24.0
+offset_top = 938.0
+offset_right = 427.0
+offset_bottom = 1177.0
+theme_override_colors/font_color = Color(0.1254902, 0.87058824, 0.105882354, 1)
+theme_override_fonts/font = ExtResource("4_h52vt")
+theme_override_font_sizes/font_size = 64
+text = "+10% CHANCE 
+OF DOUBLE
+COST"
 script = ExtResource("2_51bdh")
 coin_label = NodePath("../CoinLabel2")
 
-[node name="Button4" type="Button" parent="." unique_id=671712790]
-visible = false
-layout_mode = 0
-offset_left = 550.0
-offset_top = 636.0
-offset_right = 684.0
-offset_bottom = 667.0
-text = "increase healing"
-
-[node name="Button5" type="Button" parent="." unique_id=388701633]
+[node name="NewRunButton" type="Button" parent="." unique_id=388701633]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = -272.0
-offset_right = 386.0
+offset_left = 9.0
+offset_top = -117.0
+offset_right = 367.0
+offset_bottom = -8.0
 grow_vertical = 0
-text = "new run"
+theme_override_colors/font_color = Color(0.1254902, 0.87058824, 0.105882354, 1)
+theme_override_fonts/font = ExtResource("4_h52vt")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxTexture_003p6")
+text = "NEW RUN!
+"
 script = ExtResource("2_tnam6")
 
 [node name="Panel" type="Panel" parent="." unique_id=444524535]
@@ -444,26 +110,31 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6awrb")
 
 [node name="CoinLabel2" type="Label" parent="." unique_id=924532997]
 layout_mode = 0
-offset_left = 377.49994
-offset_top = 17.0
-offset_right = 514.5
-offset_bottom = 100.0
+offset_left = 372.0
+offset_top = -1.0
+offset_right = 516.0
+offset_bottom = 98.0
 text = "000"
 label_settings = SubResource("LabelSettings_h52vt")
 script = ExtResource("3_tyjg3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1278639519]
-position = Vector2(320.5, 53)
+light_mask = 3
+position = Vector2(320.00003, 53.000004)
 scale = Vector2(0.8359375, 0.8359375)
 texture = ExtResource("4_51bdh")
 
 [node name="IncreaseDamage" type="Button" parent="." unique_id=1866572767 node_paths=PackedStringArray("coin_label")]
 layout_mode = 0
-offset_left = 521.0
-offset_top = 585.0
-offset_right = 661.0
-offset_bottom = 616.0
-text = "increase damage
+offset_left = 416.0
+offset_top = 298.0
+offset_right = 737.0
+offset_bottom = 460.0
+theme_override_colors/font_color = Color(0.1254902, 0.87058824, 0.105882354, 1)
+theme_override_fonts/font = ExtResource("4_h52vt")
+theme_override_font_sizes/font_size = 64
+text = "+1 DAMAGE
+COST
 "
 script = ExtResource("6_6awrb")
 coin_label = NodePath("../CoinLabel2")
@@ -471,22 +142,80 @@ coin_label = NodePath("../CoinLabel2")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=234779676]
 z_index = -2
 layout_mode = 0
-offset_left = 465.88412
-offset_top = 708.0694
-offset_right = 621.44653
-offset_bottom = 713.3927
-rotation = -0.67763793
+offset_left = 449.55194
+offset_top = 646.32666
+offset_right = 663.8523
+offset_bottom = 652.21045
+rotation = -1.0559009
+color = Color(0.1254902, 0.87058824, 0.105882354, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=472042367]
 z_index = -2
 layout_mode = 0
-offset_left = 257.00003
-offset_top = 830.0
-offset_right = 412.5624
-offset_bottom = 835.32324
-rotation = -0.67763793
+offset_left = 191.78731
+offset_top = 931.7124
+offset_right = 325.83685
+offset_bottom = 938.2291
+rotation = -1.0219747
+color = Color(0.1254902, 0.87058824, 0.105882354, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1106097979]
+light_mask = 0
+z_index = -4
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(9, 9)
+mouse_filter = 2
+texture = ExtResource("8_003p6")
+
+[node name="Label" type="Label" parent="." unique_id=1760920734]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 99.0
+offset_right = 683.0
+offset_bottom = 219.0
+text = "SKILL TREE"
+label_settings = SubResource("LabelSettings_003p6")
+
+[node name="Panel2" type="Panel" parent="." unique_id=172747649]
+z_index = -1
+layout_mode = 0
+offset_left = 411.0
+offset_top = 293.0
+offset_right = 742.0
+offset_bottom = 464.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_003p6")
+
+[node name="Panel3" type="Panel" parent="." unique_id=520895358]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 646.0
+offset_right = 566.0
+offset_bottom = 821.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_003p6")
+
+[node name="Panel4" type="Panel" parent="." unique_id=1454850000]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 932.0
+offset_right = 433.0
+offset_bottom = 1182.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_003p6")
+
+[node name="Panel5" type="Panel" parent="." unique_id=1847033227]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 1316.0
+offset_right = 387.0
+offset_bottom = 1437.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_003p6")
 
 [connection signal="pressed" from="MaxHpButton" to="MaxHpButton" method="_on_pressed"]
 [connection signal="pressed" from="IncreaseCoinEarnings" to="IncreaseCoinEarnings" method="_on_pressed"]
-[connection signal="pressed" from="Button5" to="Button5" method="_on_pressed"]
+[connection signal="pressed" from="NewRunButton" to="NewRunButton" method="_on_pressed"]
 [connection signal="pressed" from="IncreaseDamage" to="IncreaseDamage" method="_on_pressed"]
