@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://lohjk75gwb8p" path="res://scenes/total_coin_counter.tscn" id="2_jw6e5"]
 [ext_resource type="FontFile" uid="uid://dp21ugx351614" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="2_wa2qn"]
 [ext_resource type="Texture2D" uid="uid://dcw8diqevv3j4" path="res://assets/game over screen.png" id="5_cyfkl"]
+[ext_resource type="Texture2D" uid="uid://c2q5pg53u2xym" path="res://assets/upgrade notification.png" id="6_xx0b3"]
+[ext_resource type="Script" uid="uid://b7nrfi3l2crs5" path="res://scripts/upgrade_notification.gd" id="7_5i0af"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cyfkl"]
 
@@ -92,7 +94,15 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(9, 9)
+mouse_filter = 2
 texture = ExtResource("5_cyfkl")
+
+[node name="UpgradeNotification" type="Sprite2D" parent="." unique_id=75172065]
+visible = false
+position = Vector2(589.00006, 1308.0001)
+scale = Vector2(5, 5)
+texture = ExtResource("6_xx0b3")
+script = ExtResource("7_5i0af")
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
 [connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]

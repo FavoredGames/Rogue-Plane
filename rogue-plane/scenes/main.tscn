@@ -274,7 +274,7 @@ boss = ExtResource("20_gqmmt")
 boss_health_bar = ExtResource("21_yc10j")
 
 [node name="BossTimer" type="Timer" parent="Marker2D" unique_id=1600538788]
-wait_time = 45.0
+wait_time = 0.023
 one_shot = true
 autostart = true
 
@@ -284,11 +284,13 @@ offset_left = 26.0
 offset_top = 19.0
 offset_right = 66.0
 offset_bottom = 59.0
+script = null
 
 [node name="BlindnessAnimationSprite" type="AnimatedSprite2D" parent="." unique_id=1551296655]
 visible = false
 visibility_layer = 1023
-position = Vector2(405, 721)
+z_index = 1
+position = Vector2(405, 720)
 sprite_frames = SubResource("SpriteFrames_pm3ni")
 
 [node name="Phase2Card" type="Sprite2D" parent="." unique_id=1927585622]

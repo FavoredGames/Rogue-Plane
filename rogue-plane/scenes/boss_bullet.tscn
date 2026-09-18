@@ -6,6 +6,7 @@
 bg_color = Color(0.60038817, 0.98803645, 0.60038817, 1)
 
 [node name="Area2D" type="Area2D" unique_id=1211578142]
+z_index = 2
 script = ExtResource("1_f7bs4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=115043600]

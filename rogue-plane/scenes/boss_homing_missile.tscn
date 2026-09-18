@@ -29,6 +29,7 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1931429677]
+z_index = 2
 scale = Vector2(2, 2)
 script = ExtResource("1_85hsd")
 

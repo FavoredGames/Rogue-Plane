@@ -36,5 +36,5 @@ func _on_pressed() -> void:
 
 func update_cost():
 	text = "+10% CHANCE 
-	x2 
+	x2 COINS
 	COST:" + str(GameManager.extra_coin_upgrade_cost)
