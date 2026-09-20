@@ -274,7 +274,7 @@ boss = ExtResource("20_gqmmt")
 boss_health_bar = ExtResource("21_yc10j")
 
 [node name="BossTimer" type="Timer" parent="Marker2D" unique_id=1600538788]
-wait_time = 0.023
+wait_time = 45.0
 one_shot = true
 autostart = true
 
