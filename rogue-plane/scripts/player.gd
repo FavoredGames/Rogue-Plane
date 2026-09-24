@@ -21,7 +21,7 @@ extends CharacterBody2D
 @export var healing: int = 1
 
 const GAME_OVER: PackedScene = preload("res://scenes/game_over_screen.tscn")
-
+const PLAYER_HEALTH_INCREASE_VALUE: int = 2
 
 var gun_limit = 6
 var xp_increase_value: int = 20
@@ -77,13 +77,13 @@ func add_mini_plane():
 
 # Increases players permenent max health.
 func increase_max_health_permanent():
-	GameManager.max_hp += 2
+	GameManager.max_hp += PLAYER_HEALTH_INCREASE_VALUE
 
 
 # Increases players temporary max health for that run only.
 func increase_max_health_temporary():
-	player_max_hp += 2
-	health += 2
+	player_max_hp += PLAYER_HEALTH_INCREASE_VALUE
+	health += PLAYER_HEALTH_INCREASE_VALUE
 	print(health)
 	print(player_max_hp)
 
@@ -192,10 +192,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	# Makes the player take damage and checks to make sure it is the 
 	# enemy or enemies bullet that are hitting it.
 	if area.is_in_group("damager"):
+		const NEW_TIMER_TIME: int = 0.05
 		health -= 1
 		# Makes the player flash red when it takes damage.
 		player_sprite.modulate = Color.RED
-		await get_tree().create_timer(0.05).timeout
+		await get_tree().create_timer(NEW_TIMER_TIME).timeout
 		player_sprite.modulate = Color.WHITE
 		take_damage()
 
