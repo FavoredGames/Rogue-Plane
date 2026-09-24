@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvhn2qdjcfl21"]
 
-[ext_resource type="Script" uid="uid://wwn8ow3u74dc" path="res://scripts/boss_noming_missile.gd" id="1_85hsd"]
+[ext_resource type="Script" uid="uid://wwn8ow3u74dc" path="res://scripts/boss_homing_missile.gd" id="1_85hsd"]
 [ext_resource type="Texture2D" uid="uid://cs4j2kjlrpi7h" path="res://assets/boss missile.png" id="2_m62sw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_85hsd"]

@@ -12,7 +12,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
+# Decreases the spawn timer after 10 homing missile enemies have spawned.
 func _on_timeout() -> void:
 	decrease_timer += 1
 	if decrease_timer == when_to_decrease_timer:

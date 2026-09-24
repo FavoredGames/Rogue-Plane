@@ -16,7 +16,7 @@ extends Node2D
 @export var phase_3_card: Sprite2D
 var enemy_can_spawn: bool = true
 
-
+# Adds slight pause so the player can react to the game starting.
 func _ready() -> void:
 	get_tree().paused = true
 	await get_tree().create_timer(0.75).timeout
@@ -26,13 +26,15 @@ func _ready() -> void:
 	SignalManager.start_phase_3.connect(show_phase_3)
 
 
+# When recieved the siganl to do so from the boss diplays the phase 2 card.
 func show_phase_2_card():
 	phase_2_card.show()
 	await get_tree().create_timer(1.0).timeout
 	phase_2_card.hide()
-	
 
 
+# When recieved the siganl to do so from the boss diplays the phase 3 card.
+# Then displays the blindness card.
 func show_phase_3():
 	phase_3_card.show()
 	await get_tree().create_timer(1.0).timeout
@@ -44,6 +46,8 @@ func show_phase_3():
 func player_died():
 	pass
 
+
+# Spawns basic enemy on random point of the line above the screen.
 func _spawn_basic_enemy() -> void:
 	if enemy_can_spawn == true:
 		spawn_point.progress_ratio = randf_range(0.0, 1.0)
@@ -55,7 +59,7 @@ func _spawn_basic_enemy() -> void:
 func _on_spawn_timer_timeout() -> void:
 	_spawn_basic_enemy()
 
-
+# Spawns homing missile enemy on random point of the line above the screen.
 func _spawn_advanced_enemy() -> void:
 	if enemy_can_spawn == true:
 		advanced_spawn_point.progress_ratio = randf_range(0.0, 1.0)
@@ -66,9 +70,9 @@ func _spawn_advanced_enemy() -> void:
 
 func _on_advanced_emeny_spawn_timer_timeout() -> void:
 	_spawn_advanced_enemy()
-	
 
 
+# Spawns boss and its health bar.
 func _on_boss_timer_timeout() -> void:
 	var boss = boss.instantiate()
 	boss.global_position = boss_spawn_point.global_position

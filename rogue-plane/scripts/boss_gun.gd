@@ -1,3 +1,4 @@
+# Not used in game code
 extends Area2D
 
 @export var bullet_spawn: Marker2D
@@ -13,6 +14,8 @@ func shoot():
 	new_bullet.global_position = bullet_spawn.global_position
 	new_bullet.global_rotation = bullet_spawn.global_rotation
 	bullet_spawn.add_child(new_bullet)
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for node in get_tree().get_nodes_in_group("player"):

@@ -50,35 +50,37 @@ func _ready() -> void:
 	SignalManager.add_gun.connect(add_gun)
 	SignalManager.dead_zone_entered.connect(dead_zone_entered)
 	SignalManager.dead_zone_exited.connect(dead_zone_exited)
-	
-	
 
 
-
-
+# Increases gun value.
 func add_gun():
 	if not guns == gun_limit:
 		guns += 1
 	else: 
 		pass
 
+
+
 func add_mini_plane():
+	# Adds the first mini plane.
 	if mini_planes == 0:
 		var mini_plane = mini_plane_scene.instantiate()
 		mini_plane.global_position = bullet_spawn.global_position
 		add_sibling(mini_plane)
 		mini_planes += 1
+	# Adds the second mini plane.
 	else:
 		var mini_plane_2 = mini_plane_scene_2.instantiate()
 		mini_plane_2.global_position = bullet_spawn.global_position
 		add_sibling(mini_plane_2)
 
 
+# Increases players permenent max health.
 func increase_max_health_permanent():
 	GameManager.max_hp += 2
-	
 
 
+# Increases players temporary max health for that run only.
 func increase_max_health_temporary():
 	player_max_hp += 2
 	health += 2
@@ -86,24 +88,27 @@ func increase_max_health_temporary():
 	print(player_max_hp)
 
 
+# Increases player xp amount and then update the xp bar.
 func enemy_plane_died():
 	xp += xp_increase_value
 	update_xp()
-	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	# Moves player toward mouse position.
 	velocity = Vector2(0, 0,)
 	mouse_position = get_global_mouse_position()
 	var direction = (mouse_position - position)
 	velocity =  speed * direction.normalized()
 	if moving == true:
 		move_and_slide()
+	# Changes scene to the game over screen when player health reaches 0.
 	if health <= 0:
 		get_tree().change_scene_to_packed(GAME_OVER)
 		SignalManager.player_died.emit()
-	# Makes player shoot but only when the timer is done
+	# Makes player shoot but only when the timer is done.
+	# Shoots more depending on how many guns it has.
 	if can_shoot:
 		_shoot()
 		_shoot_2()
@@ -118,11 +123,14 @@ func _process(delta: float) -> void:
 	if xp >= max_xp:
 		level_up()
 
+
+# Increases the max xp needed for the next level up after level up.
 func level_up():
 	max_xp += xp_increase_value
 	SignalManager.card_upgrades.emit()
 
-# Spawns bullet and 
+
+# Spawns bullet.
 func _shoot() -> void:
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = bullet_spawn.global_position
@@ -130,6 +138,8 @@ func _shoot() -> void:
 	can_shoot = false
 	bullet_timer.start()
 
+
+# Spawns bullet.
 func _shoot_2() -> void:
 	var bullet_2 = bullet_scene_2.instantiate()
 	bullet_2.global_position = bullet_spawn_2.global_position
@@ -138,6 +148,7 @@ func _shoot_2() -> void:
 	bullet_timer.start()
 
 
+# Spawns bullet.
 func _shoot_3() -> void:
 	var bullet_3 = bullet_scene_3.instantiate()
 	bullet_3.global_position = bullet_spawn_3.global_position
@@ -146,6 +157,7 @@ func _shoot_3() -> void:
 	bullet_timer.start()
 
 
+# Spawns bullet.
 func _shoot_4() -> void:
 	var bullet_4 = bullet_scene_4.instantiate()
 	bullet_4.global_position = bullet_spawn_4.global_position
@@ -154,6 +166,7 @@ func _shoot_4() -> void:
 	bullet_timer.start()
 
 
+# Spawns bullet.
 func _shoot_5() -> void:
 	var bullet_5 = bullet_scene_5.instantiate()
 	bullet_5.global_position = bullet_spawn_5.global_position
@@ -162,6 +175,7 @@ func _shoot_5() -> void:
 	bullet_timer.start()
 
 
+# Spawns bullet.
 func _shoot_6() -> void:
 	var bullet_6 = bullet_scene_6.instantiate()
 	bullet_6.global_position = bullet_spawn_6.global_position
@@ -175,15 +189,15 @@ func _on_bullet_timer_timeout() -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	# Makes the player take damage and checks to make sure it is the 
+	# enemy or enemies bullet that are hitting it.
 	if area.is_in_group("damager"):
 		health -= 1
+		# Makes the player flash red when it takes damage.
 		player_sprite.modulate = Color.RED
 		await get_tree().create_timer(0.05).timeout
 		player_sprite.modulate = Color.WHITE
 		take_damage()
-		
-
-
 
 
 func update_xp():
@@ -192,14 +206,7 @@ func update_xp():
 
 func take_damage():
 	SignalManager.take_damage.emit()
-
-
-#func _on_healing_timer_timeout() -> void:
-	#if health < GameManager.max_hp:
-		#health += healing
-		#healing_timer.start()
-
-
+	
 
 func dead_zone_entered():
 	moving = false

@@ -14,11 +14,11 @@ func reset_xp():
 	update_xp()
 
 
+# Calculates xp value as a percentage of max xp and displays it on xp bar.
 func update_xp():
 	value = player.xp * 100 / player.max_xp
 	#if player.xp == player.max_xp:
 		#player.xp = 0
-
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

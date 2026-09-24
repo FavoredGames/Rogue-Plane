@@ -4,6 +4,7 @@ var speed = 0
 var health: int = 2000
 var max_health: int = 2000
 var take_damage: int = 0
+var can_take_damage: bool = true
 @export var bullet_scene: PackedScene
 @export var bullet_scene_2: PackedScene
 @export var bullet_spawn: Marker2D
@@ -22,7 +23,7 @@ var take_damage: int = 0
 @export var laser_hitbox_2: CollisionShape2D
 @export var laser_1: Sprite2D
 @export var laser_2: Sprite2D
-var can_take_damage: bool = true
+
 var can_shoot: bool = true
 var can_fire_missile: bool = true
 var between_phase: bool = false
@@ -33,6 +34,7 @@ func _ready() -> void:
 	laser_hitbox_1.disabled = true
 	laser_hitbox_2.disabled = true
 	SignalManager.player_died.connect(remove_boss)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -74,7 +76,8 @@ func _process(delta: float) -> void:
 	else:
 		pass
 
-# Spawns bullet 
+
+# Spawns bullet used when the shoot timer times out. 
 func _shoot() -> void:
 	var bullet = bullet_scene.instantiate()
 	bullet.rotation = bullet_spawn.rotation
@@ -82,6 +85,7 @@ func _shoot() -> void:
 	add_sibling(bullet)
 	bullet_timer.start()
 
+# Spawns bullet used when the shoot timer times out. 
 func _shoot_2() -> void:
 	var bullet_2 = bullet_scene_2.instantiate()
 	bullet_2.rotation = bullet_spawn_2.rotation
@@ -89,13 +93,14 @@ func _shoot_2() -> void:
 	add_sibling(bullet_2)
 	bullet_timer.start()
 
+# Spawns missile used when the homing missile timer times out. 
 func shoot_homing_missile_1():
 	var missile = homing_missile_1.instantiate()
 	missile.global_position = homing_missile_spawn_1.global_position
 	add_sibling(missile)
 	homing_missile_timer.start()
 
-
+# Spawns missile used when the homing missile timer times out. 
 func shoot_homing_missile_2():
 	var missile = homing_missile_1.instantiate()
 	missile.global_position = homing_missile_spawn_2.global_position
@@ -109,20 +114,20 @@ func _on_timer_timeout() -> void:
 			_shoot()
 			_shoot_2()
 
-
+# Makes the enemy take damage and checks to make sure it is the player's bullet that are hitting it.
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if between_phase == false:
 		if area.is_in_group("enemy_damagers"):
 			if can_take_damage == true:
 				health -= GameManager.enemy_damage_take
+				# Makes the enemy flash red when it takes damage.
 				enemy_sprite.modulate = Color.RED
 				await get_tree().create_timer(0.05).timeout
 				enemy_sprite.modulate = Color.WHITE
 				SignalManager.boss_take_damage.emit()
-			
-		
 
 
+# Checks that the boss isn't inbetween phases and if not then runs the functions to spawn missiles.
 func _on_homing_missile_timeout() -> void:
 	if between_phase == false:
 		if can_fire_missile == true:
@@ -130,6 +135,7 @@ func _on_homing_missile_timeout() -> void:
 			shoot_homing_missile_2()
 
 
+# Starts phase 2 with lasers and rotation when no longer inbetween phase 1 and 2.
 func _on_between_phase_timer_timeout() -> void:
 	between_phase = false
 	boss_animation.play("boss_rotation")
@@ -140,6 +146,7 @@ func _on_between_phase_timer_timeout() -> void:
 				
 
 
+# Starts phase 3 with the movement animation playing.
 func _on_between_phase_timer_2_timeout() -> void:
 	between_phase = false
 	boss_animation.play("movement")
@@ -147,6 +154,7 @@ func _on_between_phase_timer_2_timeout() -> void:
 	can_fire_missile = true
 	await get_tree().create_timer(3.0).timeout
 	show()
+
 
 func remove_boss():
 	queue_free()
