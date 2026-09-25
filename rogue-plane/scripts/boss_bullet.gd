@@ -1,7 +1,7 @@
 # Not used in game code.
 extends Area2D
 
-var speed: int = 200
+const SPEED: int = 200
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,4 +10,4 @@ func _ready() -> void:
 
 # Moves the bosses bullets down the screen.
 func _process(delta: float) -> void:
-	move_local_x(speed * delta)
+	move_local_x(SPEED * delta)

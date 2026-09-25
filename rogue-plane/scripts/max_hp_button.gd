@@ -20,8 +20,6 @@ func _on_pressed() -> void:
 		SignalManager.increase_max_health_permanent.emit()
 		SignalManager.update_total_coins.emit()
 		_update_cost()
-	else:
-		print("insufficient funds :(")
 
 
 # Displays the updated cost.

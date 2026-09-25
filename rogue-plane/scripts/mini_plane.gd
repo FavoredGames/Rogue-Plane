@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-var speed: float = 450
+const SPEED: float = 450
 @export var bullet_scene: PackedScene
 @export var bullet_scene_2: PackedScene
 @export var bullet_spawn: Marker2D
@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 	velocity = Vector2(0, 0)
 	mouse_position = get_global_mouse_position()
 	var direction = (mouse_position - position - offset)
-	velocity = speed * direction.normalized()
+	velocity = SPEED * direction.normalized()
 	move_and_slide()
 	# Makes mini plane shoot but only when the timer is done.
 	if can_shoot:

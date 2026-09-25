@@ -2,10 +2,6 @@ extends ProgressBar
 
 @export var player: CharacterBody2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
 
 # Calculates player health as a percentage of max health
 # and displays the value in the health bar.

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var player: CharacterBody2D
-var speed: float = 300.0
+const SPEED: float = 300.0
 var missile_health: int = 2
 
 
@@ -15,7 +15,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not player == null:
 		look_at(player.global_position)
-		velocity = Vector2(1,0).rotated(rotation) * speed
+		velocity = Vector2(1,0).rotated(rotation) * SPEED
 		move_and_slide()
 	# Deletes missile if its health is 0.
 	if missile_health <= 0:
@@ -29,4 +29,3 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	# Reduces missile health when collided with player bullets.
 	if area.is_in_group("enemy_damagers"):
 		missile_health =- 1
-		print(missile_health)

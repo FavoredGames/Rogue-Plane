@@ -4,6 +4,10 @@ extends Node
 const GAME: PackedScene = preload("res://scenes/main.tscn")
 const SKILL_TREE: PackedScene = preload("res://scenes/skill_tree.tscn")
 const WIN_SCREEN: PackedScene = preload("res://scenes/win_screen.tscn")
+const MAX_HP_INCREASE_VALUE: int = 3
+const EXTRA_COIN_CHANCE_INCREASE_VALUE: int = 0.1
+
+
 var max_hp_cost: int = 1
 var max_hp_base_cost: int = 1
 var max_hp_level: int = 1
@@ -33,25 +37,28 @@ func _ready() -> void:
 	SignalManager.boss_died.connect(load_win_screen)
 
 
+# Calculates the new damage cost and apllies the upgrade.
 func increase_damage_permanent():
-	damage_cost = (damage_base_cost * 1.5) + damage_base_cost * (1 - 0.5 ** (damage_level - 1))
-	print("damage cost", damage_cost)
+	damage_cost = (damage_base_cost * 1.5) + (
+		damage_base_cost * (1 - 0.5 ** (damage_level - 1))
+		)
 	enemy_damage_take += 1
 	damage_level += 1
 
 
+# Calaculates the new extra coin cost and apllies the upgrade.
 func increase_extra_coin_chance():
-	print("extra_coin_upgrade_cost", extra_coin_upgrade_cost)
-	extra_coin_upgrade_cost = extra_coin_base_cost * (1 + 0.75 * extra_coin_level) * (1.15 ** extra_coin_level)
-	second_coin_chance += 0.1
+	extra_coin_upgrade_cost = (extra_coin_base_cost * (
+			(1 + 0.75 * extra_coin_level) * (1.15 ** extra_coin_level))
+		)
+	second_coin_chance += EXTRA_COIN_CHANCE_INCREASE_VALUE
 	extra_coin_level += 1
 
 
+# Calaculates the new max health cost and apllies the upgrade.
 func increase_max_health_permanent():
 	max_hp_cost = max_hp_base_cost * (1 + 0.75 * max_hp_level) * (1.15 ** max_hp_level)
-	print("maxhpcost", max_hp_cost)
-	max_hp += 3
-	print("maxhp,", max_hp)
+	max_hp += MAX_HP_INCREASE_VALUE
 	max_hp_level += 1
 
 
@@ -59,17 +66,8 @@ func update_total_coins():
 	total_coins -= max_hp_cost
 
 
-
-
-
-
-	
-
-
 func load_skill_tree():
 	get_tree().change_scene_to_packed(SKILL_TREE)
-	
-
 
 
 func load_game():

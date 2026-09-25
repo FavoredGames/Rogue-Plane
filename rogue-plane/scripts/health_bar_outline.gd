@@ -1,16 +1,12 @@
 extends TextureRect
 
 
-# Called when the node enters the scene tree for the first time.
+# Signals connected to hide health bar when boss phase cards are visible
+# or when boss dies.
 func _ready() -> void:
 	SignalManager.player_died.connect(_remove_boss_health_bar)
 	SignalManager.start_phase_2.connect(_hide_for_phase_2)
 	SignalManager.start_phase_3.connect(_hide_for_phase_3)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 
 # Hides the health bar for outline for when phase 2 card is on screen.

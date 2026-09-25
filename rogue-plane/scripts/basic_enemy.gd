@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 100
+const SPEED = 100
 var health: int = 20
 var take_damage: int = 0
 @export var bullet_scene: PackedScene
@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 		_shoot()
 		_shoot_2()
 	# Makes the enemy move downwards.
-	move_local_y(speed * delta)
+	move_local_y(SPEED * delta)
 	# Deletes the enemy when it reaches 0 health and spawns 1 or 2 coins.
 	if health <= 0:
 		SignalManager.enemy_plane_died.emit()

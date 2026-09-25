@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var player: CharacterBody2D
-var speed: float = 400.0
+const SPEED: float = 400.0
 var missile_health: int = 100
 
 
@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 	# If player is in the scene the missile moves toward the player.
 	if not player == null:
 		look_at(player.global_position)
-		velocity = Vector2(1,0).rotated(rotation) * speed
+		velocity = Vector2(1,0).rotated(rotation) * SPEED
 		move_and_slide()
 	if missile_health <= 0:
 		queue_free()

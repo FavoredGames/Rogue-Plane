@@ -1,11 +1,11 @@
 extends Area2D
 
-var speed: float = 800.0
+var SPEED: float = 800.0
 
 
 # Moves bullet up the screen. 
 func _process(delta: float) -> void:
-	move_local_y(-speed * delta)
+	move_local_y(-SPEED * delta)
 
 
 # Deletes bullet if it's in the game for to long 

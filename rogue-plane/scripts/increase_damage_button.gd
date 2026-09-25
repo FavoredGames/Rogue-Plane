@@ -6,21 +6,19 @@ const BASE_TEXT: String = "+1 DAMAGE
 	COST:"
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Makes cost up to date immediately.
 	_update_cost()
+	# Button is disabled if max hp upgrade has never been purchased.
 	if GameManager.damage_button_disabled == true:
 		disabled = true
+	# Button is enabled if max hp upgrade has never been purchased.
 	else:
 		disabled = false
 	SignalManager.increase_max_health_permanent.connect(_enable)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
+# Enables damage button in max hp has been purchased before.
 func _enable():
 	GameManager.damage_button_disabled = false
 	disabled = false

@@ -3,7 +3,7 @@ extends CharacterBody2D
 var mouse_position = null
 var player_position = get_global_position
 var direction: Vector2 = Vector2(0.0, 0.0)
-var speed: int = 1000
+const SPEED: int = 1000
 
 
 # Moves dead zone to mouse position.
@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 	velocity = Vector2(0, 0,)
 	mouse_position = get_global_mouse_position()
 	var direction = (mouse_position - position)
-	velocity =  speed * direction.normalized()
+	velocity =  SPEED * direction.normalized()
 	move_and_slide()
 
 

@@ -22,12 +22,20 @@ extends CharacterBody2D
 
 const GAME_OVER: PackedScene = preload("res://scenes/game_over_screen.tscn")
 const PLAYER_HEALTH_INCREASE_VALUE: int = 2
+const SPEED: float = 800
+const GUN_LIMIT = 6
+const XP_INCREASE_VALUE: int = 20
+const SHOOTING_FUNCTIONS: Array = [
+	"_shoot",
+	"_shoot_2",
+	"_shoot_3",
+	"_shoot_4",
+	"_shoot_5",
+	"_shoot_6"
+]
 
-var gun_limit = 6
-var xp_increase_value: int = 20
 var max_xp: int = 100
 var xp: int = 0
-var speed: float = 800
 var can_shoot: bool = false
 var mouse_position = null
 var player_position = get_global_position
@@ -55,7 +63,7 @@ func _ready() -> void:
 
 # Increases gun value.
 func _add_gun():
-	if not guns == gun_limit:
+	if not guns == GUN_LIMIT:
 		guns += 1
 	else: 
 		pass
@@ -91,7 +99,7 @@ func _increase_max_health_temporary():
 
 # Increases player xp amount and then update the xp bar.
 func _enemy_plane_died():
-	xp += xp_increase_value
+	xp += XP_INCREASE_VALUE
 	_update_xp()
 
 
@@ -101,7 +109,7 @@ func _process(delta: float) -> void:
 	velocity = Vector2(0, 0,)
 	mouse_position = get_global_mouse_position()
 	var direction = (mouse_position - position)
-	velocity =  speed * direction.normalized()
+	velocity =  SPEED * direction.normalized()
 	if moving:
 		move_and_slide()
 	# Changes scene to the game over screen when player health reaches 0.
@@ -111,23 +119,25 @@ func _process(delta: float) -> void:
 	# Makes player shoot but only when the timer is done.
 	# Shoots more depending on how many guns it has.
 	if can_shoot:
-		_shoot()
-		_shoot_2()
-		if guns >= 3:
-			_shoot_3()
-		if guns >= 4:
-			_shoot_4()
-		if guns >= 5:
-			_shoot_5()
-		if guns >= 6:
-			_shoot_6()
+		for i in range(guns):
+			call(SHOOTING_FUNCTIONS[i])
+		#_shoot()
+		#_shoot_2()
+		#if guns >= 3:
+			#_shoot_3()
+		#if guns >= 4:
+			#_shoot_4()
+		#if guns >= 5:
+			#_shoot_5()
+		#if guns >= GUN_LIMIT:
+			#_shoot_6()
 	if xp >= max_xp:
 		level_up()
 
 
 # Increases the max xp needed for the next level up after level up.
 func level_up():
-	max_xp += xp_increase_value
+	max_xp += XP_INCREASE_VALUE
 	SignalManager.card_upgrades.emit()
 
 

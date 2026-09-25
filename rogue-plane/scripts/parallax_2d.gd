@@ -20,5 +20,6 @@ func _process(delta: float) -> void:
 	screen_offset.y += SCROLL_SPEED * delta
 
 
+# Stops scrolling when player dies.
 func on_plane_died() -> void: 
 	set_process(false)

@@ -8,14 +8,16 @@ extends Control
 @export var attack_speed_increase_card: Button
 @export var add_mini_plane_card: Button
 @export var add_gun_card: Button
-var first_card: int = 1
-var second_card: int = 2
-var third_card: int = 3
 var card_num: int = 1
-var max_guns: int = 6
 var guns: int = 2
 var mini_planes: int = 0
-var max_mini_planes: int = 2
+const MAX_MINI_PLANES: int = 2
+const MAX_GUNS: int = 6
+const HEALTH_CARD_ID: int = 1
+const DAMAGE_CARD_ID: int = 2
+const ATTACK_SPEED_CARD_ID: int = 3
+const MINI_PLANE_CARD_ID: int = 4
+const GUN_CARD_ID: int = 5
 
 
 #var rng = RandomNumberGenerator.new()
@@ -29,19 +31,18 @@ func _ready() -> void:
 
 # Disables upgrades if they're already maxed out. 
 func _process(delta: float) -> void:
-	if guns == max_guns:
+	if guns == MAX_GUNS:
 		add_gun_card.disabled = true
 	else:
 		pass
-	if mini_planes == max_mini_planes:
+	if mini_planes == MAX_MINI_PLANES:
 		add_mini_plane_card.disabled = true
 	else:
 		pass
 
 
-
 #func increase_card_num():
-	#card_num += 1
+	#card_num += HEALTH_CARD_ID
 
 
 #func reset_card_num():
@@ -50,90 +51,66 @@ func _process(delta: float) -> void:
 
 # Gives an id to each possible upgrade card.
 func _show_card(id):
-	print("caard num", card_num)
-	if id == 1:
+	if id == HEALTH_CARD_ID:
 		health_increase_card.visible = true
-		print("show health card")
-
-	if id == 2:
+	if id == DAMAGE_CARD_ID:
 		damage_increase_card.visible = true
-		print("show damage card")
-
-
-	if id == 3:
+	if id == ATTACK_SPEED_CARD_ID:
 		attack_speed_increase_card.visible = true
-		print("show atks card")
-		
-			
-	if id == 4:
+	if id == MINI_PLANE_CARD_ID:
 		add_mini_plane_card.visible = true
-		print("show mini card")
-		
-
-	if id == 5:
+	if id == GUN_CARD_ID:
 		add_gun_card.visible = true
-		print("show gun card")
 
 
-# Picks 1st card to show and diplays it then picks the second and repicks if it is the same as 
-# the 1st. thenb p[icks the 3rd making sure it isn't the same as 1st or 2nd
+# Picks 1st card to show and diplays it then picks the second and repicks if 
+# it is the same as  the 1st. then picks the 3rd making sure it isn't the same 
+# as 2st or 2nd.
 func _show_upgrade_cards():
 	visible = true
-	print("---=--------------------------")
-	var random_int = randi_range(1,5)
-	print("randint:", random_int)
-		
-	if random_int == 1:
-		_show_card(1)
-	elif random_int == 2: 
-		_show_card(2)
-	elif random_int == 3: 
-		_show_card(3)
-	elif random_int == 4: 
-		_show_card(4)
+	var random_int = randi_range(HEALTH_CARD_ID,GUN_CARD_ID)
+	if random_int == HEALTH_CARD_ID:
+		_show_card(HEALTH_CARD_ID)
+	elif random_int == DAMAGE_CARD_ID: 
+		_show_card(DAMAGE_CARD_ID)
+	elif random_int == ATTACK_SPEED_CARD_ID: 
+		_show_card(ATTACK_SPEED_CARD_ID)
+	elif random_int == MINI_PLANE_CARD_ID: 
+		_show_card(MINI_PLANE_CARD_ID)
 	else: 
-		_show_card(5)
-		
-	var random_int_2 = randi_range(1,5)
-	print("randint2:", random_int_2)
-	while random_int_2 == random_int:
-		random_int_2 = randi_range(1,5)
-		print("randint2:", random_int_2)
-		if random_int_2 != random_int:
+		_show_card(GUN_CARD_ID)
+	var random_int_DAMAGE_CARD_ID = randi_range(HEALTH_CARD_ID,GUN_CARD_ID)
+	while random_int_DAMAGE_CARD_ID == random_int:
+		random_int_DAMAGE_CARD_ID = randi_range(HEALTH_CARD_ID,GUN_CARD_ID)
+		if random_int_DAMAGE_CARD_ID != random_int:
 			break
-	
-	if random_int_2 == 1:
-		_show_card(1)
-	elif random_int_2 == 2: 
-		_show_card(2)
-	elif random_int_2 == 3: 
-		_show_card(3)
-	elif random_int_2 == 4: 
-		_show_card(4)
+	if random_int_DAMAGE_CARD_ID == HEALTH_CARD_ID:
+		_show_card(HEALTH_CARD_ID)
+	elif random_int_DAMAGE_CARD_ID == DAMAGE_CARD_ID: 
+		_show_card(DAMAGE_CARD_ID)
+	elif random_int_DAMAGE_CARD_ID == ATTACK_SPEED_CARD_ID: 
+		_show_card(ATTACK_SPEED_CARD_ID)
+	elif random_int_DAMAGE_CARD_ID == MINI_PLANE_CARD_ID: 
+		_show_card(MINI_PLANE_CARD_ID)
 	else: 
-		_show_card(5)
-		
-	var random_int_3 = randi_range(1,5)
-	print("randint3:", random_int_3)
-	while random_int_3 == random_int or random_int_3 == random_int_2:
-		random_int_3 = randi_range(1,5)
-		print("randint3:", random_int_3)
-		print("hmmm")
-		if random_int_3 == random_int_2 or random_int_3 == random_int:
+		_show_card(GUN_CARD_ID)
+	var random_int_3 = randi_range(HEALTH_CARD_ID,GUN_CARD_ID)
+	while random_int_3 == random_int or random_int_3 == random_int_DAMAGE_CARD_ID:
+		random_int_3 = randi_range(HEALTH_CARD_ID,GUN_CARD_ID)
+		if random_int_3 == random_int_DAMAGE_CARD_ID or random_int_3 == random_int:
 			pass
 		else:
-			print("break")
 			break
-	if random_int_3 == 1:
-		_show_card(1)
-	elif random_int_3 == 2: 
-		_show_card(2)
-	elif random_int_3 == 3: 
-		_show_card(3)
-	elif random_int_3 == 4: 
-		_show_card(4)
+	if random_int_3 == HEALTH_CARD_ID:
+		_show_card(HEALTH_CARD_ID)
+	elif random_int_3 == DAMAGE_CARD_ID: 
+		_show_card(DAMAGE_CARD_ID)
+	elif random_int_3 == ATTACK_SPEED_CARD_ID: 
+		_show_card(ATTACK_SPEED_CARD_ID)
+	elif random_int_3 == MINI_PLANE_CARD_ID: 
+		_show_card(MINI_PLANE_CARD_ID)
 	else: 
-		_show_card(5)
+		_show_card(GUN_CARD_ID)
 	get_tree().paused = true
 
 
@@ -164,7 +141,7 @@ func _on_increase_attack_speed_pressed() -> void:
 func _on_add_mini_plane_pressed() -> void:
 	SignalManager.add_mini_plane.emit()
 	_hide_buttons()
-	mini_planes += 1
+	mini_planes += HEALTH_CARD_ID
 	unpause()
 
 

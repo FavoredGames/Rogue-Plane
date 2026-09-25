@@ -1,8 +1,7 @@
 extends CharacterBody2D
 
-var speed = 0
 var health: int = 2000
-var max_health: int = 2000
+const MAX_HEALTH: int = 2000
 var take_damage: int = 0
 var can_take_damage: bool = true
 @export var bullet_scene: PackedScene
@@ -54,46 +53,62 @@ func _process(delta: float) -> void:
 	if not between_phase:
 		if health <= 0:
 			queue_free()
-		# Starts phase 2 if in the health range for phase 2
-		if (health <= (max_health * PHASE_2_START) 
-		and health > (max_health * PHASE_2_FINISH)):
+		# Starts phase 2 if in the health range for phase 2.
+		if (health <= (MAX_HEALTH * PHASE_2_START) 
+		and health > (MAX_HEALTH * PHASE_2_FINISH)):
 			if not phase_2_code_has_run:
-				
+				# Emits siganl so that health bar knows phase 2 started, so that the 
+				# health bar can be hidden and the phase 2 card displayed.
 				SignalManager.start_phase_2.emit()
-				homing_missile_timer.wait_time = (
-					homing_missile_timer.wait_time * NEW_PERCENTAGE_OF_MISSILE_TIME
-				)
+				# Makes missiles spawn faster.
+				_decrease_missile_spawn_time()
 				between_phase_timer.start()
+				# Makes sure this chunk of code won't run again.
 				phase_2_code_has_run = true
+				# Makes it so there is no boss shooting or movement.
 				between_phase = true
 				can_shoot = false
+				# Makes boss not visible while phase 2 card is showing.
 				hide()
 				await get_tree().create_timer(1.0).timeout
 				show()
-		elif health <= (max_health * PHASE_2_FINISH):
+		# Starts phase 3 if in health range for phase 3.
+		elif health <= (MAX_HEALTH * PHASE_2_FINISH):
 			if not phase_3_code_has_run:
-				homing_missile_timer.wait_time = (
-					homing_missile_timer.wait_time * NEW_PERCENTAGE_OF_MISSILE_TIME
-				)
+				# Makes missiles and bullets spawn faster.
+				_decrease_missile_spawn_time()
 				bullet_timer.wait_time = (
 					bullet_timer.wait_time * HALF_BULLET_TIMER_VALUE
 				)
+				# Emits siganl so that health bar knows phase 3 started, so that the 
+				# health bar can be hidden and the phase 3 card and blindness displayed.
 				SignalManager.start_phase_3.emit()
+				# Helps get boss into starting position for phase 3 movement
+				# in a smoother way than just resetting position.
 				position.y += Y_POSITION_RESET
-				print("phase 3")
 				between_phase_timer_2.start()
+				# Removes laser for phase 3.
 				laser_hitbox_1.disabled = true
 				laser_hitbox_2.disabled = true
 				laser_1.hide()
 				laser_2.hide()
+				# Makes sure this chunk of code won.t run again.
 				phase_3_code_has_run = true
+				# Makes it so there is no boss shooting or movement.
 				between_phase = true
+				# Resets boss position so movement for phase three can start fresh.
 				boss_animation.play("RESET")
 				hide()
 		else:
 			pass
 	else:
 		pass
+
+
+func _decrease_missile_spawn_time(): ## Decreases spawn time of missiles.
+	homing_missile_timer.wait_time = (
+					homing_missile_timer.wait_time * NEW_PERCENTAGE_OF_MISSILE_TIME
+	)
 
 
 # Spawns bullet used when the shoot timer times out. 
@@ -104,6 +119,7 @@ func _shoot() -> void:
 	add_sibling(bullet)
 	bullet_timer.start()
 
+
 # Spawns bullet used when the shoot timer times out. 
 func _shoot_2() -> void:
 	var bullet_2 = bullet_scene_2.instantiate()
@@ -112,12 +128,14 @@ func _shoot_2() -> void:
 	add_sibling(bullet_2)
 	bullet_timer.start()
 
+
 # Spawns missile used when the homing missile timer times out. 
 func shoot_homing_missile_1():
 	var missile = homing_missile_1.instantiate()
 	missile.global_position = homing_missile_spawn_1.global_position
 	add_sibling(missile)
 	homing_missile_timer.start()
+
 
 # Spawns missile used when the homing missile timer times out. 
 func shoot_homing_missile_2():
@@ -127,11 +145,13 @@ func shoot_homing_missile_2():
 	homing_missile_timer.start()
 
 
+# Makes shoot functions run to spawn bullets when the shoot timer is finished.
 func _on_timer_timeout() -> void:
 	if not between_phase:
 		if can_shoot:
 			_shoot()
 			_shoot_2()
+
 
 # Makes the enemy take damage and checks to make sure it is the player's bullet that are hitting it.
 func _on_area_2d_area_entered(area: Area2D) -> void:
