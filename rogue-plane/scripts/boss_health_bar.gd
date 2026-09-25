@@ -11,7 +11,7 @@ func _ready() -> void:
 # Uses boss health as a percentage of boss max health to be displayed on the health bar.
 func _update_health_bar():
 	if boss in get_tree().get_nodes_in_group("boss"):
-		value = boss.health * 100 / boss.max_health
+		value = boss.health * 100 / boss.MAX_HEALTH
 		print(boss.health)
 
 

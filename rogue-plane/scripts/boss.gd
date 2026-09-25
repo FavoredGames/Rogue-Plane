@@ -1,9 +1,7 @@
 extends CharacterBody2D
 
-var health: int = 2000
 const MAX_HEALTH: int = 2000
-var take_damage: int = 0
-var can_take_damage: bool = true
+
 @export var bullet_scene: PackedScene
 @export var bullet_scene_2: PackedScene
 @export var bullet_spawn: Marker2D
@@ -23,6 +21,9 @@ var can_take_damage: bool = true
 @export var laser_1: Sprite2D
 @export var laser_2: Sprite2D
 
+var health: int = 2000
+var take_damage: int = 0
+var can_take_damage: bool = true
 var can_shoot: bool = true
 var can_fire_missile: bool = true
 var between_phase: bool = false
