@@ -9,13 +9,13 @@ func _ready() -> void:
 
 
 # Uses boss health as a percentage of boss max health to be displayed on the health bar.
-func update_health_bar():
+func _update_health_bar():
 	if boss in get_tree().get_nodes_in_group("boss"):
 		value = boss.health * 100 / boss.max_health
 		print(boss.health)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Used to keep the boss health bass accurate and up to date all the time.
 func _process(delta: float) -> void:
-	update_health_bar()
+	_update_health_bar()
 	

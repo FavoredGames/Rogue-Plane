@@ -37,23 +37,24 @@ var guns: int = 2
 var moving: bool = true
 var mini_planes: int = 0
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	health = GameManager.max_hp
-	SignalManager.enemy_plane_died.connect(enemy_plane_died)
-	SignalManager.increase_max_health_temporary.connect(increase_max_health_temporary)
+	SignalManager.enemy_plane_died.connect(_enemy_plane_died)
+	SignalManager.increase_max_health_temporary.connect(_increase_max_health_temporary)
 	player_max_hp = GameManager.max_hp
-	SignalManager.increase_max_health_permanent.connect(increase_max_health_permanent)
+	SignalManager.increase_max_health_permanent.connect(_increase_max_health_permanent)
 	print(health)
 	print(player_max_hp)
-	SignalManager.add_mini_plane.connect(add_mini_plane)
-	SignalManager.add_gun.connect(add_gun)
-	SignalManager.dead_zone_entered.connect(dead_zone_entered)
-	SignalManager.dead_zone_exited.connect(dead_zone_exited)
+	SignalManager.add_mini_plane.connect(_add_mini_plane)
+	SignalManager.add_gun.connect(_add_gun)
+	SignalManager.dead_zone_entered.connect(_dead_zone_entered)
+	SignalManager.dead_zone_exited.connect(_dead_zone_exited)
 
 
 # Increases gun value.
-func add_gun():
+func _add_gun():
 	if not guns == gun_limit:
 		guns += 1
 	else: 
@@ -61,7 +62,7 @@ func add_gun():
 
 
 
-func add_mini_plane():
+func _add_mini_plane():
 	# Adds the first mini plane.
 	if mini_planes == 0:
 		var mini_plane = mini_plane_scene.instantiate()
@@ -76,12 +77,12 @@ func add_mini_plane():
 
 
 # Increases players permenent max health.
-func increase_max_health_permanent():
+func _increase_max_health_permanent():
 	GameManager.max_hp += PLAYER_HEALTH_INCREASE_VALUE
 
 
 # Increases players temporary max health for that run only.
-func increase_max_health_temporary():
+func _increase_max_health_temporary():
 	player_max_hp += PLAYER_HEALTH_INCREASE_VALUE
 	health += PLAYER_HEALTH_INCREASE_VALUE
 	print(health)
@@ -89,9 +90,9 @@ func increase_max_health_temporary():
 
 
 # Increases player xp amount and then update the xp bar.
-func enemy_plane_died():
+func _enemy_plane_died():
 	xp += xp_increase_value
-	update_xp()
+	_update_xp()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -101,7 +102,7 @@ func _process(delta: float) -> void:
 	mouse_position = get_global_mouse_position()
 	var direction = (mouse_position - position)
 	velocity =  speed * direction.normalized()
-	if moving == true:
+	if moving:
 		move_and_slide()
 	# Changes scene to the game over screen when player health reaches 0.
 	if health <= 0:
@@ -198,20 +199,20 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		player_sprite.modulate = Color.RED
 		await get_tree().create_timer(NEW_TIMER_TIME).timeout
 		player_sprite.modulate = Color.WHITE
-		take_damage()
+		_take_damage()
 
 
-func update_xp():
+func _update_xp():
 	SignalManager.update_xp.emit()
 
 
-func take_damage():
+func _take_damage():
 	SignalManager.take_damage.emit()
 	
 
-func dead_zone_entered():
+func _dead_zone_entered():
 	moving = false
 
 
-func dead_zone_exited():
+func _dead_zone_exited():
 	moving = true

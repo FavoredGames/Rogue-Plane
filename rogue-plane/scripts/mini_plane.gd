@@ -13,10 +13,6 @@ var player_position = get_global_position
 var direction: Vector2 = Vector2(0.0, 0.0)
 var offset: Vector2 = Vector2(-100.0, -100.0)
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -41,5 +37,6 @@ func _shoot() -> void:
 	bullet_timer.start()
 
 
+# Allows the mini plane to shoot when timer finishes.
 func _on_bullet_timer_timeout() -> void:
 	can_shoot = true

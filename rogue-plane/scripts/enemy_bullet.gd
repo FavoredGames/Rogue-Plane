@@ -2,10 +2,12 @@ extends Area2D
 
 var speed: float = 700.0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Moves the enemt bullet down the screen.
 func _process(delta: float) -> void:
 	move_local_y(speed * delta)
 
 
+# Delets the bullet because after this timer it will be offscreen.
+# This is to remove the lag caused by bullets rendered offscreen.
 func _on_timer_timeout() -> void:
 	queue_free()

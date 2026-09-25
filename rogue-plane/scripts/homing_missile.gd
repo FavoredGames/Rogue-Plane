@@ -5,7 +5,7 @@ var speed: float = 300.0
 var missile_health: int = 2
 
 
-# Gets player node so player position can be used.
+# Gets player node so player position can be used to move the missile.
 func _ready() -> void:
 	for node in get_tree().get_nodes_in_group("player"):
 		player = node

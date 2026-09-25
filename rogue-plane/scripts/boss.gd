@@ -29,25 +29,40 @@ var can_fire_missile: bool = true
 var between_phase: bool = false
 var phase_2_code_has_run: bool = false
 var phase_3_code_has_run: bool = false
+const PHASE_2_START: int = 0.75
+const PHASE_2_FINISH: int = 0.25
+const NEW_PERCENTAGE_OF_MISSILE_TIME: int = 0.4
+const HALF_BULLET_TIMER_VALUE: int = 0.5
+const Y_POSITION_RESET: int = 100
 
+
+# Disables laser hitboxes so they can be anable in phase 2.
+# Player_died siuganl connected so boss can be removed when player dies.
 func _ready() -> void:
 	laser_hitbox_1.disabled = true
 	laser_hitbox_2.disabled = true
-	SignalManager.player_died.connect(remove_boss)
+	SignalManager.player_died.connect(_remove_boss)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	# Tell the game that the boss has died when boss has zero health
+	# so scene can be switched to win screen.
 	if health <= 0:
 		SignalManager.boss_died.emit()
-	if between_phase == false:
+	# Delets boss if health is zero.
+	if not between_phase:
 		if health <= 0:
 			queue_free()
-		if health <= (max_health * 0.75) and health > (max_health * 0.25):
-			if phase_2_code_has_run == false:
+		# Starts phase 2 if in the health range for phase 2
+		if (health <= (max_health * PHASE_2_START) 
+		and health > (max_health * PHASE_2_FINISH)):
+			if not phase_2_code_has_run:
+				
 				SignalManager.start_phase_2.emit()
-				print("phase 2")
-				homing_missile_timer.wait_time = (homing_missile_timer.wait_time * 0.4)
+				homing_missile_timer.wait_time = (
+					homing_missile_timer.wait_time * NEW_PERCENTAGE_OF_MISSILE_TIME
+				)
 				between_phase_timer.start()
 				phase_2_code_has_run = true
 				between_phase = true
@@ -55,12 +70,16 @@ func _process(delta: float) -> void:
 				hide()
 				await get_tree().create_timer(1.0).timeout
 				show()
-		elif health <= (max_health * 0.25):
-			if phase_3_code_has_run == false:
-				homing_missile_timer.wait_time = (homing_missile_timer.wait_time * 0.4)
-				bullet_timer.wait_time = (bullet_timer.wait_time * 0.5)
+		elif health <= (max_health * PHASE_2_FINISH):
+			if not phase_3_code_has_run:
+				homing_missile_timer.wait_time = (
+					homing_missile_timer.wait_time * NEW_PERCENTAGE_OF_MISSILE_TIME
+				)
+				bullet_timer.wait_time = (
+					bullet_timer.wait_time * HALF_BULLET_TIMER_VALUE
+				)
 				SignalManager.start_phase_3.emit()
-				position.y += 100
+				position.y += Y_POSITION_RESET
 				print("phase 3")
 				between_phase_timer_2.start()
 				laser_hitbox_1.disabled = true
@@ -109,16 +128,16 @@ func shoot_homing_missile_2():
 
 
 func _on_timer_timeout() -> void:
-	if between_phase == false:
-		if can_shoot == true:
+	if not between_phase:
+		if can_shoot:
 			_shoot()
 			_shoot_2()
 
 # Makes the enemy take damage and checks to make sure it is the player's bullet that are hitting it.
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if between_phase == false:
+	if not between_phase:
 		if area.is_in_group("enemy_damagers"):
-			if can_take_damage == true:
+			if can_take_damage:
 				health -= GameManager.enemy_damage_take
 				# Makes the enemy flash red when it takes damage.
 				enemy_sprite.modulate = Color.RED
@@ -129,8 +148,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 # Checks that the boss isn't inbetween phases and if not then runs the functions to spawn missiles.
 func _on_homing_missile_timeout() -> void:
-	if between_phase == false:
-		if can_fire_missile == true:
+	if not between_phase:
+		if can_fire_missile:
 			shoot_homing_missile_1()
 			shoot_homing_missile_2()
 
@@ -156,5 +175,6 @@ func _on_between_phase_timer_2_timeout() -> void:
 	show()
 
 
-func remove_boss():
+# Removes boss when player has died as part of the signal it recieves.
+func _remove_boss():
 	queue_free()

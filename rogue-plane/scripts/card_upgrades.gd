@@ -24,7 +24,7 @@ var max_mini_planes: int = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalManager.card_upgrades.connect(show_upgrade_cards)
+	SignalManager.card_upgrades.connect(_show_upgrade_cards)
 
 
 # Disables upgrades if they're already maxed out. 
@@ -40,16 +40,16 @@ func _process(delta: float) -> void:
 
 
 
-func increase_card_num():
-	card_num += 1
+#func increase_card_num():
+	#card_num += 1
 
 
-func reset_card_num():
-	card_num = 0
+#func reset_card_num():
+	#card_num = 0
 
 
 # Gives an id to each possible upgrade card.
-func show_card(id):
+func _show_card(id):
 	print("caard num", card_num)
 	if id == 1:
 		health_increase_card.visible = true
@@ -77,22 +77,22 @@ func show_card(id):
 
 # Picks 1st card to show and diplays it then picks the second and repicks if it is the same as 
 # the 1st. thenb p[icks the 3rd making sure it isn't the same as 1st or 2nd
-func show_upgrade_cards():
+func _show_upgrade_cards():
 	visible = true
 	print("---=--------------------------")
 	var random_int = randi_range(1,5)
 	print("randint:", random_int)
 		
 	if random_int == 1:
-		show_card(1)
+		_show_card(1)
 	elif random_int == 2: 
-		show_card(2)
+		_show_card(2)
 	elif random_int == 3: 
-		show_card(3)
+		_show_card(3)
 	elif random_int == 4: 
-		show_card(4)
+		_show_card(4)
 	else: 
-		show_card(5)
+		_show_card(5)
 		
 	var random_int_2 = randi_range(1,5)
 	print("randint2:", random_int_2)
@@ -103,15 +103,15 @@ func show_upgrade_cards():
 			break
 	
 	if random_int_2 == 1:
-		show_card(1)
+		_show_card(1)
 	elif random_int_2 == 2: 
-		show_card(2)
+		_show_card(2)
 	elif random_int_2 == 3: 
-		show_card(3)
+		_show_card(3)
 	elif random_int_2 == 4: 
-		show_card(4)
+		_show_card(4)
 	else: 
-		show_card(5)
+		_show_card(5)
 		
 	var random_int_3 = randi_range(1,5)
 	print("randint3:", random_int_3)
@@ -125,15 +125,15 @@ func show_upgrade_cards():
 			print("break")
 			break
 	if random_int_3 == 1:
-		show_card(1)
+		_show_card(1)
 	elif random_int_3 == 2: 
-		show_card(2)
+		_show_card(2)
 	elif random_int_3 == 3: 
-		show_card(3)
+		_show_card(3)
 	elif random_int_3 == 4: 
-		show_card(4)
+		_show_card(4)
 	else: 
-		show_card(5)
+		_show_card(5)
 	get_tree().paused = true
 
 
@@ -141,21 +141,21 @@ func show_upgrade_cards():
 # so player health can be increased in the game manager.
 func _on_health_increase_card_pressed() -> void:
 	SignalManager.increase_max_health_temporary.emit()
-	hide_buttons()
+	_hide_buttons()
 	unpause()
 
 # Emits signal for the player to connect to
 # so player damage can be increased in the player script.
 func _on_damage_increase_card_pressed() -> void:
 	SignalManager.increase_damage.emit()
-	hide_buttons()
+	_hide_buttons()
 	unpause()
 
 # Emits signal for the player to connect to
 # so player attack speed can be increased in the player script.
 func _on_increase_attack_speed_pressed() -> void:
 	SignalManager.increase_attack_speed.emit()
-	hide_buttons()
+	_hide_buttons()
 	unpause()
 
 
@@ -163,7 +163,7 @@ func _on_increase_attack_speed_pressed() -> void:
 # so player mini planes can be increased in the player script.
 func _on_add_mini_plane_pressed() -> void:
 	SignalManager.add_mini_plane.emit()
-	hide_buttons()
+	_hide_buttons()
 	mini_planes += 1
 	unpause()
 
@@ -172,7 +172,7 @@ func _on_add_mini_plane_pressed() -> void:
 # so player guns can be increased in the player script.
 func _on_add_gun_pressed() -> void:
 	SignalManager.add_gun.emit()
-	hide_buttons()
+	_hide_buttons()
 	guns += 1
 	unpause()
 
@@ -186,7 +186,8 @@ func unpause():
 	get_tree().paused = false
 
 
-func hide_buttons():
+# Hides all buttons because the card has been picked.
+func _hide_buttons():
 	add_gun_card.visible = false
 	add_mini_plane_card.visible = false
 	attack_speed_increase_card.visible = false
@@ -194,6 +195,6 @@ func hide_buttons():
 	health_increase_card.visible = false
 
 
-
+# Upauses the game because the card has been picked.
 func _on_unpause_button_pressed() -> void:
 	unpause()

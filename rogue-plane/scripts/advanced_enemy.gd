@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var speed = 100
-var horinzontal_speed: int = 50
+const VERTICAL_SPEED = 100
+const HORIZONTAL_SPEED: int = 50
 var health: int = 20
 var take_damage: int = 0
 @export var bullet_scene: PackedScene
@@ -15,12 +15,13 @@ var pecentage = randf()
 var can_shoot: bool = false
 var zigzag_num: int = 0
 
-# Called when the node enters the scene tree for the first time.
+# Signal is connected so enemy takes more damage when player gets an damage upgrade.
 func _ready() -> void:
-	SignalManager.increase_damage.connect(increase_damage)
+	SignalManager.increase_damage.connect(_increase_damage)
 
 
-func increase_damage():
+# Makes the nemey take more damage when players damage is upgraded.
+func _increase_damage():
 	take_damage += 1
 
 
@@ -30,23 +31,23 @@ func _process(delta: float) -> void:
 	if can_shoot:
 		_shoot()
 		# Makes the enemy move downwards.
-	move_local_y(speed * delta)
+	move_local_y(VERTICAL_SPEED * delta)
 	# Makes enemy zigzag left and right when the zigzag timer times out it changes direction.
 	if zigzag_num % 2 == 0:
-		move_local_x(horinzontal_speed * delta)
+		move_local_x(HORIZONTAL_SPEED * delta)
 	else:
-		move_local_x(-horinzontal_speed * delta)
+		move_local_x(-HORIZONTAL_SPEED * delta)
 	# Deletes the enemy when it reaches 0 health and spawns 1 or 2 coins.
 	if health <= 0:
 		SignalManager.enemy_plane_died.emit()
-		spawn_coin()
+		_spawn_coin()
 		if pecentage <= GameManager.second_coin_chance:
-			spawn_coin_2()
+			_spawn_coin_2()
 		queue_free()
 
 
 # Spawns coin used when enemy dies.
-func spawn_coin() -> void:
+func _spawn_coin() -> void:
 	var coin = coin_scene.instantiate()
 	coin.global_position = coin_spawn.global_position
 	add_sibling(coin)
@@ -54,7 +55,7 @@ func spawn_coin() -> void:
 
 
 # Spawns coin used when enemy dies.
-func spawn_coin_2() -> void:
+func _spawn_coin_2() -> void:
 	var coin = coin_scene.instantiate()
 	coin.global_position = coin_spawn_2.global_position
 	add_sibling(coin)
@@ -86,7 +87,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		
 
 
-# Increases the zigzag number when the zigzag timer is done to control the planes movement left or right
+# Increases the zigzag number when the zigzag timer 
+# is done to control the planes movement left or right.
 func _on_zigzag_timer_timeout() -> void:
 	zigzag_num += 1
 
@@ -94,4 +96,3 @@ func _on_zigzag_timer_timeout() -> void:
 # Deletes the enemy if it's been instatiated to long because it'll be off screen by then.
 func _on_timer_2_timeout() -> void:
 	queue_free()
-	print("Advanced enemy gone")

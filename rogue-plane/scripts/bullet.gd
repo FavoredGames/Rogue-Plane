@@ -8,6 +8,9 @@ func _process(delta: float) -> void:
 	move_local_y(-speed * delta)
 
 
+# Deletes bullet if it's in the game for to long 
+# beacuse if it's in game this long it's off screen
+# and needs to be deleted so it doesn't lag the game
 func _on_timer_timeout() -> void:
 	queue_free()
 

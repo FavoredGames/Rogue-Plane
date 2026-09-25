@@ -7,12 +7,13 @@ var missile_health: int = 100
 
 # Gets the player node so it can get player position.
 func _ready() -> void:
-	SignalManager.player_died.connect(delete_self)
+	SignalManager.player_died.connect(_delete_self)
 	for node in get_tree().get_nodes_in_group("player"):
 		player = node
 
 
-func delete_self():
+# Used to delete homing missiles when player dies because the scene will change.
+func _delete_self():
 	queue_free()
 
 
@@ -37,5 +38,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		print(missile_health)
 
 
+# Deletes boss missile if they're in the game for to long 
+# beacuse if they're in game this long somethings gone wrong
+# and they'll just be causing lag
 func _on_timer_timeout() -> void:
 	queue_free()

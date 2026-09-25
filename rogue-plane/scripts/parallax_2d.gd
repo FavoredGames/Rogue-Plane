@@ -7,7 +7,7 @@ const SCROLL_SPEED: int = 500
 @export var texture: Texture2D
 
 
-# Sets the background to the size of the screen and makes it reppeat infinitely.
+# Sets the background to the size of the screen and makes it repeat infinitely.
 func _ready() -> void:
 	var scale_factor = get_viewport_rect().size.x / texture.get_width()
 	sprite_2d.texture = texture
