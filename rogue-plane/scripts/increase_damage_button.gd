@@ -15,6 +15,7 @@ func _ready() -> void:
 	# Button is enabled if max hp upgrade has never been purchased.
 	else:
 		disabled = false
+	# Enables button when max hp upgrade is bought.
 	SignalManager.increase_max_health_permanent.connect(_enable)
 
 

@@ -24,7 +24,7 @@ const GUN_CARD_ID: int = 5
 #var card_list: Array = [health_increase_card, damage_increase_card, 
 #attack_speed_increase_card, add_mini_plane_card, add_gun_card]
 
-# Called when the node enters the scene tree for the first time.
+# Signal is used so it knows when player has leveled up to display upgrades.
 func _ready() -> void:
 	SignalManager.card_upgrades.connect(_show_upgrade_cards)
 
@@ -158,7 +158,7 @@ func _on_add_gun_pressed() -> void:
 func unpause():
 	visible = false
 	SignalManager.reset_xp.emit()
-	# Creates short delay so the player can react.
+	# Creates short delay so the player can react to game unpausing.
 	await get_tree().create_timer(0.4).timeout
 	get_tree().paused = false
 

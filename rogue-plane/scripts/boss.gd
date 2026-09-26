@@ -29,15 +29,15 @@ var can_fire_missile: bool = true
 var between_phase: bool = false
 var phase_2_code_has_run: bool = false
 var phase_3_code_has_run: bool = false
-const PHASE_2_START: int = 0.75
-const PHASE_2_FINISH: int = 0.25
-const NEW_PERCENTAGE_OF_MISSILE_TIME: int = 0.4
-const HALF_BULLET_TIMER_VALUE: int = 0.5
+const PHASE_2_START: float = 0.75
+const PHASE_2_FINISH: float = 0.25
+const NEW_PERCENTAGE_OF_MISSILE_TIME: float = 0.4
+const HALF_BULLET_TIMER_VALUE: float = 0.5
 const Y_POSITION_RESET: int = 100
 
 
 # Disables laser hitboxes so they can be anable in phase 2.
-# Player_died siuganl connected so boss can be removed when player dies.
+# Player_died signal connected so boss can be removed when player dies.
 func _ready() -> void:
 	laser_hitbox_1.disabled = true
 	laser_hitbox_2.disabled = true
@@ -106,7 +106,8 @@ func _process(delta: float) -> void:
 		pass
 
 
-func _decrease_missile_spawn_time(): ## Decreases spawn time of missiles.
+# Decreases spawn time of missiles.
+func _decrease_missile_spawn_time(): 
 	homing_missile_timer.wait_time = (
 					homing_missile_timer.wait_time * NEW_PERCENTAGE_OF_MISSILE_TIME
 	)

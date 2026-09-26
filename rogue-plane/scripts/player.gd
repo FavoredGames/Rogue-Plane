@@ -48,15 +48,21 @@ var mini_planes: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Sets the players health and max health to the everchanging 
+	# max hp (due to max hp upgrades) stored in the gamemanager.
 	health = GameManager.max_hp
-	SignalManager.enemy_plane_died.connect(_enemy_plane_died)
-	SignalManager.increase_max_health_temporary.connect(_increase_max_health_temporary)
 	player_max_hp = GameManager.max_hp
+	# Tells player when enemy has died, to add xp.
+	SignalManager.enemy_plane_died.connect(_enemy_plane_died)
+	# Used for when max hp card upgrade is taken to increase max hp for that run.
+	SignalManager.increase_max_health_temporary.connect(_increase_max_health_temporary)
+	# Used for when max hp upgrade is bought to increase max hp permanently
 	SignalManager.increase_max_health_permanent.connect(_increase_max_health_permanent)
-	print(health)
-	print(player_max_hp)
+	# For when mini plane upgrade to taken.
 	SignalManager.add_mini_plane.connect(_add_mini_plane)
+		# For when gun upgrade to taken.
 	SignalManager.add_gun.connect(_add_gun)
+	# Used to stop plane movement when player mouse is in deadzone.
 	SignalManager.dead_zone_entered.connect(_dead_zone_entered)
 	SignalManager.dead_zone_exited.connect(_dead_zone_exited)
 
@@ -93,8 +99,6 @@ func _increase_max_health_permanent():
 func _increase_max_health_temporary():
 	player_max_hp += PLAYER_HEALTH_INCREASE_VALUE
 	health += PLAYER_HEALTH_INCREASE_VALUE
-	print(health)
-	print(player_max_hp)
 
 
 # Increases player xp amount and then update the xp bar.

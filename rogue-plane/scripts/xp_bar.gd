@@ -2,10 +2,13 @@ extends ProgressBar
 
 @export var player: CharacterBody2D
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
+	# Tells xp bar when to update for when changes are made to xp value.
 	SignalManager.update_xp.connect(_update_xp)
+	# Tells xp bar when to reset for when player has levelled up.
 	SignalManager.reset_xp.connect(_reset_xp)
+	# Makes xp up to date immediately.
 	_update_xp()
 
 

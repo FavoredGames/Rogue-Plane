@@ -5,10 +5,6 @@ extends Area2D
 var player: CharacterBody2D
 
 
-func _physics_process(delta: float) -> void:
-	pass
-
-
 # Creates an instance of the ballut at the shooting point
 func _shoot():
 	const BULLET = preload("res://scenes/boss_bullet.tscn")

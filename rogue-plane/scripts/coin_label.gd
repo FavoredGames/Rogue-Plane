@@ -3,7 +3,7 @@ extends Label
 var coin = 0
 
 
-# Called when the node enters the scene tree for the first time.
+# Siganl used to increase coins for label when player collects a coin.
 func _ready() -> void:
 	SignalManager.coin_collected.connect(_increase_coin_amount)
 

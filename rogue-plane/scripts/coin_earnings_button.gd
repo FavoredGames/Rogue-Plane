@@ -6,13 +6,17 @@ const BASE_TEXT: String = "+10% CHANCE
 	x2 COINS
 	COST:"
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
+	# Makes coin counter up to date immediatly.
 	_update_cost()
+	# Keeps damage button disabled if max hp has never been bought.
 	if GameManager.damage_button_disabled == true:
 		disabled = true
+	# Keeps damage button enabled if max hp has been bought.
 	else:
 		disabled = false
+	# Signal used to enable button when max hp is bought.
 	SignalManager.increase_max_health_permanent.connect(_enable)
 
 

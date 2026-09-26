@@ -21,6 +21,8 @@ func _ready() -> void:
 	get_tree().paused = true
 	await get_tree().create_timer(0.75).timeout
 	get_tree().paused = false
+	# Signals so phase cards can be displayed when boss 
+	# tells main that phase has started.
 	SignalManager.start_phase_2.connect(_show_phase_2_card)
 	SignalManager.start_phase_3.connect(_show_phase_3)
 

@@ -1,5 +1,5 @@
 extends Node2D
-
+# Used to create signbals in a clear, managable space.
 signal enemy_plane_died
 signal card_upgrades
 signal take_damage

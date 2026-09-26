@@ -93,6 +93,7 @@ func _on_zigzag_timer_timeout() -> void:
 	zigzag_num += 1
 
 
-# Deletes the enemy if it's been instatiated to long because it'll be off screen by then.
+# Deletes the enemy if it's been instatiated to long 
+# because it'll be off screen by then.
 func _on_timer_2_timeout() -> void:
 	queue_free()
